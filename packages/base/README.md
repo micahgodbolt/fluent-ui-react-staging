@@ -1,11 +1,11 @@
-# `react-compose`
+# `@fluentui/base`
 
 > TODO: description
 
 ## Usage
 
 ```
-const reactCompose = require('react-compose');
+const reactBase = require('@fluentui/base');
 
 // TODO: DEMONSTRATE API
 ```

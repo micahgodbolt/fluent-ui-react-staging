@@ -1,7 +1,6 @@
-const path = require('path');
-
-const findRepoDeps = require('../monorepo/findRepoDeps');
-const findGitRoot = require('../monorepo/findGitRoot');
+import path from 'path';
+import { findRepoDeps } from '../monorepo/findRepoDeps';
+import { findGitRoot } from '../monorepo/findGitRoot';
 
 function getResolveAlias() {
   const gitRoot = findGitRoot();

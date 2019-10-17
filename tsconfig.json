@@ -3,12 +3,12 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@priv-compose/react-base": ["packages/react-base/src"],
-      "@priv-compose/react-base/lib/*": ["packages/react-base/src/*"],
-      "@priv-compose/react-compose": ["packages/react-compose/src"],
-      "@priv-compose/react-compose/lib/*": ["packages/react-compose/src/*"],
-      "@priv-compose/react-mybrand": ["packages/react-mybrand/src"],
-      "@priv-compose/react-mybrand/lib/*": ["packages/react-mybrand/src/*"]
+      "@fluentui/base": ["packages/base/src"],
+      "@fluentui/base/lib/*": ["packages/base/src/*"],
+      "react-texture": ["packages/react-texture/src"],
+      "react-texture/lib/*": ["packages/react-texture/src/*"],
+      "@fluentui/react": ["packages/react/src"],
+      "@fluentui/react/lib/*": ["packages/react/src/*"]
     }
   }
 }

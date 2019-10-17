@@ -1,5 +1,5 @@
-const path = require('path');
-const getAllPackageInfo = require('./getAllPackageInfo');
+import path from 'path';
+import { getAllPackageInfo } from './getAllPackageInfo';
 
 function getDeps(packageJson: any) {
   if (!packageJson) {

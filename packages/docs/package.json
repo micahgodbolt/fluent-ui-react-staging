@@ -1,15 +1,15 @@
 {
-  "name": "@priv-compose/docs",
+  "name": "@fluentui/docs",
   "version": "0.0.0",
   "private": true,
   "description": "> TODO: description",
-  "homepage": "https://github.com/jdhuntington/react-compose#readme",
+  "homepage": "https://github.com/microsoft/fluent-ui#readme",
   "bugs": {
-    "url": "https://github.com/jdhuntington/react-compose/issues"
+    "url": "https://github.com/microsoft/fluent-ui/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jdhuntington/react-compose.git"
+    "url": "git+https://github.com/microsoft/fluent-ui.git"
   },
   "license": "ISC",
   "author": "JD Huntington <jdh@microsoft.com>",
@@ -27,13 +27,13 @@
   },
   "dependencies": {
     "@babel/core": "^7.6.0",
-    "@priv-compose/react-mybrand": "^0.0.0",
+    "@fluentui/react": "^0.0.0",
     "@storybook/react": "^5.2.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0"
   },
   "devDependencies": {
-    "@priv-compose/fluent-ui-scripts": "*",
+    "@fluentui/scripts": "*",
     "@storybook/addon-info": "^5.2.1",
     "@types/jest": "^24.0.18",
     "@types/node": "^12.11.1",

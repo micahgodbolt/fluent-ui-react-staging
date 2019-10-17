@@ -1,11 +1,11 @@
-# `react-base`
+# `react-texture`
 
 > TODO: description
 
 ## Usage
 
 ```
-const reactBase = require('react-base');
+const reactCompose = require('react-texture');
 
 // TODO: DEMONSTRATE API
 ```

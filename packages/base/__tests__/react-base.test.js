@@ -2,6 +2,6 @@
 
 const reactBase = require('..');
 
-describe('react-base', () => {
+describe('@fluentui/base', () => {
   it('needs tests');
 });

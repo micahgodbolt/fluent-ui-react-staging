@@ -1,21 +1,21 @@
 {
-  "name": "@priv-compose/react-compose",
+  "name": "@fluentui/react",
   "version": "0.0.0",
   "description": "> TODO: description",
-  "homepage": "https://github.com/jdhuntington/react-compose#readme",
+  "homepage": "https://github.com/microsoft/fluent-ui#readme",
   "bugs": {
-    "url": "https://github.com/jdhuntington/react-compose/issues"
+    "url": "https://github.com/microsoft/fluent-ui/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jdhuntington/react-compose.git"
+    "url": "git+https://github.com/microsoft/fluent-ui.git"
   },
   "license": "ISC",
   "author": "JD Huntington <jdh@microsoft.com>",
   "files": [
     "lib"
   ],
-  "main": "src/index.tsx",
+  "main": "lib/react.js",
   "directories": {
     "lib": "lib",
     "test": "__tests__"
@@ -25,14 +25,12 @@
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "dependencies": {
-    "jss": "^9.8.7",
-    "jss-preset-default": "^4.5.0",
+    "@fluentui/base": "^0.0.0",
+    "react-texture": "^0.0.0",
     "react": "^16.9.0"
   },
   "devDependencies": {
-    "@priv-compose/fluent-ui-scripts": "*",
-    "@types/jss": "^9.5.8",
-    "@types/react": "^16.9.2",
-    "typescript": "^3.6.3"
+    "@fluentui/scripts": "*",
+    "@types/node": "^12.11.1"
   }
 }

@@ -1,4 +1,4 @@
-const getResolveAlias = require('@priv-compose/fluent-ui-scripts/lib/webpack/getResolveAlias');
+const { getResolveAlias } = require('@fluentui/scripts/lib/webpack/getResolveAlias');
 
 module.exports = ({ config }) => {
   config.module.rules.push({

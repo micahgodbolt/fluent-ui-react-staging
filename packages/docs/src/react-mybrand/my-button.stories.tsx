@@ -1,11 +1,9 @@
-import * as React from "react";
-import { MyButton } from "@priv-compose/react-mybrand/lib/components/my-button";
-import { storiesOf } from "@storybook/react";
-import { action } from "@storybook/addon-actions";
+import * as React from 'react';
+import { MyButton } from 'packages/react-fluent/src/components/my-button';
+import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 
-export const withText = () => (
-  <MyButton onClick={action("onClick")}>Hello Button</MyButton>
-);
+export const withText = () => <MyButton onClick={action('onClick')}>Hello Button</MyButton>;
 
 export const withEmoji = () => (
   <MyButton>
@@ -15,8 +13,8 @@ export const withEmoji = () => (
   </MyButton>
 );
 
-const stories = storiesOf("@priv-compose/react-mybrand/MyButton", module);
+const stories = storiesOf('@fluentui/react/MyButton', module);
 
-stories.add("Default", withText, { info: { inline: true } });
+stories.add('Default', withText, { info: { inline: true } });
 
-stories.add("It has the emojis", withEmoji, { info: { inline: true } });
+stories.add('It has the emojis', withEmoji, { info: { inline: true } });

@@ -3,5 +3,5 @@
 const reactMybrand = require('..');
 
 describe('react-mybrand', () => {
-    it('needs tests');
+  it('needs tests');
 });
