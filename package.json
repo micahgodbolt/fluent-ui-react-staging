@@ -13,6 +13,7 @@
     "storybook": "yarn workspace @priv-compose/docs storybook"
   },
   "devDependencies": {
-    "lerna": "^3.16.4"
+    "lerna": "^3.18.1",
+    "beachball": "^1.14.1"
   }
 }
