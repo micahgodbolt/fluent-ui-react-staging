@@ -1,4 +1,5 @@
 {
+  "extends": "@priv-compose/fluent-ui-scripts/typescript/tsconfig.common.json",
   "compilerOptions": {
     "allowJs": false,
     "allowSyntheticDefaultImports": true,
@@ -8,35 +9,20 @@
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
     "jsx": "react",
-    "lib": [
-      "es5",
-      "es6",
-      "es7",
-      "es2017",
-      "dom"
-    ],
-    "module": "commonjs",
-    "moduleResolution": "node",
+    "lib": ["es5", "es6", "es7", "es2017", "dom"],
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "noUnusedLocals": true,
     "outDir": "build/lib",
-    "rootDirs": [
-      "src",
-      "stories"
-    ],
+    "rootDirs": ["src", "stories"],
     "sourceMap": true,
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
-    "target": "es5"
+    "target": "es5",
+    "composite": true
   },
-  "exclude": [
-    "node_modules",
-    "build",
-    "scripts"
-  ],
-  "include": [
-    "src/**/*"
-  ]
+  "exclude": ["node_modules", "build", "scripts"],
+  "include": ["src/**/*"],
+  "references": [{ "path": "../react-mybrand/tsconfig.build.json" }]
 }

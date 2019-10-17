@@ -1,0 +1,9 @@
+{
+  "extends": "@priv-compose/fluent-ui-scripts/typescript/tsconfig.common.json",
+  "compilerOptions": {
+    "composite": true,
+    "rootDir": "src",
+    "outDir": "lib"
+  },
+  "references": [{ "path": "../react-base/tsconfig.build.json" }, { "path": "../react-compose/tsconfig.build.json" }]
+}

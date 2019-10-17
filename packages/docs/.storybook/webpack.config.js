@@ -1,4 +1,4 @@
-const getResolveAlias = require('@priv-compose/react-compose-scripts/webpack/getResolveAlias');
+const getResolveAlias = require('@priv-compose/fluent-ui-scripts/webpack/getResolveAlias');
 
 module.exports = ({ config }) => {
   config.module.rules.push({
@@ -8,7 +8,8 @@ module.exports = ({ config }) => {
         loader: require.resolve('ts-loader'),
         options: {
           transpileOnly: true,
-          experimentalWatchApi: true
+          experimentalWatchApi: true,
+          configFile: 'tsconfig.build.json'
         }
       },
       // Optional
