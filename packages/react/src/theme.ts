@@ -1,6 +1,6 @@
-import { Theme } from 'react-texture/lib/theme';
+import { Theme } from 'react-texture';
 
-export const MyBrandTheme: Theme = {
+export const theme: Theme = {
   brandColor: '#d11',
   semanticColors: {
     buttonBorder: '#601',
