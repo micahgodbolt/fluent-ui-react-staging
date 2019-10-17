@@ -1,0 +1,14 @@
+{
+  "extends": "./scripts/typescript/tsconfig.common.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@priv-compose/react-base": ["packages/react-base/src"],
+      "@priv-compose/react-base/lib/*": ["packages/react-base/src/*"],
+      "@priv-compose/react-compose": ["packages/react-compose/src"],
+      "@priv-compose/react-compose/lib/*": ["packages/react-compose/src/*"],
+      "@priv-compose/react-mybrand": ["packages/react-mybrand/src"],
+      "@priv-compose/react-mybrand/lib/*": ["packages/react-mybrand/src/*"]
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "@priv-compose/fluent-ui-scripts",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT"
+}
