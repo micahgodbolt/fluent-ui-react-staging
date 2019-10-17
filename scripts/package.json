@@ -2,5 +2,19 @@
   "name": "@priv-compose/fluent-ui-scripts",
   "version": "1.0.0",
   "main": "index.js",
-  "license": "MIT"
+  "license": "MIT",
+  "bin": {
+    "fluent-ui-scripts": "bin/fluent-ui-scripts.js"
+  },
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "just-scripts": "^0.31.1",
+    "typescript": "^3.6.4",
+    "ts-node": "^8.4.1"
+  },
+  "devDependencies": {
+    "@types/node": "^12.11.1"
+  }
 }

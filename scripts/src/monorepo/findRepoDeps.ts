@@ -1,7 +1,7 @@
 const path = require('path');
 const getAllPackageInfo = require('./getAllPackageInfo');
 
-function getDeps(packageJson) {
+function getDeps(packageJson: any) {
   if (!packageJson) {
     return [];
   }
@@ -25,7 +25,7 @@ function findRepoDeps() {
 
   while (packageDeps.length > 0) {
     const dep = packageDeps.pop();
-    const info = packageInfo[dep];
+    const info = packageInfo[dep!];
 
     if (dep && info) {
       result.add(dep);
@@ -44,10 +44,9 @@ function findRepoDeps() {
     });
   }
 
-  return [...result].map(dep => packageInfo[dep]);
+  return [...(result as any)].map(dep => packageInfo[dep!]);
 }
-
-module.exports = findRepoDeps;
+export { findRepoDeps };
 
 if (require.main === module) {
   console.log(findRepoDeps());

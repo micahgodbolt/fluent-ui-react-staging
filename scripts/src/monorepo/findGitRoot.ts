@@ -17,4 +17,4 @@ function findGitRoot() {
   return cwd;
 }
 
-module.exports = findGitRoot;
+export { findGitRoot };

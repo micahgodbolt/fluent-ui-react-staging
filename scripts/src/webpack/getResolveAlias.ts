@@ -1,13 +1,13 @@
 const path = require('path');
 
-const findRepoDeps = require('../src/monorepo/findRepoDeps');
-const findGitRoot = require('../src/monorepo/findGitRoot');
+const findRepoDeps = require('../monorepo/findRepoDeps');
+const findGitRoot = require('../monorepo/findGitRoot');
 
 function getResolveAlias() {
   const gitRoot = findGitRoot();
   const deps = findRepoDeps();
-  const alias = {};
-  const excludedPackages = [];
+  const alias: any = {};
+  const excludedPackages: string[] = [];
 
   const packageJson = require(path.join(process.cwd(), 'package.json'));
   deps.forEach(depInfo => {
@@ -25,7 +25,7 @@ function getResolveAlias() {
   return alias;
 }
 
-module.exports = getResolveAlias;
+export { getResolveAlias };
 
 if (require.main === module) {
   console.log(getResolveAlias());

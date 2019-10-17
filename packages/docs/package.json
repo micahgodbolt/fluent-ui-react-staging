@@ -36,7 +36,7 @@
     "@priv-compose/fluent-ui-scripts": "*",
     "@storybook/addon-info": "^5.2.1",
     "@types/jest": "^24.0.18",
-    "@types/node": "^12.7.5",
+    "@types/node": "^12.11.1",
     "@types/storybook__react": "^4.0.2",
     "babel-loader": "^8.0.6",
     "jest": "^24.9.0",

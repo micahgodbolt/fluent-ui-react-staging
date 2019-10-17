@@ -2,7 +2,7 @@ const { spawnSync } = require('child_process');
 const path = require('path');
 const findGitRoot = require('./findGitRoot');
 
-module.exports = function getAllPackageInfo() {
+export function getAllPackageInfo() {
   const gitRoot = findGitRoot();
   const results = spawnSync('git', ['ls-tree', '-r', '--name-only', '--full-tree', 'HEAD']);
   const packageInfo = {};
@@ -24,4 +24,4 @@ module.exports = function getAllPackageInfo() {
     });
 
   return packageInfo;
-};
+}

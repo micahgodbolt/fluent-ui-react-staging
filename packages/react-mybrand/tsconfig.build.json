@@ -1,5 +1,5 @@
 {
-  "extends": "@priv-compose/fluent-ui-scripts/typescript/tsconfig.common.json",
+  "extends": "@priv-compose/fluent-ui-scripts/config/typescript/tsconfig.common.json",
   "compilerOptions": {
     "composite": true,
     "rootDir": "src",
