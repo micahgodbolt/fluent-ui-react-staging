@@ -1,5 +1,5 @@
 {
-  "name": "root",
+  "name": "fluent-ui-monorepo",
   "private": true,
   "workspaces": {
     "packages": [
@@ -9,8 +9,7 @@
   },
   "scripts": {
     "build": "lerna run build --stream",
-    "start": "yarn storybook",
-    "storybook": "lerna --scope @fluentui/scripts run build && yarn workspace @fluentui/react start"
+    "start": "yarn workspace @fluentui/react start"
   },
   "devDependencies": {
     "lerna": "^3.18.1",

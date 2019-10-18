@@ -5,13 +5,9 @@ export function storybookConfigExists() {
 }
 
 export function startStorybookTask() {
-  if (storybookConfigExists()) {
-    require('@storybook/react/bin/index');
-  }
+  require('@storybook/react/bin/index');
 }
 
 export function buildStorybookTask() {
-  if (storybookConfigExists()) {
-    require('@storybook/react/bin/build');
-  }
+  require('@storybook/react/bin/build');
 }
