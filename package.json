@@ -10,7 +10,7 @@
   "scripts": {
     "build": "lerna run build --stream",
     "start": "yarn storybook",
-    "storybook": "lerna --scope @fluentui/scripts run build && yarn workspace @fluentui/docs storybook"
+    "storybook": "lerna --scope @fluentui/scripts run build && yarn workspace @fluentui/react start"
   },
   "devDependencies": {
     "lerna": "^3.18.1",

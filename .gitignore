@@ -1,6 +1,7 @@
 # typescript
 *.tsbuildinfo
 lib/
+storybook-static/
 
 # Logs
 logs

@@ -1,19 +1,19 @@
 import * as React from 'react';
-import { Slider } from '@fluentui/react/lib/components/Slider/Slider';
+import { Slider } from './Slider';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
 export const withText = () => <Slider onClick={action('onClick')}>Hello Button</Slider>;
 
 export const withEmoji = () => (
-  <Slider>
+  <button>
     <span role="img" aria-label="so cool">
       😀 😎 👍 💯
     </span>
-  </Slider>
+  </button>
 );
 
-const stories = storiesOf('@fluentui/react/MostlyRedSlider', module);
+const stories = storiesOf('@fluentui/react/Slider', module);
 
 stories.add('Default', withText, { info: { inline: true } });
 

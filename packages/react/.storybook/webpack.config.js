@@ -1,4 +1,4 @@
-const { getResolveAlias } = require('@fluentui/scripts/lib/webpack/getResolveAlias');
+const { getResolveAlias } = require('@fluentui/scripts/webpack/getResolveAlias');
 
 module.exports = ({ config }) => {
   config.module.rules.push({

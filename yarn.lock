@@ -6184,13 +6184,6 @@ get-caller-file@^2.0.1:
   resolved "https://registry.yarnpkg.com/get-caller-file/-/get-caller-file-2.0.5.tgz#4f94412a82db32f36e3b0b9741f8a97feb031f7e"
   integrity sha512-DyFP3BM/3YHTQOCUL/w0OZHR0lpKeGrxotcHWcqNEdnltqFwXVfhEBQ94eIo34AfQpo0rGki4cyIiftY06h2Fg==
 
-get-lerna-packages@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.npmjs.org/get-lerna-packages/-/get-lerna-packages-0.1.1.tgz#37aaaac36fd14f00082f17b1096dd6c69290cef9"
-  integrity sha512-venxkvga57gOUZoTmXZlJ0zHc8cmvsx7Y0GTMcoEK/7OCEK3PLpG5gVTbUUMJaLxbzK13AWQdKPf1LSkuEfWqA==
-  dependencies:
-    glob "^7.1.2"
-
 get-pkg-repo@^1.0.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/get-pkg-repo/-/get-pkg-repo-1.4.0.tgz#c73b489c06d80cc5536c2c853f9e05232056972d"
@@ -7940,10 +7933,10 @@ jsx-to-string@^1.4.0:
     tar "^4.4.8"
     yargs "^12.0.5"
 
-just-scripts@^0.31.1:
-  version "0.31.1"
-  resolved "https://registry.npmjs.org/just-scripts/-/just-scripts-0.31.1.tgz#9f2bf51394c80637f440ea05d6a456f52801cddc"
-  integrity sha512-1Zo7hTHYZKk4kMvZceiivSJuzn6HoRRI1FtoH01CuxqOR7QOcy5idHmEk2y1GFMZr0M8XLXSfGTJ6P662Ewymw==
+just-scripts@^0.32.1:
+  version "0.32.1"
+  resolved "https://registry.npmjs.org/just-scripts/-/just-scripts-0.32.1.tgz#d9cb0f3393af7f50949b2b19554e2857e827997e"
+  integrity sha512-9NGOnt4SAJ6c7TTKUbPR/DSKQUiJUIZD7iQG44toaiEaBoncdGtQShsnfHPxfh9Dw4R+1dXWWTTa3GLUgMWNpg==
   dependencies:
     "@types/node" "^10.12.18"
     chalk "^2.4.1"
@@ -7951,7 +7944,7 @@ just-scripts@^0.31.1:
     fs-extra "^7.0.1"
     glob "^7.1.3"
     just-scripts-utils ">=0.8.4 <1.0.0"
-    just-task ">=0.13.3 <1.0.0"
+    just-task ">=0.14.2 <1.0.0"
     npm-registry-fetch "^3.9.0"
     prompts "^2.0.1"
     run-parallel-limit "^1.0.5"
@@ -7965,10 +7958,10 @@ just-scripts@^0.31.1:
     chalk "^2.4.1"
     yargs "^12.0.5"
 
-"just-task@>=0.13.3 <1.0.0":
-  version "0.13.3"
-  resolved "https://registry.npmjs.org/just-task/-/just-task-0.13.3.tgz#144c1d6b37a4db56cf8171a1507ae2a2a8fdf0d3"
-  integrity sha512-NeBPgnUposkDfrghlHv/KHoouTlc0rVQWaJtqPj76vbOxP9RPZoapoDc22nQf1c8D/IQP60n9GpO5F2JfqvRXw==
+"just-task@>=0.14.2 <1.0.0":
+  version "0.14.2"
+  resolved "https://registry.npmjs.org/just-task/-/just-task-0.14.2.tgz#db29394ec12dcbdd3be67bc61d774e45a2452ff8"
+  integrity sha512-oHsJEZCysZIXxhbF1HmAqJUOhZep45UcprhRJ5vA+l+ev4NgMj+VfbobAuaXXLgmXrPG3bTzUJIJZVKRsaI4Zg==
   dependencies:
     "@microsoft/package-deps-hash" "^2.2.153"
     chalk "^2.4.1"
@@ -8062,13 +8055,6 @@ left-pad@^1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/left-pad/-/left-pad-1.3.0.tgz#5b8a3a7765dfe001261dde915589e782f8c94d1e"
   integrity sha512-XI5MPzVNApjAyhQzphX8BkmKsKUxD4LdyK24iZeQGinBN9yTQT3bFlCBy/aVx2HrNcqQGsdot8ghrjyrvMCoEA==
-
-lerna-alias@^3.0.3-0:
-  version "3.0.3-0"
-  resolved "https://registry.npmjs.org/lerna-alias/-/lerna-alias-3.0.3-0.tgz#d681842deed66644ab9f38a7b365658cfe52dd43"
-  integrity sha512-IX0c2QH3v4rkgE+iG7Ro0FSEWKqqrMhvbGbB1txrnaJ8YbcrNbJ0IPpcJi+uiiPLV3olNX74EO08x9hGZ+J5ig==
-  dependencies:
-    get-lerna-packages "^0.1.1"
 
 lerna@^3.18.1:
   version "3.18.1"

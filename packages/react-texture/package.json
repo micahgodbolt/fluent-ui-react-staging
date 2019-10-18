@@ -21,8 +21,9 @@
     "test": "__tests__"
   },
   "scripts": {
-    "build": "tsc -b tsconfig.build.json",
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "build": "just-scripts build",
+    "just": "just-scripts",
+    "test": "just-scripts test"
   },
   "dependencies": {
     "jss": "^9.8.7",
