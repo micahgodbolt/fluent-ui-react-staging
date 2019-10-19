@@ -70,9 +70,12 @@ const styles = (theme: Theme, tokens: Tokens) => {
   };
 };
 
-export const Slider = compose(BaseSlider)({
-  name: 'Slider',
-  styles,
-  tokens,
-  defaultTheme: myBrandTheme
-});
+export const Slider = compose(
+  BaseSlider,
+  {
+    name: 'Slider',
+    styles,
+    tokens,
+    defaultTheme: myBrandTheme
+  }
+);

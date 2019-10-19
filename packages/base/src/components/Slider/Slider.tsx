@@ -165,6 +165,7 @@ export const useSliderSlots: (props: SliderProps) => SliderSlotProps = (props: S
 export const Slider: React.FunctionComponent<SliderProps> = (props: SliderProps) => {
   const { root: Root = 'div', rail: Rail = 'div', thumb: Thumb = 'div', track: Track = 'div' } = props.slots || {};
   const slotProps = useSliderSlots(props);
+
   return (
     <Root {...slotProps.root}>
       <Track {...slotProps.track} />
