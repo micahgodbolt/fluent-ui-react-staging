@@ -9,13 +9,16 @@ module.exports = ({ config }) => {
         options: {
           transpileOnly: true,
           experimentalWatchApi: true,
-          configFile: 'tsconfig.build.json'
+          configFile: 'tsconfig.build.json',
+          compilerOptions: {
+            composite: false
+          }
         }
-      },
-      // Optional
-      {
-        loader: require.resolve('react-docgen-typescript-loader')
       }
+      // Optional
+      // {
+      //   loader: require.resolve('react-docgen-typescript-loader')
+      // }
     ]
   });
   config.resolve.extensions.push('.ts', '.tsx');
