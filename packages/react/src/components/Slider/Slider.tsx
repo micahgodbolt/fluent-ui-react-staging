@@ -39,6 +39,7 @@ const styles = (theme: Theme, tokens: Tokens) => {
         transform: 'translateY(-50%)'
       }
     },
+
     rail: {
       position: 'absolute',
       left: '8px',
@@ -54,6 +55,7 @@ const styles = (theme: Theme, tokens: Tokens) => {
       height: '4px',
       backgroundColor: tokens.trackBeforeColor
     },
+
     thumb: {
       position: 'absolute',
       boxSizing: 'border-box',
