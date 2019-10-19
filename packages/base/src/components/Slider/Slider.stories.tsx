@@ -1,10 +1,14 @@
 import React from 'react';
-//import { storiesOf } from '@storybook/react';
+import { Slider } from './Slider';
 
 export default {
-  component: 'button',
-  title: 'button'
+  component: 'Slider',
+  title: 'Slider'
 };
 
-export const aButton = () => <button>Hello Slider</button>;
-//storiesOf('button', module).add('a button', aButton);
+export const aTypicalSlider = () => (
+  <>
+    Some Text
+    <Slider min={0} max={10} defaultValue={5} />
+  </>
+);

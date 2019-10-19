@@ -1,20 +1,14 @@
-import * as React from 'react';
+import React from 'react';
 import { Slider } from './Slider';
-import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
 
-export const withText = () => <Slider onClick={action('onClick')}>Hello Button</Slider>;
+export default {
+  component: 'Slider',
+  title: 'Slider'
+};
 
-export const withEmoji = () => (
-  <button>
-    <span role="img" aria-label="so cool">
-      😀 😎 👍 💯
-    </span>
-  </button>
+export const fluentSlider = () => (
+  <>
+    Fluent Slider
+    <Slider min={0} max={10} defaultValue={5} />
+  </>
 );
-
-const stories = storiesOf('@fluentui/react/Slider', module);
-
-stories.add('Default', withText, { info: { inline: true } });
-
-stories.add('It has the emojis', withEmoji, { info: { inline: true } });
