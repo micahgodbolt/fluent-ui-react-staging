@@ -1,5 +1,6 @@
 import React from 'react';
 import { Slider } from './Slider';
+import { withInfo } from '@storybook/addon-info';
 
 export default {
   component: 'Slider',
