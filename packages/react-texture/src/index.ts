@@ -11,7 +11,7 @@ export { Theme };
  *
  * Composed components can be recomposed.
  */
-export const compose = <TProps = {}>(baseComponent: React.SFC, options?: any) => {
+export const compose = <TProps = {}>(baseComponent: React.SFC<TProps>, options?: any) => {
   const classNamesCache = new WeakMap();
   let optionsSet = [options];
   if (baseComponent && (baseComponent as any).__optionsSet) {
