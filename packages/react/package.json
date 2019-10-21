@@ -15,27 +15,27 @@
   "files": [
     "lib"
   ],
-  "main": "lib/react.js",
+  "main": "src/react.js",
   "directories": {
     "lib": "lib",
     "test": "__tests__"
   },
   "scripts": {
     "build": "just-scripts build",
-    "start": "just-scripts storybook:start",
     "just": "just-scripts",
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "start": "just-scripts storybook:start",
+    "test": "just-scripts test"
   },
   "dependencies": {
     "@fluentui/base": "^0.0.0",
-    "react": "^16.9.0",
-    "@fluentui/react-theming": "^0.0.0"
+    "@fluentui/react-theming": "^0.0.0",
+    "react": "^16.9.0"
   },
   "devDependencies": {
     "@fluentui/scripts": "*",
-    "@types/react": "^16.9.2",
-    "@types/node": "^12.11.1",
     "@types/jest": "^24.0.19",
+    "@types/node": "^12.11.1",
+    "@types/react": "^16.9.2",
     "@types/storybook__react": "^4.0.2"
   }
 }

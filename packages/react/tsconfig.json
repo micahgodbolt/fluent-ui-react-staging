@@ -6,5 +6,5 @@
     "outDir": "lib"
   },
   "include": ["src"],
-  "references": [{ "path": "../base/tsconfig.build.json" }, { "path": "../react-texture/tsconfig.build.json" }]
+  "references": [{ "path": "../react-texture/tsconfig.json" }]
 }

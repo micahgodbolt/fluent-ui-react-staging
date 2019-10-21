@@ -1,7 +1,7 @@
-import * as React from "react";
-import { useControlledState } from "../../hooks/useControlledState";
-import { useWindowEvent } from "../../hooks/useWindowEvent";
-import { ISliderProps, ISliderSlotProps } from "./Slider.types";
+import * as React from 'react';
+import { useControlledState } from '../../hooks/useControlledState';
+import { useWindowEvent } from '../../hooks/useWindowEvent';
+import { ISliderProps, ISliderSlotProps } from './Slider.types';
 
 function _getDragValues(
   ev: any,
@@ -20,7 +20,7 @@ function _getDragValues(
 
   return {
     percentage: snapToStep ? (100 * value) / (max - min) : 100 * percentage,
-    value
+    value,
   };
 }
 
@@ -47,12 +47,12 @@ const useSliderState = (userProps: ISliderProps): ISliderState => {
     value: controlledValue,
     snapToStep,
     onChange,
-    defaultValue
+    defaultValue,
   } = userProps;
   const [dragging, setDragging] = React.useState(false);
   const [value, setValue] = useControlledState(controlledValue, defaultValue);
   const [dragState, setDragState] = React.useState({
-    trackRect: null
+    trackRect: null,
   });
   const trackRef = React.useRef(null);
   const percentage = (100 * (value - min)) / (max - min);
@@ -97,14 +97,14 @@ const useSliderState = (userProps: ISliderProps): ISliderState => {
       max,
       step,
       snapToStep,
-      _updateValue
+      _updateValue,
     ]
   );
 
   const onMouseDown = React.useCallback(
     (ev: any) => {
       setDragState({
-        trackRect: (trackRef.current as any).getBoundingClientRect()
+        trackRect: (trackRef.current as any).getBoundingClientRect(),
       });
       setDragging(true);
       onMouseMove(ev, true);
@@ -122,8 +122,8 @@ const useSliderState = (userProps: ISliderProps): ISliderState => {
     [setDragging]
   );
 
-  useWindowEvent("mousemove", dragging && onMouseMove);
-  useWindowEvent("mouseup", dragging && onMouseUp);
+  useWindowEvent('mousemove', dragging && onMouseMove);
+  useWindowEvent('mouseup', dragging && onMouseUp);
 
   const onKeyDown = (ev: any) => {
     let newValue;
@@ -163,7 +163,7 @@ const useSliderState = (userProps: ISliderProps): ISliderState => {
     trackRef,
     onMouseDown,
     onKeyDown,
-    percentage
+    percentage,
   };
 };
 
@@ -176,43 +176,43 @@ export const useSlider = (props: ISliderProps) => {
     trackRef,
     onMouseDown,
     onKeyDown,
-    percentage
+    percentage,
   } = state;
   const slotProps: ISliderSlotProps = {
     root: {
-      role: "slider",
+      role: 'slider',
       onMouseDown,
       onKeyDown,
-      ...(props.slotProps && props.slotProps.root)
+      ...(props.slotProps && props.slotProps.root),
     },
     rail: {
       ...{ ref: trackRef },
-      ...(props.slotProps && props.slotProps.rail)
+      ...(props.slotProps && props.slotProps.rail),
     },
     track: {
       ...{
         style: {
-          width: `${percentage}%`
-        }
+          width: `${percentage}%`,
+        },
       },
-      ...(props.slotProps && props.slotProps.track)
+      ...(props.slotProps && props.slotProps.track),
     },
     thumb: {
       ...{
         tabIndex: 0,
-        "aria-valuemin": min,
-        "aria-valuemax": max,
-        "aria-valuenow": value,
+        'aria-valuemin': min,
+        'aria-valuemax': max,
+        'aria-valuenow': value,
         style: {
-          left: `${percentage}%`
-        }
+          left: `${percentage}%`,
+        },
       },
-      ...(props.slotProps && props.slotProps.thumb)
-    }
+      ...(props.slotProps && props.slotProps.thumb),
+    },
   };
 
   return {
     state,
-    slotProps
+    slotProps,
   };
 };

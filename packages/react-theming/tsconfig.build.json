@@ -1,9 +1,0 @@
-{
-  "extends": "@fluentui/scripts/config/typescript/tsconfig.common.json",
-  "compilerOptions": {
-    "composite": true,
-    "rootDir": "src",
-    "outDir": "lib"
-  },
-  "include": ["src"]
-}
