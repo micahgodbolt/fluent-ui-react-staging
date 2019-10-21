@@ -29,7 +29,7 @@
   "dependencies": {
     "@fluentui/base": "^0.0.0",
     "react": "^16.9.0",
-    "react-texture": "^0.0.0"
+    "@fluentui/react-theming": "^0.0.0"
   },
   "devDependencies": {
     "@fluentui/scripts": "*",

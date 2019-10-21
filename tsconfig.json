@@ -5,10 +5,10 @@
     "paths": {
       "@fluentui/base": ["packages/base/src"],
       "@fluentui/base/lib/*": ["packages/base/src/*"],
-      "react-texture": ["packages/react-texture/src"],
-      "react-texture/lib/*": ["packages/react-texture/src/*"],
-      "@fluentui/react": ["packages/react/src"],
-      "@fluentui/react/lib/*": ["packages/react/src/*"]
+      "@fluentui/react-theming": ["packages/react-theming/src"],
+      "@fluentui/react-theming/lib/*": ["packages/react-theming/src/*"],
+      "@fluentui/react": ["packages/fluent-ui-core-react-themes/src"],
+      "@fluentui/react/lib/*": ["packages/fluent-ui-core-react-themes/src/*"]
     }
   }
 }

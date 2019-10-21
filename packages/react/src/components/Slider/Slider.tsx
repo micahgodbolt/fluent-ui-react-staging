@@ -1,81 +1,33 @@
-import { compose, Theme } from 'react-texture';
-import { SliderProps } from '@fluentui/base/lib/components/Slider/Slider.props';
-import { Slider as BaseSlider } from '@fluentui/base/lib/components/Slider/Slider';
-import { theme as myBrandTheme } from '../../theme';
+import { compose } from "@fluentui/react-theming";
+import { SliderBase } from "@fluentui/base";
+import styles from "./Slider.styles";
+import tokens from "./Slider.tokens";
 
-export interface Tokens {
-  trackAfterColor: any;
-  trackBeforeColor: string;
-  thumbBackgroundColor: string;
-  thumbBorderColor: string;
-}
+/*
+What if items-view uses sliderbase, or something like it, that can receive class map from context.
 
-export const tokens = (theme: Theme): Tokens => {
-  return {
-    trackBeforeColor: theme.brandColor,
-    thumbBackgroundColor: 'white',
-    thumbBorderColor: theme.brandColor,
-    trackAfterColor: '#bbc'
-  };
-};
+We could technically just compose a slider which has a themeName of "Slider" and export it.
 
-const styles = (theme: Theme, tokens: Tokens) => {
-  return {
-    root: {
-      position: 'relative',
-      height: '28px',
+If items-view want a DetailsSlider specialized slider component, they could:
 
-      '&:focus': {
-        outline: 'none'
-      },
+<ThemeProvider theme={ [itemsViewTheme] }>
+  <BaseSlider themeName="DetaisSlider"/>
+</ThemeProvider>
 
-      '&:before': {
-        content: '""',
-        position: 'absolute',
-        width: '100%',
-        height: '4px',
-        backgroundColor: tokens.trackAfterColor,
-        top: '50%',
-        transform: 'translateY(-50%)'
-      }
-    },
+or:
 
-    rail: {
-      position: 'absolute',
-      left: '8px',
-      right: '8px',
-      height: '100%'
-    },
+applyDefaultStyling(ItemsViewThemeLight)
 
-    track: {
-      position: 'absolute',
-      left: 0,
-      top: '50%',
-      transform: 'translateY(-50%)',
-      height: '4px',
-      backgroundColor: tokens.trackBeforeColor
-    },
+or:
 
-    thumb: {
-      position: 'absolute',
-      boxSizing: 'border-box',
-      height: '16px',
-      width: '16px',
-      borderRadius: '16px',
-      top: '50%',
-      transform: 'translate(-50%, -50%)',
-      backgroundColor: tokens.thumbBackgroundColor,
-      border: `2px solid ${tokens.thumbBorderColor}`
-    }
-  };
-};
+none of this! They have css. The site can apply style overrides and tokens.
 
+*/
 export const Slider = compose(
-  BaseSlider,
+  SliderBase,
   {
-    name: 'Slider',
+    name: "Slider",
     styles,
-    tokens,
-    defaultTheme: myBrandTheme
+    tokens
   }
 );

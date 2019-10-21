@@ -1,9 +1,11 @@
-import React from 'react';
-import { Slider } from './Slider';
+import React from "react";
+import { SliderBase } from "./Slider.base";
 
 export default {
-  component: 'Slider',
-  title: 'Base Slider'
+  component: "Slider",
+  title: "Base Slider"
 };
 
-export const aTypicalSlider = () => <Slider min={0} max={10} defaultValue={5} />;
+export const aTypicalSlider = () => (
+  <SliderBase min={0} max={10} defaultValue={5} />
+);

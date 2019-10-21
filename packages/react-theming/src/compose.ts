@@ -1,9 +1,6 @@
-import * as React from 'react';
-import { useTheme } from './theme-context';
-import { Theme } from './theme';
-import { mergeStyles } from '@uifabric/merge-styles';
-
-export { Theme };
+import { mergeStyles } from "@uifabric/merge-styles";
+import { useTheme } from "./themeContext";
+import { ITheme } from "./theme.types";
 
 /**
  * Composed allows you to create composed components, which
@@ -11,7 +8,10 @@ export { Theme };
  *
  * Composed components can be recomposed.
  */
-export const compose = <TProps = {}>(baseComponent: React.SFC, options?: any) => {
+export const compose = <TProps = {}>(
+  baseComponent: React.SFC,
+  options?: any
+) => {
   const classNamesCache = new WeakMap();
   let optionsSet = [options];
   if (baseComponent && (baseComponent as any).__optionsSet) {
@@ -24,12 +24,17 @@ export const compose = <TProps = {}>(baseComponent: React.SFC, options?: any) =>
   });
 
   const Component = (props: TProps) => {
-    const theme: Theme = (useTheme() || (mergedOptions as any).defaultTheme)!;
+    const theme: ITheme = (useTheme() || (mergedOptions as any).defaultTheme)!;
     if (!theme) {
-      console.warn('No theme specified, behavior undefined.'); // eslint-disable-line no-console
+      console.warn("No theme specified, behavior undefined."); // eslint-disable-line no-console
     }
 
-    const resolvedSlotProps = _getSlotProps(props, theme, classNamesCache, optionsSet);
+    const resolvedSlotProps = _getSlotProps(
+      props,
+      theme,
+      classNamesCache,
+      optionsSet
+    );
     return baseComponent({
       ...props,
       slotProps: resolvedSlotProps,
@@ -37,18 +42,28 @@ export const compose = <TProps = {}>(baseComponent: React.SFC, options?: any) =>
     } as any);
   };
 
+  // Promote slots as statics.
   for (const slotName in options.slots) {
     (Component as any)[slotName] = options.slots[slotName];
   }
 
+  // Promote propTypes if applicable.
+  Component.propTypes = baseComponent.propTypes;
+
   Component.__optionsSet = optionsSet;
-  Component.displayName = options.name || 'Composed Component';
+  Component.displayName = options.name || "Composed Component";
 
   return Component;
 };
 
-function _getSlotProps(props: any, theme: Theme, classNamesCache: WeakMap<any, any>, optionsSet: any[]) {
-  const resolvedSlotProps = props && props.slotProps ? { ...props.slotProps } : {};
+function _getSlotProps(
+  props: any,
+  theme: ITheme,
+  classNamesCache: WeakMap<any, any>,
+  optionsSet: any[]
+) {
+  const resolvedSlotProps =
+    props && props.slotProps ? { ...props.slotProps } : {};
   if (theme) {
     if (!classNamesCache.has(theme)) {
       classNamesCache.set(theme, _getClasses(theme, optionsSet));
@@ -57,27 +72,29 @@ function _getSlotProps(props: any, theme: Theme, classNamesCache: WeakMap<any, a
     Object.keys(classNames).forEach(k => {
       const className = classNames[k];
       if (!resolvedSlotProps[k]) {
-        resolvedSlotProps[k] = { className: '' };
+        resolvedSlotProps[k] = { className: "" };
       } else if (!resolvedSlotProps[k].className) {
-        resolvedSlotProps[k].className = '';
+        resolvedSlotProps[k].className = "";
       }
-      resolvedSlotProps[k].className = `${resolvedSlotProps[k].className} ${className}`.trim();
+      resolvedSlotProps[
+        k
+      ].className = `${resolvedSlotProps[k].className} ${className}`.trim();
     });
   }
   return resolvedSlotProps;
 }
 
-const _getClasses = (theme: Theme, optionsSet: any[]) => {
+const _getClasses = (theme: ITheme, optionsSet: any[]) => {
   let tokens: any = {};
   optionsSet.forEach((options: any) => {
-    if (options && options.tokens && typeof options.tokens === 'function') {
+    if (options && options.tokens && typeof options.tokens === "function") {
       tokens = { ...tokens, ...options.tokens(theme) };
     }
   });
 
   let styles: any = {};
   optionsSet.forEach((options: any) => {
-    if (options && options.styles && typeof options.styles === 'function') {
+    if (options && options.styles && typeof options.styles === "function") {
       styles = { ...styles, ...options.styles(theme, tokens) };
     }
   });
