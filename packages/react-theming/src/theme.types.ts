@@ -1,4 +1,4 @@
-type Color = string;
+export type IColor = string;
 
 export interface ICastableToString {
   toString: () => string;
@@ -7,7 +7,6 @@ export interface ICastableToString {
 export interface IColorRamp extends ICastableToString {
   values: string[];
   index: number;
-  toString: () => string;
 }
 
 export type ITokenLiteral = string | number | ICastableToString;
@@ -26,14 +25,14 @@ export type IToken =
   | ITokenResolver;
 
 export type IResolvedTokens<TTokens> = {
-  [key in keyof TTokens]: string | number;
+  [key in keyof TTokens]: ITokenLiteral;
 };
 
 export interface ITheme {
   direction: "rtl" | "ltr";
 
   colors: {
-    background: string;
+    background: IColor;
 
     brand: IColorRamp;
     accent: IColorRamp;
