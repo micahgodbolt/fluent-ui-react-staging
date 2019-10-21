@@ -1,4 +1,4 @@
-import { resolve, resolveCwd } from 'just-scripts';
+import { resolveCwd } from 'just-scripts';
 
 export function storybookConfigExists() {
   return !!resolveCwd('.storybook/config.js');

@@ -23,7 +23,9 @@
   "scripts": {
     "build": "just-scripts build",
     "start": "just-scripts start",
-    "test": "just-scripts test"
+    "test": "just-scripts test",
+    "just": "just-scripts",
+    "lint": "just-scripts lint"
   },
   "dependencies": {
     "@types/classnames": "^2.2.9",

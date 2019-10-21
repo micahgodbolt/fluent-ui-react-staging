@@ -24,7 +24,8 @@
     "build": "just-scripts build",
     "just": "just-scripts",
     "start": "just-scripts storybook:start",
-    "test": "just-scripts test"
+    "test": "just-scripts test",
+    "lint": "just-scripts lint"
   },
   "dependencies": {
     "@fluentui/base": "^0.0.0",
