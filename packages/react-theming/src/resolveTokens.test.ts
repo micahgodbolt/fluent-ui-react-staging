@@ -2,7 +2,7 @@ import { resolveTokens } from "./resolveTokens";
 
 describe("resolveTokens", () => {
   it("can resolve a literal", () => {
-    expect(resolveTokens({}, { value: "abc" })).toEqual({ value: "abc" });
+    expect(resolveTokens({}, [{ value: "abc" }])).toEqual({ value: "abc" });
   });
 
   it("can resolve a color from the theme", () => {
@@ -16,17 +16,18 @@ describe("resolveTokens", () => {
             }
           }
         },
-        {
-          value: (t: any) => t.colors.brand.value[t.colors.brand.median]
-        }
+        [
+          {
+            value: (t: any) => t.colors.brand.value[t.colors.brand.median]
+          }
+        ]
       )
     ).toEqual({ value: "#bbb" });
   });
 
   it("can resolve a token related to another", () => {
     expect(
-      resolveTokens(
-        {},
+      resolveTokens({}, [
         {
           value: "abc",
           value2: {
@@ -34,7 +35,7 @@ describe("resolveTokens", () => {
             resolve: (theme: any, [value]: any) => value.value + "def"
           }
         }
-      )
+      ])
     ).toEqual({ value: "abc", value2: "abcdef" });
   });
 
@@ -49,13 +50,15 @@ describe("resolveTokens", () => {
             }
           }
         },
-        {
-          value2: {
-            dependsOn: ["value"],
-            resolve: (theme: any, [value]: any) => value.value + "def"
-          },
-          value: (t: any) => t.colors.brand.value[0]
-        }
+        [
+          {
+            value2: {
+              dependsOn: ["value"],
+              resolve: (theme: any, [value]: any) => value.value + "def"
+            },
+            value: (t: any) => t.colors.brand.value[0]
+          }
+        ]
       )
     ).toEqual({ value: "#aaa", value2: "#aaadef" });
   });

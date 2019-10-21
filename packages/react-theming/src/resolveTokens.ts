@@ -73,16 +73,25 @@ class TokenFactory {
   }
 }
 
-export const resolveTokens = (theme: any, sourceTokens: any) => {
+/**
+ * resolveTokens
+ * takes a set of tokens and resolves all references
+ * @param theme theme to resolve
+ * @param sourceTokensSet
+ * @internal
+ */
+export const resolveTokens = (theme: any, sourceTokensSet: any[]) => {
   const tokens: TokenDict = {};
 
-  for (let tokenName in sourceTokens) {
-    tokens[tokenName] = TokenFactory.from(
-      tokens,
-      sourceTokens[tokenName],
-      tokenName
-    );
-  }
+  sourceTokensSet.forEach(sourceTokens => {
+    for (let tokenName in sourceTokens) {
+      tokens[tokenName] = TokenFactory.from(
+        tokens,
+        sourceTokens[tokenName],
+        tokenName
+      );
+    }
+  });
 
   while (true) {
     let allResolved = true;
