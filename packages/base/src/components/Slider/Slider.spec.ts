@@ -1,3 +1,5 @@
 describe('Slider', () => {
-  it('can slide', () => {});
+  it('can slide', () => {
+    expect(true).toBeTruthy();
+  });
 });

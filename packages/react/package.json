@@ -24,7 +24,7 @@
     "build": "just-scripts build",
     "start": "just-scripts storybook:start",
     "just": "just-scripts",
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "test": "just-scripts test"
   },
   "dependencies": {
     "@fluentui/base": "^0.0.0",
