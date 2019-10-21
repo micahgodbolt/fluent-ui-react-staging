@@ -2,63 +2,126 @@ import { mergeStyles } from "@uifabric/merge-styles";
 import { useTheme } from "./themeContext";
 import { ITheme } from "./theme.types";
 
+type Options = any;
+type SlotsAssignment = any;
+type Tokens = any;
+
+/** _composeFactory returns a compose function.
+ * This allows tests to override aspects of compose.
+ *
+ * @internal
+ */
+export const _composeFactory = <TTheme>(themeHook: any = useTheme) => {
+  const composeInstance = <TProps = {}>(
+    baseComponent: React.SFC,
+    options?: any
+  ) => {
+    const classNamesCache = new WeakMap();
+    let optionsSet = [options];
+    if (baseComponent && (baseComponent as any).__optionsSet) {
+      optionsSet = [...(baseComponent as any).__optionsSet, options];
+    }
+
+    const renderFn = (baseComponent as any).__directRender || baseComponent;
+
+    const name = options.name || "WARNING-UNNAMED";
+    let mergedOptions = {};
+    optionsSet.forEach(o => {
+      mergedOptions = { ...mergedOptions, ...o };
+    });
+
+    const Component = (props: TProps) => {
+      const theme: TTheme = (themeHook() ||
+        (mergedOptions as any).defaultTheme)!;
+      const slots = resolveSlots(name, optionsSet, theme);
+
+      if (!theme) {
+        console.warn("No theme specified, behavior undefined."); // eslint-disable-line no-console
+      }
+
+      const resolvedSlotProps = _getSlotProps(
+        name,
+        props,
+        theme,
+        classNamesCache,
+        optionsSet
+      );
+
+      return renderFn({
+        ...props,
+        slotProps: resolvedSlotProps,
+        slots
+      } as any);
+    };
+
+    for (const slotName in options.slots) {
+      (Component as any)[slotName] = options.slots[slotName];
+    }
+
+    Component.propTypes = baseComponent.propTypes;
+    Component.__optionsSet = optionsSet;
+    Component.__directRender =
+      (baseComponent as any).__directRender || baseComponent;
+    Component.displayName = options.name || "Composed Component";
+
+    return Component;
+  };
+
+  const resolveTokens = (optionsSet: Options[], theme: TTheme): Tokens => {
+    let tokens: any = {};
+    optionsSet.forEach((options: any) => {
+      if (options && options.tokens && typeof options.tokens === "function") {
+        tokens = { ...tokens, ...options.tokens(theme) };
+      }
+    });
+    return tokens;
+  };
+
+  const resolveSlots = <TTheme>(
+    name: string,
+    optionsSet: Options[],
+    theme: any
+  ): SlotsAssignment => {
+    const result = {};
+    if (optionsSet && optionsSet.length > 0) {
+      optionsSet.forEach(os => {
+        if (os.slots) {
+          Object.keys(os.slots).forEach(k => {
+            (result as any)[k] = os.slots[k];
+          });
+        }
+      });
+    }
+    if (
+      theme &&
+      theme.components &&
+      theme.components[name] &&
+      typeof theme.components[name] === "object"
+    ) {
+      Object.keys(theme.components[name]).forEach(k => {
+        (result as any)[k] = theme.components[name][k];
+      });
+    }
+    return result;
+  };
+
+  composeInstance.resolveTokens = resolveTokens;
+  composeInstance.resolveSlots = resolveSlots;
+  return composeInstance;
+};
+
 /**
  * Composed allows you to create composed components, which
  * have configurable, themable state, view, and slots.
  *
  * Composed components can be recomposed.
  */
-export const compose = <TProps = {}>(
-  baseComponent: React.SFC,
-  options?: any
-) => {
-  const classNamesCache = new WeakMap();
-  let optionsSet = [options];
-  if (baseComponent && (baseComponent as any).__optionsSet) {
-    optionsSet = [...(baseComponent as any).__optionsSet, options];
-  }
+export const compose = _composeFactory();
 
-  let mergedOptions = {};
-  optionsSet.forEach(o => {
-    mergedOptions = { ...mergedOptions, ...o };
-  });
-
-  const Component = (props: TProps) => {
-    const theme: ITheme = (useTheme() || (mergedOptions as any).defaultTheme)!;
-    if (!theme) {
-      console.warn("No theme specified, behavior undefined."); // eslint-disable-line no-console
-    }
-
-    const resolvedSlotProps = _getSlotProps(
-      props,
-      theme,
-      classNamesCache,
-      optionsSet
-    );
-    return baseComponent({
-      ...props,
-      slotProps: resolvedSlotProps,
-      theme
-    } as any);
-  };
-
-  // Promote slots as statics.
-  for (const slotName in options.slots) {
-    (Component as any)[slotName] = options.slots[slotName];
-  }
-
-  // Promote propTypes if applicable.
-  Component.propTypes = baseComponent.propTypes;
-
-  Component.__optionsSet = optionsSet;
-  Component.displayName = options.name || "Composed Component";
-
-  return Component;
-};
-
-function _getSlotProps(
+function _getSlotProps<TTheme>(
+  name: string,
   props: any,
-  theme: ITheme,
+  theme: TTheme,
   classNamesCache: WeakMap<any, any>,
   optionsSet: any[]
 ) {
@@ -66,7 +129,7 @@ function _getSlotProps(
     props && props.slotProps ? { ...props.slotProps } : {};
   if (theme) {
     if (!classNamesCache.has(theme)) {
-      classNamesCache.set(theme, _getClasses(theme, optionsSet));
+      classNamesCache.set(theme, _getClasses(name, theme, optionsSet));
     }
     const classNames = classNamesCache.get(theme);
     Object.keys(classNames).forEach(k => {
@@ -84,7 +147,11 @@ function _getSlotProps(
   return resolvedSlotProps;
 }
 
-const _getClasses = (theme: ITheme, optionsSet: any[]) => {
+const _getClasses = <TTheme>(
+  name: string,
+  theme: TTheme,
+  optionsSet: any[]
+) => {
   let tokens: any = {};
   optionsSet.forEach((options: any) => {
     if (options && options.tokens && typeof options.tokens === "function") {
