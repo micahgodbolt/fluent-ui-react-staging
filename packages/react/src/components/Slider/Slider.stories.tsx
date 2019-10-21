@@ -6,9 +6,4 @@ export default {
   title: 'Slider'
 };
 
-export const fluentSlider = () => (
-  <>
-    Fluent Slider
-    <Slider min={0} max={10} defaultValue={5} />
-  </>
-);
+export const fluentSlider = () => <Slider min={0} max={10} defaultValue={5} />;

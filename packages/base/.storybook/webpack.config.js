@@ -9,7 +9,7 @@ module.exports = ({ config }) => {
         options: {
           transpileOnly: true,
           experimentalWatchApi: true,
-          configFile: 'tsconfig.build.json',
+          configFile: 'tsconfig.json',
           compilerOptions: {
             composite: false
           }
