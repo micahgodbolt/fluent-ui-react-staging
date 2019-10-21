@@ -15,7 +15,7 @@
   "files": [
     "lib"
   ],
-  "main": "lib/@fluentui/base.js",
+  "main": "src/index.ts",
   "directories": {
     "lib": "lib",
     "test": "__tests__"

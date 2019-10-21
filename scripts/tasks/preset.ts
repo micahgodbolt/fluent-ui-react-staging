@@ -5,7 +5,7 @@ task('storybook:start', startStorybookTask);
 task('storybook:build', buildStorybookTask);
 
 task('webpack', webpackTask());
-task('ts', tscTask({ build: 'tsconfig.build.json' }));
+task('ts', tscTask({ build: 'tsconfig.json' }));
 task('eslint', eslintTask());
 task('jest', jestTask());
 
