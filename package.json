@@ -10,6 +10,7 @@
   "scripts": {
     "build": "lerna run build --stream",
     "test": "lerna run test --stream",
+    "lint": "lerna run lint --stream",
     "start": "yarn workspace @fluentui/react start"
   },
   "devDependencies": {
