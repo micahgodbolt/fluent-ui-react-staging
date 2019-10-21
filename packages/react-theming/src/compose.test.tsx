@@ -193,28 +193,4 @@ describe("compose", () => {
       });
     });
   });
-
-  describe("tokens", () => {
-    it("merges tokens that don't overlap (simple)", () => {
-      const tokenObj = { foo: "bar" };
-      const options = [{ tokens: () => tokenObj }];
-      expect(compose.resolveTokens(options, makeBlankTheme())).toEqual(
-        tokenObj
-      );
-    });
-
-    it("allows downstream components to override partial token definitions", () => {
-      const baseTokens = { foo: "foo", bar: "bar", baz: "baz" };
-      const downstreamTokens = { bar: "barDownstream" };
-      const options = [
-        { tokens: () => baseTokens },
-        { tokens: () => downstreamTokens }
-      ];
-      expect(compose.resolveTokens(options, makeBlankTheme())).toEqual({
-        foo: "foo",
-        bar: "barDownstream",
-        baz: "baz"
-      });
-    });
-  });
 });
