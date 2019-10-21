@@ -1,3 +1,4 @@
+import React from 'react';
 import { compose } from '@fluentui/react-theming';
 
 describe('Fluent Slider', () => {
