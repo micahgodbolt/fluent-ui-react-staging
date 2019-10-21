@@ -1,12 +1,21 @@
-import * as React from 'react';
+import * as React from "react";
+import { useControlledState } from "../../hooks/useControlledState";
+import { useWindowEvent } from "../../hooks/useWindowEvent";
+import { ISliderProps, ISliderSlotProps } from "./Slider.types";
 
-import { useControlledState } from '../../hooks/useControlledState';
-import { useWindowEvent } from '../../hooks/useWindowEvent';
-import { SliderProps, SliderSlotProps } from './Slider.props';
-
-function _getDragValues(ev: any, containerRect: any, min: any, max: any, step: any, snapToStep: any) {
+function _getDragValues(
+  ev: any,
+  containerRect: any,
+  min: any,
+  max: any,
+  step: any,
+  snapToStep: any
+) {
   const range = max - min;
-  const percentage = Math.min(1, Math.max(0, (ev.clientX - containerRect.left) / containerRect.width));
+  const percentage = Math.min(
+    1,
+    Math.max(0, (ev.clientX - containerRect.left) / containerRect.width)
+  );
   const value = Math.round(min + (percentage * range) / step) * step;
 
   return {
@@ -15,13 +24,31 @@ function _getDragValues(ev: any, containerRect: any, min: any, max: any, step: a
   };
 }
 
+export interface ISliderState {
+  min: number;
+  max: number;
+  value: number;
+  trackRef: React.Ref<Element>;
+  onMouseDown: (ev: React.MouseEvent) => void;
+  onKeyDown: (ev: React.MouseEvent) => void;
+  percentage: number;
+}
+
 /**
  * Slider hook for building an accessible slider.
  *
  * https://www.w3.org/TR/2017/REC-wai-aria-1.1-20171214/#slider
  */
-const useSliderState = (userProps: SliderProps) => {
-  const { min = 0, max = 100, step = 1, value: controlledValue, snapToStep, onChange, defaultValue } = userProps;
+const useSliderState = (userProps: ISliderProps): ISliderState => {
+  const {
+    min = 0,
+    max = 100,
+    step = 1,
+    value: controlledValue,
+    snapToStep,
+    onChange,
+    defaultValue
+  } = userProps;
   const [dragging, setDragging] = React.useState(false);
   const [value, setValue] = useControlledState(controlledValue, defaultValue);
   const [dragState, setDragState] = React.useState({
@@ -45,7 +72,14 @@ const useSliderState = (userProps: SliderProps) => {
   const onMouseMove = React.useCallback(
     (ev: any, allowDefault: any) => {
       if (dragState && dragState.trackRect) {
-        const drag = _getDragValues(ev, dragState.trackRect, min, max, step, snapToStep);
+        const drag = _getDragValues(
+          ev,
+          dragState.trackRect,
+          min,
+          max,
+          step,
+          snapToStep
+        );
 
         _updateValue(ev, drag.value);
       }
@@ -55,7 +89,16 @@ const useSliderState = (userProps: SliderProps) => {
         ev.stopPropagation();
       }
     },
-    [_getDragValues, dragging, dragState, min, max, step, snapToStep, _updateValue]
+    [
+      _getDragValues,
+      dragging,
+      dragState,
+      min,
+      max,
+      step,
+      snapToStep,
+      _updateValue
+    ]
   );
 
   const onMouseDown = React.useCallback(
@@ -79,8 +122,8 @@ const useSliderState = (userProps: SliderProps) => {
     [setDragging]
   );
 
-  useWindowEvent('mousemove', dragging && onMouseMove);
-  useWindowEvent('mouseup', dragging && onMouseUp);
+  useWindowEvent("mousemove", dragging && onMouseMove);
+  useWindowEvent("mouseup", dragging && onMouseUp);
 
   const onKeyDown = (ev: any) => {
     let newValue;
@@ -124,15 +167,20 @@ const useSliderState = (userProps: SliderProps) => {
   };
 };
 
-export const useSliderSlots: (props: SliderProps) => SliderSlotProps = (props: SliderProps) => {
-  const { min, max, value, trackRef, onMouseDown, onKeyDown, percentage } = useSliderState(props);
-  const resolvedProps = {
+export const useSlider = (props: ISliderProps) => {
+  const state = useSliderState(props);
+  const {
+    min,
+    max,
+    value,
+    trackRef,
+    onMouseDown,
+    onKeyDown,
+    percentage
+  } = state;
+  const slotProps: ISliderSlotProps = {
     root: {
-      role: 'slider',
-      tabIndex: 0,
-      'aria-valuemin': min,
-      'aria-valuemax': max,
-      'aria-valuenow': value,
+      role: "slider",
       onMouseDown,
       onKeyDown,
       ...(props.slotProps && props.slotProps.root)
@@ -151,6 +199,10 @@ export const useSliderSlots: (props: SliderProps) => SliderSlotProps = (props: S
     },
     thumb: {
       ...{
+        tabIndex: 0,
+        "aria-valuemin": min,
+        "aria-valuemax": max,
+        "aria-valuenow": value,
         style: {
           left: `${percentage}%`
         }
@@ -159,19 +211,8 @@ export const useSliderSlots: (props: SliderProps) => SliderSlotProps = (props: S
     }
   };
 
-  return resolvedProps;
-};
-
-export const Slider: React.FunctionComponent<SliderProps> = (props: SliderProps) => {
-  const { root: Root = 'div', rail: Rail = 'div', thumb: Thumb = 'div', track: Track = 'div' } = props.slots || {};
-  const slotProps = useSliderSlots(props);
-
-  return (
-    <Root {...slotProps.root}>
-      <Track {...slotProps.track} />
-      <Rail {...slotProps.rail}>
-        <Thumb {...slotProps.thumb} />
-      </Rail>
-    </Root>
-  );
+  return {
+    state,
+    slotProps
+  };
 };

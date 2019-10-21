@@ -1,16 +1,9 @@
-import { Theme } from 'react-texture';
+import { ITheme } from "@fluentui/react-theming";
 
-export const theme: Theme = {
-  brandColor: '#d11',
-  semanticColors: {
-    buttonBorder: '#601',
-    buttonTextPressed: '#fff',
-    buttonTextHovered: '#000',
-    buttonBackgroundPressed: '#ddd',
-    buttonText: '#011',
-    buttonBackground: '#d11'
-  },
-  effects: {
-    roundedCorner2: '10px'
+export const theme: ITheme = {
+  colors: {
+    brand: {
+      values: ["#d11"]
+    }
   }
 };
