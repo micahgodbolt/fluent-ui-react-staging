@@ -80,9 +80,9 @@ export const _composeFactory = <TTheme>(themeHook: any = useTheme) => {
 
 /**
  * Composed allows you to create composed components, which
- * have configurable, themable state, view, and slots.
- *
- * Composed components can be recomposed.
+ * have configurable, themable state, view, and slots. Composed
+ * components can be recomposed.
+ * @public
  */
 export const compose = _composeFactory();
 
