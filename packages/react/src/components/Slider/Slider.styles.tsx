@@ -1,39 +1,52 @@
 import { IResolvedTokens } from "@fluentui/react-theming";
 import { ISliderTokens } from "./Slider.tokens";
 
-const styles = (tokens: IResolvedTokens<ISliderTokens>) => ({
-  root: {
-    position: "relative",
-    height: "28px"
-  },
-
+const styles = (t: IResolvedTokens<ISliderTokens>) => ({
   rootDisabled: {},
   rootVertical: {},
+  rootFocused: {},
+
+  root: {
+    position: "relative",
+    height: t.size,
+
+    "&$rootVertical": {
+      width: t.size,
+      height: "100%"
+    }
+  },
 
   rail: {
     position: "absolute",
+    left: 0,
+    right: 0,
+    top: "50%",
+    transform: "translateY(-50%)",
     width: "auto",
-    height: tokens.railSize,
-    borderColor: tokens.railBorderColor,
-    borderRadius: tokens.railBorderRadius,
-    borderWidth: tokens.railBorderWidth,
-    backgroundColor: tokens.railColor,
+    height: t.railSize,
+    borderRadius: t.railBorderRadius,
+    backgroundColor: t.railColor,
 
-    $rootVertical: {
-      height: "auto",
-      width: tokens.railSize
+    "$rootVertical &": {
+      left: "50%",
+      right: "auto",
+      top: 0,
+      bottom: 0,
+      transform: "translateX(-50%)",
+      width: t.railSize,
+      height: "100%"
     },
 
-    "$root:hover &": {
-      backgroundColor: tokens.railColorHovered
+    "$root:hover &, $rootFocused &": {
+      backgroundColor: t.railColorHovered
     },
 
     "$root:active &": {
-      backgroundColor: tokens.railColorPressed
+      backgroundColor: t.railColorPressed
     },
 
     "$root$rootDisabled &": {
-      backgroundColor: tokens.railColorDisabled
+      backgroundColor: t.railColorDisabled
     }
   },
 
@@ -42,25 +55,62 @@ const styles = (tokens: IResolvedTokens<ISliderTokens>) => ({
     left: 0,
     top: "50%",
     transform: "translateY(-50%)",
-    height: "4px",
-    backgroundColor: tokens.trackColor,
-    "&:focus": {
-      outline: "none"
+    height: t.trackSize,
+    backgroundColor: t.trackColor,
+    borderRadius: t.trackBorderRadius,
+
+    "$rootVertical &": {
+      left: "50%",
+      top: "auto",
+      bottom: 0,
+      transform: "translateX(-50%)",
+      width: t.trackSize
+    },
+
+    "$root:hover &, $rootFocused &": {
+      backgroundColor: t.trackColorHovered
+    },
+
+    "$root:active &": {
+      backgroundColor: t.trackColorPressed
+    },
+
+    "$root$rootDisabled &": {
+      backgroundColor: t.trackColorDisabled
     }
   },
 
   thumb: {
     position: "absolute",
+    transform: "translateX(-50%)",
     boxSizing: "border-box",
-    height: tokens.thumbSize,
-    width: "16px",
-    borderRadius: "16px",
-    top: "50%",
-    transform: "translate(-50%, -50%)",
-    backgroundColor: tokens.thumbColor,
-    borderSize: 2,
-    borderStyle: "solid",
-    borderColor: tokens.thumbBorderColor
+    width: t.size,
+    height: t.size,
+
+    "$rootVertical &": {
+      transform: "translateY(50%)"
+    },
+
+    "&:after": {
+      content: '""',
+      position: "absolute",
+      height: t.thumbSize,
+      width: t.thumbSize,
+      borderRadius: t.thumbBorderRadius,
+      left: "50%",
+      top: "50%",
+      transform: "translate(-50%, -50%)",
+      backgroundColor: t.thumbColor,
+      borderWidth: t.thumbBorderWidth,
+      borderStyle: "solid",
+      borderColor: t.thumbBorderColor
+    },
+
+    "$rootVertical &:after": {},
+
+    "$rootDisabled &:after": {
+      borderColor: t.thumbBorderColorDisabled
+    }
   }
 });
 
