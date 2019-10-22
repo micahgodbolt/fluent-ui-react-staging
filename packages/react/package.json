@@ -22,10 +22,11 @@
   },
   "scripts": {
     "build": "just-scripts build",
+    "clean": "just-scripts clean",
     "just": "just-scripts",
+    "lint": "just-scripts lint",
     "start": "just-scripts storybook:start",
-    "test": "just-scripts test",
-    "lint": "just-scripts lint"
+    "test": "just-scripts test"
   },
   "dependencies": {
     "@fluentui/base": "^0.0.0",

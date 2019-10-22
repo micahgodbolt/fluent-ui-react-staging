@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@babel/core": "^7.6.4",
+    "@microsoft/api-extractor": "^7.5.1",
     "@storybook/addon-a11y": "^5.2.4",
     "@storybook/addon-actions": "^5.2.4",
     "@storybook/addon-info": "^5.2.4",
@@ -29,6 +30,7 @@
     "typescript": "^3.7.0-beta"
   },
   "devDependencies": {
-    "@types/node": "^12.11.1"
+    "@types/node": "^12.11.1",
+    "@types/jest": "^24.0.19"
   }
 }

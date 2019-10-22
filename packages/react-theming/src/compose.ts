@@ -1,11 +1,9 @@
-import { mergeStyles } from "@uifabric/merge-styles";
-import { useTheme } from "./themeContext";
-import { resolveTokens } from "./resolveTokens";
-import { resolve } from "q";
+import { mergeStyles } from '@uifabric/merge-styles';
+import { useTheme } from './themeContext';
+import { resolveTokens } from './resolveTokens';
 
 type Options = any;
 type SlotsAssignment = any;
-type Tokens = any;
 
 /** _composeFactory returns a compose function.
  * This allows tests to override aspects of compose.
@@ -13,10 +11,7 @@ type Tokens = any;
  * @internal
  */
 export const _composeFactory = <TTheme>(themeHook: any = useTheme) => {
-  const composeInstance = <TProps = {}>(
-    baseComponent: React.SFC<TProps>,
-    options?: any
-  ) => {
+  const composeInstance = <TProps = {}>(baseComponent: React.SFC<TProps>, options?: any) => {
     const classNamesCache = new WeakMap();
     let optionsSet = [options];
     if (baseComponent && (baseComponent as any).__optionsSet) {
@@ -25,28 +20,21 @@ export const _composeFactory = <TTheme>(themeHook: any = useTheme) => {
 
     const renderFn = (baseComponent as any).__directRender || baseComponent;
 
-    const name = options.name || "WARNING-UNNAMED";
+    const name = options.name || 'WARNING-UNNAMED';
     let mergedOptions = {};
     optionsSet.forEach(o => {
       mergedOptions = { ...mergedOptions, ...o };
     });
 
     const Component = (props: TProps) => {
-      const theme: TTheme = (themeHook() ||
-        (mergedOptions as any).defaultTheme)!;
+      const theme: TTheme = (themeHook() || (mergedOptions as any).defaultTheme)!;
       const slots = resolveSlots(name, optionsSet, theme);
 
       if (!theme) {
-        console.warn("No theme specified, behavior undefined."); // eslint-disable-line no-console
+        console.warn('No theme specified, behavior undefined.'); // eslint-disable-line no-console
       }
 
-      const resolvedSlotProps = _getSlotProps(
-        name,
-        props,
-        theme,
-        classNamesCache,
-        optionsSet
-      );
+      const resolvedSlotProps = _getSlotProps(name, props, theme, classNamesCache, optionsSet);
 
       return renderFn({
         ...props,
@@ -61,18 +49,13 @@ export const _composeFactory = <TTheme>(themeHook: any = useTheme) => {
 
     Component.propTypes = baseComponent.propTypes;
     Component.__optionsSet = optionsSet;
-    Component.__directRender =
-      (baseComponent as any).__directRender || baseComponent;
-    Component.displayName = options.name || "Composed Component";
+    Component.__directRender = (baseComponent as any).__directRender || baseComponent;
+    Component.displayName = options.name || 'Composed Component';
 
     return Component;
   };
 
-  const resolveSlots = <TTheme>(
-    name: string,
-    optionsSet: Options[],
-    theme: any
-  ): SlotsAssignment => {
+  const resolveSlots = <TTheme>(name: string, optionsSet: Options[], theme: any): SlotsAssignment => {
     const result = {};
     if (optionsSet && optionsSet.length > 0) {
       optionsSet.forEach(os => {
@@ -83,12 +66,7 @@ export const _composeFactory = <TTheme>(themeHook: any = useTheme) => {
         }
       });
     }
-    if (
-      theme &&
-      theme.components &&
-      theme.components[name] &&
-      typeof theme.components[name] === "object"
-    ) {
+    if (theme && theme.components && theme.components[name] && typeof theme.components[name] === 'object') {
       Object.keys(theme.components[name]).forEach(k => {
         (result as any)[k] = theme.components[name][k];
       });
@@ -108,15 +86,8 @@ export const _composeFactory = <TTheme>(themeHook: any = useTheme) => {
  */
 export const compose = _composeFactory();
 
-function _getSlotProps<TTheme>(
-  name: string,
-  props: any,
-  theme: TTheme,
-  classNamesCache: WeakMap<any, any>,
-  optionsSet: any[]
-) {
-  const resolvedSlotProps =
-    props && props.slotProps ? { ...props.slotProps } : {};
+function _getSlotProps<TTheme>(name: string, props: any, theme: TTheme, classNamesCache: WeakMap<any, any>, optionsSet: any[]) {
+  const resolvedSlotProps = props && props.slotProps ? { ...props.slotProps } : {};
   if (theme) {
     if (!classNamesCache.has(theme)) {
       classNamesCache.set(theme, _getClasses(name, theme, optionsSet));
@@ -125,28 +96,22 @@ function _getSlotProps<TTheme>(
     Object.keys(classNames).forEach(k => {
       const className = classNames[k];
       if (!resolvedSlotProps[k]) {
-        resolvedSlotProps[k] = { className: "" };
+        resolvedSlotProps[k] = { className: '' };
       } else if (!resolvedSlotProps[k].className) {
-        resolvedSlotProps[k].className = "";
+        resolvedSlotProps[k].className = '';
       }
-      resolvedSlotProps[
-        k
-      ].className = `${resolvedSlotProps[k].className} ${className}`.trim();
+      resolvedSlotProps[k].className = `${resolvedSlotProps[k].className} ${className}`.trim();
     });
   }
   return resolvedSlotProps;
 }
 
-const _getClasses = <TTheme>(
-  name: string,
-  theme: TTheme,
-  optionsSet: any[]
-) => {
+const _getClasses = <TTheme>(name: string, theme: TTheme, optionsSet: any[]) => {
   const tokens = resolveTokens(theme, optionsSet.map(o => o.tokens || {}));
 
   let styles: any = {};
   optionsSet.forEach((options: any) => {
-    if (options && options.styles && typeof options.styles === "function") {
+    if (options && options.styles && typeof options.styles === 'function') {
       styles = { ...styles, ...options.styles(theme, tokens) };
     }
   });

@@ -1,9 +1,10 @@
-import { ITheme } from "@fluentui/react-theming";
+import { ITheme } from '@fluentui/react-theming';
 
-export const theme: ITheme = {
+export const theme = <ITheme>{
   colors: {
     brand: {
-      values: ["#d11"]
+      values: ['#d11'],
+      index: 1
     }
   }
 };
