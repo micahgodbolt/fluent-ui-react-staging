@@ -1,4 +1,3 @@
-import path from 'path';
 import { startStorybookTask, buildStorybookTask, storybookConfigExists } from './storybookTask';
 import {
   task,
@@ -11,10 +10,9 @@ import {
   tscTask,
   eslintTask,
   jestTask,
-  cleanTask,
-  resolve
+  cleanTask
 } from 'just-scripts';
-import { spawnSync } from 'child_process';
+import { rollupTask } from './rollupTask';
 
 task('storybook:start', startStorybookTask);
 task('storybook:build', buildStorybookTask);
@@ -43,11 +41,7 @@ task(
   })
 );
 
-task('rollup:dts', () => {
-  spawnSync(process.execPath, [resolve('rollup/dist/bin/rollup'), '-c', path.resolve(__dirname, '../config/rollup/rollup.config.js')], {
-    stdio: 'inherit'
-  });
-});
+task('rollup:dts', rollupTask);
 
 task('build', parallel('ts', condition('storybook:build', storybookConfigExists)));
 
