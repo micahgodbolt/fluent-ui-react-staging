@@ -4,7 +4,6 @@ import jss from "jss";
 
 type Options = any;
 type SlotsAssignment = any;
-type Tokens = any;
 
 /** _composeFactory returns a compose function.
  * This allows tests to override aspects of compose.
@@ -92,9 +91,9 @@ export const _composeFactory = <TTheme>(useThemeHook: any = useTheme) => {
 
 /**
  * Composed allows you to create composed components, which
- * have configurable, themable state, view, and slots.
- *
- * Composed components can be recomposed.
+ * have configurable, themable state, view, and slots. Composed
+ * components can be recomposed.
+ * @public
  */
 export const compose = _composeFactory();
 

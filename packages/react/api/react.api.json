@@ -1,0 +1,104 @@
+{
+  "metadata": {
+    "toolPackage": "@microsoft/api-extractor",
+    "toolVersion": "7.5.1",
+    "schemaVersion": 1003,
+    "oldestForwardsCompatibleVersion": 1001
+  },
+  "kind": "Package",
+  "canonicalReference": "@fluentui/react!",
+  "docComment": "",
+  "name": "@fluentui/react",
+  "members": [
+    {
+      "kind": "EntryPoint",
+      "canonicalReference": "@fluentui/react!",
+      "name": "",
+      "members": [
+        {
+          "kind": "Variable",
+          "canonicalReference": "@fluentui/react!Slider:var",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "Slider: "
+            },
+            {
+              "kind": "Content",
+              "text": "{\n    (props: import(\"@fluentui/base\")."
+            },
+            {
+              "kind": "Reference",
+              "text": "ISliderProps",
+              "canonicalReference": "@fluentui/base!ISliderProps:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "): any;\n    propTypes: import(\"react\")."
+            },
+            {
+              "kind": "Reference",
+              "text": "WeakValidationMap",
+              "canonicalReference": "@types/react!~React.WeakValidationMap:type"
+            },
+            {
+              "kind": "Content",
+              "text": "<import(\"@fluentui/base\")."
+            },
+            {
+              "kind": "Reference",
+              "text": "ISliderProps",
+              "canonicalReference": "@fluentui/base!ISliderProps:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "> | undefined;\n    __optionsSet: any[];\n    __directRender: any;\n    displayName: any;\n}"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "Slider",
+          "variableTypeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 8
+          }
+        },
+        {
+          "kind": "Variable",
+          "canonicalReference": "@fluentui/react!theme:var",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "theme: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Partial",
+              "canonicalReference": "!Partial:type"
+            },
+            {
+              "kind": "Content",
+              "text": "<"
+            },
+            {
+              "kind": "Reference",
+              "text": "ITheme",
+              "canonicalReference": "@fluentui/react-theming!ITheme:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ">"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "theme",
+          "variableTypeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 5
+          }
+        }
+      ]
+    }
+  ]
+}
