@@ -85,7 +85,6 @@ export const resolveTokens = (theme: any, sourceTokensSet: any[]) => {
   const tokens: TokenDict = {};
 
   sourceTokensSet.forEach(sourceTokens => {
-    console.log(sourceTokens);
     for (let tokenName in sourceTokens) {
       tokens[tokenName] = TokenFactory.from(
         tokens,
