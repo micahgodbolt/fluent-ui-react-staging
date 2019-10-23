@@ -1,4 +1,4 @@
-name: Node CI
+name: Fluent UI PR and CI
 
 on: 
   pull_request:
