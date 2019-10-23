@@ -76,7 +76,7 @@ https://developer.microsoft.com/en-us/fabric#/controls/web/checkbox
 | ariaLabelledBy       | string                                                      |                                                                                |
 | ariaPositionInset    | number                                                      |                                                                                |
 | ariaSetSize          | number                                                      |                                                                                |
-| boxSide              | 'start' | 'end'                                             | default 'start'                                                                |
+| boxSide              | 'start' or 'end'                                            | default 'start'                                                                |
 | checked              | boolean                                                     |                                                                                |
 | checkmarkIconProps   | IIconProps                                                  |                                                                                |
 | className            | string                                                      |                                                                                |
@@ -85,7 +85,7 @@ https://developer.microsoft.com/en-us/fabric#/controls/web/checkbox
 | defaultIndeterminate | boolean                                                     |                                                                                |
 | disabled             | boolean                                                     |                                                                                |
 | indeterminate        | boolean                                                     |                                                                                |
-| inputProps           | React.ButtonHTMLAttributes<HTMLElement | HTMLButtonElement> |                                                                                |
+| inputProps           | React.ButtonHTMLAttributes<HTMLElement or HTMLButtonElement>|                                                                                |
 | keytipProps          | IKpeytipProps                                               |                                                                                |  
 | label                | string                                                      |                                                                                |
 | onChange             | (ev, checked) => void                                       |                                                                                |
