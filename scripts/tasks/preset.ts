@@ -1,4 +1,3 @@
-import path from "path";
 import {
   startStorybookTask,
   buildStorybookTask,
@@ -15,10 +14,8 @@ import {
   tscTask,
   eslintTask,
   jestTask,
-  cleanTask,
-  resolve
+  cleanTask
 } from "just-scripts";
-import { spawnSync } from "child_process";
 
 task("storybook:start", startStorybookTask);
 task("storybook:build", buildStorybookTask);
@@ -27,13 +24,8 @@ task("webpack", webpackTask());
 task("ts", tscTask({ build: "tsconfig.json" }));
 task("eslint", eslintTask());
 task("jest", jestTask());
-task(
-  "update-snapshots",
-  jestTask({
-    ...(process.env.TF_BUILD && { runInBand: true }),
-    updateSnapshot: true
-  })
-);
+task("jest:snapshots", jestTask({ updateSnapshot: true }));
+task("jest:watch", jestTask({ watch: true }));
 
 task(
   "api-extractor:verify",
@@ -41,12 +33,14 @@ task(
     fixNewlines: true
   })
 );
+
 task(
   "api-extractor:update",
   apiExtractorUpdateTask({
     fixNewlines: true
   })
 );
+
 task(
   "clean",
   cleanTask({
@@ -54,32 +48,12 @@ task(
   })
 );
 
-task("rollup:dts", () => {
-  spawnSync(
-    process.execPath,
-    [
-      resolve("rollup/dist/bin/rollup"),
-      "-c",
-      path.resolve(__dirname, "../config/rollup/rollup.config.js")
-    ],
-    {
-      stdio: "inherit"
-    }
-  );
-});
-
 task(
   "build",
   parallel("ts", condition("storybook:build", storybookConfigExists))
 );
-
 task("bundle", series("webpack"));
 task("test", series("jest"));
+task("test:watch", series("jest:watch"));
 task("lint", series("eslint"));
 task("start", series("storybook:start"));
-task(
-  "start-test",
-  jestTask({
-    watch: true
-  })
-);

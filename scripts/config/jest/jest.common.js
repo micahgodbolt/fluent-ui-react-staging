@@ -5,6 +5,7 @@ module.exports = {
   transform: {
     ...tsjPreset.transform
   },
+  testRegex: '(/__tests__/.*|\\.(test|spec))\\.(ts|tsx)$',
   globals: {
     'ts-jest': {
       tsConfig: resolveCwd('tsconfig.json'),
