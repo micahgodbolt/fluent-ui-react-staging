@@ -17,7 +17,7 @@ Fabric Checkbox [docs](https://developer.microsoft.com/en-us/fabric#/controls/we
 
 Stardust Checkbox [docs](https://microsoft.github.io/fluent-ui-react/components/checkbox/definition)
 
-Material UI Checkbox [docs](https://material-ui.com/components/Checkbox/)
+Material UI Checkbox [docs](https://material-ui.com/components/checkboxes/)
 
 BaseUI Checkbox [docs](https://baseweb.design/components/Checkbox/)
 
