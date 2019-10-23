@@ -210,7 +210,7 @@ https://developer.microsoft.com/en-us/fabric#/controls/web/button
 
 ### Stardust Button props
 
-#### ButtonProps
+#### ButtonProps interface
 
 | Name            | Type                                 | Notes                                                                                                                             |
 | --------------- | :----------------------------------: | --------------------------------------------------------------------------------------------------------------------------------- |
@@ -230,3 +230,85 @@ https://developer.microsoft.com/en-us/fabric#/controls/web/button
 | `size`          | `SizeValue`                          | Should this prop be provided or is this just a matter that could be solved via styling and recomposition?                         |
 | `text`          | `boolean`                            | Should this be a prop or should the library have a separate `GhostButton` variant? If a prop, should it be named `ghost` instead? |
 
+### Conversion process from Fabric 7 to Fluent UI Button
+
+#### IButton interface
+
+| Name          | Action to take/taken | Property transitioned? | Breaking change? | Codemod/Shim created? |
+| ------------- | -------------------- | :--------------------: | :--------------: | :-------------------: |
+| `dismissMenu` | TBD                  | &#x274C;               | &#x274C;         | &#x274C;              |
+| `focus`       | TBD                  | &#x274C;               | &#x274C;         | &#x274C;              |
+| `openMenu`    | TBD                  | &#x274C;               | &#x274C;         | &#x274C;              |
+
+#### IButtonProps interface
+
+| Name                               | Action to take/taken                  | Property transitioned? | Breaking change? | Codemod/Shim created? |
+| ---------------------------------- | ------------------------------------- | :--------------------: | :--------------: | :-------------------: |
+| `allowDisabledFocus`               | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
+| `ariaDescription`                  | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
+| `ariaHidden`                       | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
+| `ariaLabel`                        | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
+| `buttonType`                       | Removing as it is already deprecated. | &#9745;                | &#9745;          | &#x274C;              |
+| `checked`                          | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
+| `className`                        | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
+| `componentRef`                     | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
+| `data`                             | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
+| `defaultRender`                    | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
+| `description`                      | Removing as it is already deprecated. | &#9745;                | &#9745;          | &#x274C;              |
+| `disabled`                         | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
+| `getClassNames`                    | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
+| `getSplitButtonClassNames`         | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
+| `href`                             | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
+| `iconProps`                        | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
+| `keytipProps`                      | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
+| `menuAs`                           | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
+| `menuIconProps`                    | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
+| `menuProps`                        | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
+| `menuTriggerKeyCode`               | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
+| `onAfterMenuDismiss`               | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
+| `onMenuClick`                      | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
+| `onRenderAriaDescription`          | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
+| `onRenderChildren`                 | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
+| `onRenderDescription`              | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
+| `onRenderIcon`                     | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
+| `onRenderMenuIcon`                 | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
+| `onRenderMenu`                     | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
+| `onRenderText`                     | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
+| `persistMenu`                      | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
+| `primary`                          | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
+| `primaryActionButtonProps`         | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
+| `primaryDisabled`                  | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
+| `renderPersistedMenuHiddenOnMount` | Removing as it is already deprecated. | &#9745;                | &#9745;          | &#x274C;              |
+| `rootProps`                        | Removing as it is already deprecated. | &#9745;                | &#9745;          | &#x274C;              |
+| `secondaryText`                    | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
+| `split`                            | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
+| `splitButtonAriaLabel`             | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
+| `splitButtonMenuProps`             | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
+| `styles`                           | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
+| `theme`                            | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
+| `text`                             | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
+| `toggle`                           | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
+| `toggled`                          | Removing as it is already deprecated. | &#9745;                | &#9745;          | &#x274C;              |
+| `uniqueId`                         | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
+
+### Conversion process Stardust to Fluent UI Button
+
+#### ButtonProps interface
+
+| Name            | Action to take/taken | Property transitioned? | Breaking change? | Codemod/Shim created? |
+| --------------- | -------------------- | :--------------------: | :--------------: | :-------------------: |
+| `accessibility` | TBD                  | &#x274C;               | &#x274C;         | &#x274C;              |
+| `circular`      | TBD                  | &#x274C;               | &#x274C;         | &#x274C;              |
+| `disabled`      | TBD                  | &#x274C;               | &#x274C;         | &#x274C;              |
+| `fluid`         | TBD                  | &#x274C;               | &#x274C;         | &#x274C;              |
+| `icon`          | TBD                  | &#x274C;               | &#x274C;         | &#x274C;              |
+| `iconOnly`      | TBD                  | &#x274C;               | &#x274C;         | &#x274C;              |
+| `iconPosition`  | TBD                  | &#x274C;               | &#x274C;         | &#x274C;              |
+| `loader`        | TBD                  | &#x274C;               | &#x274C;         | &#x274C;              |
+| `loading`       | TBD                  | &#x274C;               | &#x274C;         | &#x274C;              |
+| `onClick`       | TBD                  | &#x274C;               | &#x274C;         | &#x274C;              |
+| `onFocus`       | TBD                  | &#x274C;               | &#x274C;         | &#x274C;              |
+| `primary`       | TBD                  | &#x274C;               | &#x274C;         | &#x274C;              |
+| `secondary`     | TBD                  | &#x274C;               | &#x274C;         | &#x274C;              |
+| `size`          | TBD                  | &#x274C;               | &#x274C;         | &#x274C;              |
+| `text`          | TBD                  | &#x274C;               | &#x274C;         | &#x274C;              |
