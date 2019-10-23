@@ -12,7 +12,7 @@ https://codesandbox.io/s/checkboxes-dk4pz
 
 Fabric Checkbox [docs](https://developer.microsoft.com/en-us/fabric#/controls/web/Checkbox)
 
-Stardust Checkbox [docs](http://localhost:8080/components/Checkbox/definition)
+Stardust Checkbox [docs](https://microsoft.github.io/fluent-ui-react/components/checkbox/definition)
 
 Material UI Checkbox [docs](https://material-ui.com/components/Checkbox/)
 
@@ -37,21 +37,23 @@ FastDNA Checkbox [docs](https://github.com/microsoft/fast-dna/tree/master/packag
 
 ### Recommended props
 
-| Name           | Type                                                        |
-| -------------- | ----------------------------------------------------------- |
-| as             | string                                                      |
-| className      | string                                                      |
-| defaultValue   | number \| number[]                                          |
-| disabled       | boolean                                                     |
-| marks          | { value: number; label: string; size: 's' \| 'm' \| 'l' }[] |
-| max            | number                                                      |
-| min            | number                                                      |
-| name           | The form name, is injected on the hidden `input` element.   |
-| onChange       | (ev: Event, value: number) => void                          |
-| originFromZero | boolean                                                     |
-| step           | number                                                      |
-| value          | number \| number[]                                          |
-| vertical       | boolean                                                     |
+| Name                 | Type                                                        |
+| --------------       | ----------------------------------------------------------- |
+| as                   | string                                                      |
+| className            | string                                                      |
+| defaultChecked       | boolean                                                     |
+| disabled             | boolean                                                     |
+| ariaLabel            | string                                                      |                                                                                
+| ariaDescribedBy      | string                                                      |                                                                                
+| ariaLabelledBy       | string                                                      |                                                                                
+| ariaPositionInset    | number                                                      |                                                                                
+| ariaSetSize          | number                                                      |                                                                                
+| onChange             | (ev: Event, value: number) => void                          |
+| label                | string                                                      |
+| theme                | ITheme                                                      |
+| styles               | ICheckboxStyles                                             |
+| rtl                  | boolean                                                     |
+| vertical             | boolean                                                     |
 
 To be discussed:
 
@@ -63,26 +65,45 @@ To be discussed:
 https://developer.microsoft.com/en-us/fabric#/controls/web/checkbox
 
 
-| Name                 | Type                                                        | Notes                                                                                                    |
-| -------------------- | --------------------------------------------------------    | -------------------------------------------------------------------------------------------------------- |
-| ariaLabel            | string                                                      |                                                                                                          |
-| ariaDescribedBy      | string                                                      |                                                                                                          |
-| ariaLabelledBy       | string                                                      |                                                                                                          |
-| ariaPositionInset    | number                                                      |                                                                                                          |
-| ariaSetSize          | number                                                      |                                                                                                          |
-| boxSide              | 'start' | 'end'                                             |                                                                                                          |
-| checked              | boolean                                                     |                                                                                                          |
-| checkmarkIconProps   | IIconProps                                                  |                                                                                                          |
-| className            | string                                                      |                                                                                                          |
-| componentRef         | IRefObject<ICheckbox>                                       |                                                                                                          |
-| defaultChecked       | boolean                                                     |                                                                                                          |
-| defaultIndeterminate | boolean                                                     |                                                                                                          |
-| disabled             | boolean                                                     |                                                                                                          |
-| indeterminate        | boolean                                                     |                                                                                                          |
-| inputProps           | React.ButtonHTMLAttributes<HTMLElement | HTMLButtonElement> |                                                                                                          |
-| keytipProps          | IKeytipProps                                                |                                                                                                          |  
-| label                | string                                                      |                                                                                                          |
-| onChange             | (ev, checked) => void                                       |                                                                                                          |
-| onRenderLabel        | IRenderFunction<ICheckboxProps>                             |                                                                                                          |
-| styles               | IStyleFunctionOrObject<ICheckboxStyleProps, ICheckboxStyles>|                                                                                                          |
-| theme                | ITheme                                                      |                                                                                                          |
+| Name                 | Type                                                        | Notes                                                                          |
+| -------------------- | --------------------------------------------------------    | -------------------------------------------------------------------------------|
+| ariaLabel            | string                                                      |                                                                                |
+| ariaDescribedBy      | string                                                      |                                                                                |
+| ariaLabelledBy       | string                                                      |                                                                                |
+| ariaPositionInset    | number                                                      |                                                                                |
+| ariaSetSize          | number                                                      |                                                                                |
+| boxSide              | 'start' | 'end'                                             | default 'start'                                                                |
+| checked              | boolean                                                     |                                                                                |
+| checkmarkIconProps   | IIconProps                                                  |                                                                                |
+| className            | string                                                      |                                                                                |
+| componentRef         | IRefObject<ICheckbox>                                       |                                                                                |
+| defaultChecked       | boolean                                                     |                                                                                |
+| defaultIndeterminate | boolean                                                     |                                                                                |
+| disabled             | boolean                                                     |                                                                                |
+| indeterminate        | boolean                                                     |                                                                                |
+| inputProps           | React.ButtonHTMLAttributes<HTMLElement | HTMLButtonElement> |                                                                                |
+| keytipProps          | IKpeytipProps                                               |                                                                                |  
+| label                | string                                                      |                                                                                |
+| onChange             | (ev, checked) => void                                       |                                                                                |
+| onRenderLabel        | IRenderFunction<ICheckboxProps>                             |                                                                                |
+| styles               | IStyleFunctionOrObject<ICheckboxStyleProps, ICheckboxStyles>|                                                                                |
+| theme                | ITheme                                                      |                                                                                |
+
+### Stardust Checkbox props
+
+
+| Name                 | Type                                                        | Notes                                                                          |
+| -------------------- | --------------------------------------------------------    | -------------------------------------------------------------------------------|
+| animation            | AnimationProp                                               |                                                                                |
+| as                   | React.ElementType                                           | default type is "div"                                                          |
+| className            | string                                                      |                                                                                |
+| content              | ReactNode                                                   |                                                                                |
+| design               | ComponentDesign                                             |                                                                                |
+| disableAnimations    | boolean                                                     | default false                                                                  |
+| overwrite            | boolean                                                     | default false                                                                  |
+| renderer             | Renderer                                                    |                                                                                |
+| rtl                  | boolean                                                     | default false                                                                  |
+| styles               | ComponentSlotStyle                                          |                                                                                |
+| target               | Document                                                    |                                                                                |
+| theme                | ThemeInput                                                  |                                                                                |
+| variables            | any                                                         |                                                                                |
