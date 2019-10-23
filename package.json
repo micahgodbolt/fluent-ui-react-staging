@@ -8,6 +8,7 @@
     ]
   },
   "scripts": {
+    "clean": "lerna run clean --stream",
     "build": "lerna run build --stream",
     "test": "lerna run test --stream",
     "lint": "lerna run lint --stream",
