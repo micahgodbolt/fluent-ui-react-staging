@@ -1,16 +1,15 @@
-import { IToken } from "@fluentui/react-theming";
+import { IToken, ITheme } from "@fluentui/react-theming";
 
 export interface ISliderTokens {
-  railBorderColor: IToken;
   railBorderRadius: IToken;
-  railBorderWidth: IToken;
   railColor: IToken;
   railColorDisabled: IToken;
-  railColorFocused: IToken;
   railColorHovered: IToken;
   railColorPressed: IToken;
   railSize: IToken;
+  size: IToken;
   thumbBorderColor: IToken;
+  thumbBorderColorDisabled: IToken;
   thumbBorderRadius: IToken;
   thumbBorderWidth: IToken;
   thumbColor: IToken;
@@ -19,45 +18,39 @@ export interface ISliderTokens {
   thumbColorHovered: IToken;
   thumbColorPressed: IToken;
   thumbSize: IToken;
-  trackBorderColor: IToken;
   trackBorderRadius: IToken;
-  trackBorderWidth: IToken;
   trackColor: IToken;
   trackColorDisabled: IToken;
-  trackColorFocused: IToken;
   trackColorHovered: IToken;
   trackColorPressed: IToken;
   trackSize: IToken;
 }
 
-const SliderTokens: ISliderTokens = {
-  railBorderColor: "",
-  railBorderRadius: "",
-  railBorderWidth: "",
-  railColor: "",
-  railColorDisabled: "",
-  railColorFocused: "",
-  railColorHovered: "",
-  railColorPressed: "",
-  railSize: "",
-  thumbBorderColor: "",
-  thumbBorderRadius: "",
-  thumbBorderWidth: "",
-  thumbColor: "",
-  thumbColorDisabled: "",
-  thumbColorFocused: "",
-  thumbColorHovered: "",
-  thumbColorPressed: "",
-  thumbSize: "",
-  trackBorderColor: "",
-  trackBorderRadius: "",
-  trackBorderWidth: "",
-  trackColor: "",
-  trackColorDisabled: "",
-  trackColorFocused: "",
-  trackColorHovered: "",
-  trackColorPressed: "",
-  trackSize: ""
+const SliderTokens = {
+  size: 28,
+  railBorderRadius: 4,
+  railColor: "rgb(200, 198, 196)",
+  railColorDisabled: "rgb(243, 242, 241)",
+  railColorHovered: "rgb(222, 236, 249)",
+  railColorPressed: "rgb(222, 236, 249)",
+  railSize: 4,
+  thumbBorderColor: "rgb(96, 94, 92)",
+  thumbBorderColorHovered: "rgb(0, 90, 158)",
+  thumbBorderColorDisabled: "rgb(200, 198, 196)",
+  thumbBorderRadius: 50,
+  thumbBorderWidth: 2,
+  thumbColor: "#FFF",
+  thumbColorDisabled: "#FFF",
+  thumbColorFocused: "#FFF",
+  thumbColorHovered: "#FFF",
+  thumbColorPressed: "#FFF",
+  thumbSize: 16,
+  trackBorderRadius: 4,
+  trackColor: "rgb(96, 94, 92)",
+  trackColorDisabled: "rgb(161, 159, 157)",
+  trackColorHovered: "rgb(0, 120, 212)",
+  trackColorPressed: "rgb(0, 120, 212)",
+  trackSize: 4
 };
 
 export default SliderTokens;
