@@ -28,9 +28,7 @@ export const fluentSliderDisabled = () => (
 );
 
 export const fluentVerticalSlider = () => (
-  <Wrapper
-    style={{ display: "flex", height: 200, background: "rgba(255,0,0,.1)" }}
-  >
+  <Wrapper style={{ display: "flex", height: 200 }}>
     <Slider vertical defaultValue={50} />
     <Slider vertical defaultValue={50} />
     <Slider vertical defaultValue={50} />

@@ -38,14 +38,6 @@ export const _composeFactory = <TTheme>(useThemeHook: any = useTheme) => {
         console.warn("No theme specified, behavior undefined."); // eslint-disable-line no-console
       }
 
-      // const resolvedSlotProps = _getSlotProps(
-      //   name,
-      //   props,
-      //   theme,
-      //   classNamesCache,
-      //   optionsSet
-      // );
-
       return renderFn({
         ...props,
         classes: _getClasses(name, theme, classNamesCache, optionsSet),
@@ -105,35 +97,6 @@ export const _composeFactory = <TTheme>(useThemeHook: any = useTheme) => {
  * Composed components can be recomposed.
  */
 export const compose = _composeFactory();
-
-// function _getSlotProps<TTheme>(
-//   name: string,
-//   props: any,
-//   theme: TTheme,
-//   classNamesCache: WeakMap<any, any>,
-//   optionsSet: any[]
-// ) {
-//   const resolvedSlotProps =
-//     props && props.slotProps ? { ...props.slotProps } : {};
-//   if (theme) {
-//     if (!classNamesCache.has(theme)) {
-//       classNamesCache.set(theme, _getClasses(name, theme, optionsSet));
-//     }
-//     const classes = classNamesCache.get(theme);
-//     Object.keys(classNames).forEach(k => {
-//       const className = classNames[k];
-//       if (!resolvedSlotProps[k]) {
-//         resolvedSlotProps[k] = { className: "" };
-//       } else if (!resolvedSlotProps[k].className) {
-//         resolvedSlotProps[k].className = "";
-//       }
-//       resolvedSlotProps[
-//         k
-//       ].className = `${resolvedSlotProps[k].className} ${className}`.trim();
-//     });
-//   }
-//   return resolvedSlotProps;
-// }
 
 const _getClasses = <TTheme>(
   name: string,
