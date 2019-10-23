@@ -20,7 +20,20 @@ export interface ISliderSlotProps {
   thumb: {};
 }
 
+export interface ISliderClasses {
+  rootFocused: string;
+  rootVertical: string;
+  rootDisabled: string;
+  root: string;
+  rail: string;
+  track: string;
+  thumb: string;
+}
+
 export interface ISliderProps {
+  /** Sets the disabled flag, causing the control to be inactive. */
+  disabled?: boolean;
+
   /** min value */
   min?: number;
 
@@ -50,4 +63,6 @@ export interface ISliderProps {
 
   /** slot props */
   slotProps?: Partial<ISliderSlotProps>;
+
+  classes?: Partial<ISliderClasses>;
 }

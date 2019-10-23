@@ -2,19 +2,26 @@ import * as React from "react";
 import { useControlledState } from "../../hooks/useControlledState";
 import { useWindowEvent } from "../../hooks/useWindowEvent";
 import { ISliderProps, ISliderSlotProps } from "./Slider.types";
+import { mergeSlotProps } from "@fluentui/react-theming";
+
+import cx from "classnames";
 
 function _getDragValues(
-  ev: any,
+  ev: React.MouseEvent,
   containerRect: any,
-  min: any,
-  max: any,
-  step: any,
-  snapToStep: any
+  min: number,
+  max: number,
+  step: number,
+  snapToStep: boolean,
+  vertical: boolean
 ) {
   const range = max - min;
   const percentage = Math.min(
     1,
-    Math.max(0, (ev.clientX - containerRect.left) / containerRect.width)
+    Math.max(0, vertical 
+      ? 1 - ((ev.clientY - containerRect.top) / containerRect.height) 
+      : ((ev.clientX - containerRect.left) / containerRect.width)
+    )
   );
   const value = Math.round(min + (percentage * range) / step) * step;
 
@@ -25,12 +32,16 @@ function _getDragValues(
 }
 
 export interface ISliderState {
+  focused: boolean;
   min: number;
   max: number;
   value: number;
-  trackRef: React.Ref<Element>;
-  onMouseDown: (ev: React.MouseEvent) => void;
-  onKeyDown: (ev: React.MouseEvent) => void;
+  rootRef: React.Ref<Element>;
+  thumbRef: React.Ref<Element>;
+  onMouseDown?: (ev: React.MouseEvent) => void;
+  onKeyDown?: (ev: React.KeyboardEvent) => void;
+  onFocus: () => void;
+  onBlur: () => void;
   percentage: number;
 }
 
@@ -41,20 +52,26 @@ export interface ISliderState {
  */
 const useSliderState = (userProps: ISliderProps): ISliderState => {
   const {
+    disabled = false,
+    vertical = false,
     min = 0,
     max = 100,
     step = 1,
     value: controlledValue,
-    snapToStep,
+    snapToStep = false,
     onChange,
     defaultValue
   } = userProps;
+  const [focused, setFocused] = React.useState(false);
   const [dragging, setDragging] = React.useState(false);
   const [value, setValue] = useControlledState(controlledValue, defaultValue);
-  const [dragState, setDragState] = React.useState({
-    trackRect: null
+  const [dragState, setDragState] = React.useState<{
+    rootRect: DOMRect | null;
+  }>({
+    rootRect: null
   });
-  const trackRef = React.useRef(null);
+  const rootRef = React.useRef<HTMLElement>(null);
+  const thumbRef = React.useRef<HTMLElement>(null);
   const percentage = (100 * (value - min)) / (max - min);
 
   const _updateValue = React.useCallback(
@@ -71,14 +88,15 @@ const useSliderState = (userProps: ISliderProps): ISliderState => {
 
   const onMouseMove = React.useCallback(
     (ev: any, allowDefault: any) => {
-      if (dragState && dragState.trackRect) {
+      if (dragState && dragState.rootRect) {
         const drag = _getDragValues(
           ev,
-          dragState.trackRect,
+          dragState.rootRect,
           min,
           max,
           step,
-          snapToStep
+          snapToStep,
+          vertical
         );
 
         _updateValue(ev, drag.value);
@@ -97,19 +115,25 @@ const useSliderState = (userProps: ISliderProps): ISliderState => {
       max,
       step,
       snapToStep,
-      _updateValue
+      _updateValue,
+      vertical
     ]
   );
 
   const onMouseDown = React.useCallback(
     (ev: any) => {
-      setDragState({
-        trackRect: (trackRef.current as any).getBoundingClientRect()
-      });
+      const rootRect = rootRef.current!.getBoundingClientRect();
+
+      setDragState({ rootRect });
       setDragging(true);
-      onMouseMove(ev, true);
+      const drag = _getDragValues(ev, rootRect, min, max, step, snapToStep, vertical);
+
+    
+      setImmediate(() => thumbRef.current?.focus());
+
+      _updateValue(ev, drag.value);
     },
-    [onMouseMove, setDragging, dragState, setDragState, trackRef]
+    [onMouseMove, setDragging, dragState, setDragState, rootRef, vertical]
   );
 
   const onMouseUp = React.useCallback(
@@ -122,11 +146,15 @@ const useSliderState = (userProps: ISliderProps): ISliderState => {
     [setDragging]
   );
 
+  const onFocus = () => setFocused(true);
+  const onBlur = () => setFocused(false);
+
   useWindowEvent("mousemove", dragging && onMouseMove);
   useWindowEvent("mouseup", dragging && onMouseUp);
 
-  const onKeyDown = (ev: any) => {
+  const onKeyDown = (ev: React.KeyboardEvent) => {
     let newValue;
+    let increment = (ev.shiftKey ? 10 : 1) * step;
 
     switch (ev.which) {
       case 36: // home
@@ -139,12 +167,12 @@ const useSliderState = (userProps: ISliderProps): ISliderState => {
 
       case 37: // left
       case 40: // down
-        newValue = ev.metaKey ? min : Math.max(min, value - step);
+        newValue = ev.metaKey ? min : Math.max(min, value - increment);
         break;
 
       case 38: // up
       case 39: // right
-        newValue = ev.metaKey ? max : Math.min(max, value + step);
+        newValue = ev.metaKey ? max : Math.min(max, value + increment);
         break;
 
       default:
@@ -156,60 +184,75 @@ const useSliderState = (userProps: ISliderProps): ISliderState => {
     ev.stopPropagation();
   };
 
-  return {
+  return {    
     min,
     max,
     value,
-    trackRef,
-    onMouseDown,
-    onKeyDown,
-    percentage
+    rootRef,
+    thumbRef,
+    onMouseDown: disabled ? undefined : onMouseDown,
+    onKeyDown: disabled ? undefined : onKeyDown,
+    onFocus,
+    onBlur,
+    percentage,
+    focused
   };
 };
 
 export const useSlider = (props: ISliderProps) => {
+  let { classes = {}, disabled, vertical } = props;
   const state = useSliderState(props);
   const {
     min,
     max,
     value,
-    trackRef,
+    rootRef,
+    thumbRef,
     onMouseDown,
     onKeyDown,
-    percentage
+    onFocus,
+    onBlur,
+    percentage,
+    focused
   } = state;
-  const slotProps: ISliderSlotProps = {
+  const { rootFocused, rootDisabled, rootVertical } = classes;
+
+  const slotProps = mergeSlotProps(props, {
     root: {
-      role: "slider",
+      ref: rootRef,
       onMouseDown,
       onKeyDown,
-      ...(props.slotProps && props.slotProps.root)
+      className: cx(
+        focused && rootFocused,
+        disabled && rootDisabled,
+        vertical && rootVertical
+      )
     },
-    rail: {
-      ...{ ref: trackRef },
-      ...(props.slotProps && props.slotProps.rail)
-    },
+    rail: {},
     track: {
-      ...{
-        style: {
-          width: `${percentage}%`
-        }
-      },
-      ...(props.slotProps && props.slotProps.track)
+      style: vertical ? {
+        height: `${percentage}%` 
+      } : {
+        width: `${percentage}%`
+      }
     },
     thumb: {
-      ...{
-        tabIndex: 0,
-        "aria-valuemin": min,
-        "aria-valuemax": max,
-        "aria-valuenow": value,
-        style: {
-          left: `${percentage}%`
-        }
-      },
-      ...(props.slotProps && props.slotProps.thumb)
+      ref: thumbRef,
+      tabIndex: 0,
+      role: "slider",
+      "aria-disabled": disabled,
+      "aria-valuemin": min,
+      "aria-valuemax": max,
+      "aria-valuenow": value,
+      onFocus,
+      onBlur,
+      style: vertical ? {
+        bottom: `${percentage}%`
+      } : {
+        left: `${percentage}%`
+      }
     }
-  };
+  });
 
   return {
     state,

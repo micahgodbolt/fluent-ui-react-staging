@@ -16,16 +16,18 @@
     "lib"
   ],
   "main": "src/index.ts",
+  "types": "index.d.ts",
   "directories": {
     "lib": "lib",
     "test": "__tests__"
   },
   "scripts": {
     "build": "just-scripts build",
-    "start": "just-scripts start",
-    "test": "just-scripts test",
+    "clean": "just-scripts clean",
     "just": "just-scripts",
-    "lint": "just-scripts lint"
+    "lint": "just-scripts lint",
+    "start": "just-scripts start",
+    "test": "just-scripts test"
   },
   "dependencies": {
     "@types/classnames": "^2.2.9",
