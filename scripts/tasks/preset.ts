@@ -1,5 +1,9 @@
-import path from 'path';
-import { startStorybookTask, buildStorybookTask, storybookConfigExists } from './storybookTask';
+import path from "path";
+import {
+  startStorybookTask,
+  buildStorybookTask,
+  storybookConfigExists
+} from "./storybookTask";
 import {
   task,
   series,
@@ -13,45 +17,69 @@ import {
   jestTask,
   cleanTask,
   resolve
-} from 'just-scripts';
-import { spawnSync } from 'child_process';
+} from "just-scripts";
+import { spawnSync } from "child_process";
 
-task('storybook:start', startStorybookTask);
-task('storybook:build', buildStorybookTask);
+task("storybook:start", startStorybookTask);
+task("storybook:build", buildStorybookTask);
 
-task('webpack', webpackTask());
-task('ts', tscTask({ build: 'tsconfig.json' }));
-task('eslint', eslintTask());
-task('jest', jestTask());
+task("webpack", webpackTask());
+task("ts", tscTask({ build: "tsconfig.json" }));
+task("eslint", eslintTask());
+task("jest", jestTask());
+task(
+  "update-snapshots",
+  jestTask({
+    ...(process.env.TF_BUILD && { runInBand: true }),
+    updateSnapshot: true
+  })
+);
 
 task(
-  'api-extractor:verify',
+  "api-extractor:verify",
   apiExtractorVerifyTask({
     fixNewlines: true
   })
 );
 task(
-  'api-extractor:update',
+  "api-extractor:update",
   apiExtractorUpdateTask({
     fixNewlines: true
   })
 );
 task(
-  'clean',
+  "clean",
   cleanTask({
-    paths: ['lib', 'dist', 'tsconfig.tsbuildinfo']
+    paths: ["lib", "dist", "tsconfig.tsbuildinfo"]
   })
 );
 
-task('rollup:dts', () => {
-  spawnSync(process.execPath, [resolve('rollup/dist/bin/rollup'), '-c', path.resolve(__dirname, '../config/rollup/rollup.config.js')], {
-    stdio: 'inherit'
-  });
+task("rollup:dts", () => {
+  spawnSync(
+    process.execPath,
+    [
+      resolve("rollup/dist/bin/rollup"),
+      "-c",
+      path.resolve(__dirname, "../config/rollup/rollup.config.js")
+    ],
+    {
+      stdio: "inherit"
+    }
+  );
 });
 
-task('build', parallel('ts', condition('storybook:build', storybookConfigExists)));
+task(
+  "build",
+  parallel("ts", condition("storybook:build", storybookConfigExists))
+);
 
-task('bundle', series('webpack'));
-task('test', series('jest'));
-task('lint', series('eslint'));
-task('start', series('storybook:start'));
+task("bundle", series("webpack"));
+task("test", series("jest"));
+task("lint", series("eslint"));
+task("start", series("storybook:start"));
+task(
+  "start-test",
+  jestTask({
+    watch: true
+  })
+);

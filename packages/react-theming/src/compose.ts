@@ -86,6 +86,8 @@ export const _composeFactory = <TTheme>(useThemeHook: any = useTheme) => {
     return result;
   };
 
+  composeInstance.resolveSlots = resolveSlots;
+
   return composeInstance;
 };
 
