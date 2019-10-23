@@ -24,7 +24,9 @@
     "build": "just-scripts build",
     "clean": "just-scripts clean",
     "just": "just-scripts",
-    "test": "just-scripts test"
+    "test": "just-scripts test",
+    "update-snapshots": "just-scripts jest:snapshots",
+    "start-test": "just-scripts test:watch"
   },
   "dependencies": {
     "@uifabric/merge-styles": "^7.7.0",

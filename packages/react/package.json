@@ -27,7 +27,9 @@
     "just": "just-scripts",
     "lint": "just-scripts lint",
     "start": "just-scripts storybook:start",
-    "test": "just-scripts test"
+    "test": "just-scripts test",
+    "update-snapshots": "just-scripts jest:snapshots",
+    "start-test": "just-scripts test:watch"
   },
   "dependencies": {
     "@fluentui/base": "^0.0.0",
