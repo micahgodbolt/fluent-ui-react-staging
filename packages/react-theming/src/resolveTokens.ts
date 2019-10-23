@@ -7,11 +7,15 @@ interface Token {
   isResolved: boolean;
 }
 
-class StringToken implements Token {
+class LiteralToken implements Token {
   public isResolvable = true;
   public isResolved = true;
 
-  constructor(private tokens: TokenDict, public name: string, public value: string) {}
+  constructor(
+    private tokens: TokenDict,
+    public name: string,
+    public value: string | number
+  ) {}
   resolve(theme: any): void {}
 }
 
@@ -23,7 +27,12 @@ class FunctionToken implements Token {
   }
 
   static fromObject(tokens: TokenDict, name: string, rawToken: any): Token {
-    return new FunctionToken(tokens, name, rawToken.resolve, rawToken.dependsOn);
+    return new FunctionToken(
+      tokens,
+      name,
+      rawToken.resolve,
+      rawToken.dependsOn
+    );
   }
 
   constructor(
@@ -51,16 +60,17 @@ class FunctionToken implements Token {
 
 class TokenFactory {
   static from(tokens: TokenDict, rawToken: any, name: string): Token {
-    if (typeof rawToken === 'string') {
-      return new StringToken(tokens, name, rawToken);
+    switch (typeof rawToken) {
+      case "string":
+      case "number":
+        return new LiteralToken(tokens, name, rawToken);
+      case "function":
+        return FunctionToken.fromFunction(tokens, name, rawToken);
+      case "object":
+        return FunctionToken.fromObject(tokens, name, rawToken);
+      default:
+        throw new Error("Unknown token type");
     }
-    if (typeof rawToken === 'function') {
-      return FunctionToken.fromFunction(tokens, name, rawToken);
-    }
-    if (typeof rawToken === 'object') {
-      return FunctionToken.fromObject(tokens, name, rawToken);
-    }
-    throw new Error('Unknown token type');
   }
 }
 
@@ -76,7 +86,11 @@ export const resolveTokens = (theme: any, sourceTokensSet: any[]) => {
 
   sourceTokensSet.forEach(sourceTokens => {
     for (let tokenName in sourceTokens) {
-      tokens[tokenName] = TokenFactory.from(tokens, sourceTokens[tokenName], tokenName);
+      tokens[tokenName] = TokenFactory.from(
+        tokens,
+        sourceTokens[tokenName],
+        tokenName
+      );
     }
   });
 
@@ -100,7 +114,7 @@ export const resolveTokens = (theme: any, sourceTokensSet: any[]) => {
       break;
     }
     if (!progressed) {
-      throw new Error('Token deadlock');
+      throw new Error("Token deadlock");
     }
   }
 
