@@ -1,0 +1,8 @@
+{
+  "type": "patch",
+  "comment": "Adds beachball integration",
+  "packageName": "@fluentui/scripts",
+  "email": "kchau@microsoft.com",
+  "commit": "72fd895d2eef3ae4890410f9d475976bea58b3a1",
+  "date": "2019-10-24T04:35:17.488Z"
+}
