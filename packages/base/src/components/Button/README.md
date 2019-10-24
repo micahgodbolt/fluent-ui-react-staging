@@ -857,7 +857,7 @@ render() {
 | `rootMinWidth`                |                |
 | `rootWidth`                   |                |
 
-NOTE! Stardust does not follow this convention. Slider currently uses these tokens:
+NOTE! Stardust does not follow this convention. Their `Button` currently uses these tokens:
 
 ```
 backgroundColor: string
