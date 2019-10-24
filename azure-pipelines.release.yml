@@ -1,0 +1,33 @@
+pr: none
+
+trigger:
+  - master
+
+pool:
+  vmImage: 'Ubuntu 16.04'
+
+steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '10.x'
+    displayName: 'Install Node.js'
+
+  - script: |
+      yarn
+    displayName: yarn
+
+  - script: |
+      yarn build
+    displayName: yarn build
+
+  - script: |
+      yarn test
+    displayName: yarn test
+
+  - script: |
+      yarn workspace @fluentui/scripts just publish:prepare
+    displayName: prepare all package.json to be published
+
+  - script: |
+      yarn workspace @fluentui/scripts beachball publish --no-publish
+    displayName: bump and publish
