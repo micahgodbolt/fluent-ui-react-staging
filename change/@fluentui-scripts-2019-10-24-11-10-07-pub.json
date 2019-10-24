@@ -1,0 +1,8 @@
+{
+  "type": "patch",
+  "comment": "adds release pipeline",
+  "packageName": "@fluentui/scripts",
+  "email": "kchau@microsoft.com",
+  "commit": "21defe73dabd2f697de553d8b98fafd9ec8fbd6e",
+  "date": "2019-10-24T18:10:07.800Z"
+}

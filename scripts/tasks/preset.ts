@@ -12,6 +12,7 @@ import {
   jestTask,
   cleanTask
 } from 'just-scripts';
+import { publishPrepareTask } from './publishPrepareTask';
 
 task('storybook:start', startStorybookTask);
 task('storybook:build', buildStorybookTask);
@@ -43,6 +44,8 @@ task(
     paths: ['lib', 'dist', 'tsconfig.tsbuildinfo']
   })
 );
+
+task('publish:prepare', publishPrepareTask);
 
 task('build', parallel('ts', condition('storybook:build', storybookConfigExists)));
 task('bundle', series('webpack'));
