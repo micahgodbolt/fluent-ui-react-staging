@@ -15,17 +15,19 @@ The `Button` component allows users to commit a change or trigger an action via 
 
 ## Related variant considerations
 
+The following section documents variants of the component that currently exist in Fabric and identifies variants that exist in other component libraries but don't currently exist in Fabric, documenting which component libraries have those variants.
+
 ### Styling related
+- `Action button`
+- `Circular button`
+- `Icon button`
 - `Primary button`
 - `Secondary button`
-- `Icon button`
-- `Circular button`
-- `Action button`
 
 ### Functionality related
 - `Actionable`
 - `Compound button`
-  - (?) TODO - Need to check if this belongs here or in the `Styling related` section above
+  - > TODO - Need to check if this belongs here or in the `Styling related` section above
 - `Menu button`
 - `Split button`
 
@@ -80,41 +82,47 @@ The `Button` component allows users to commit a change or trigger an action via 
 
 ## Reference implementations
 
-- Side-by-side implementations https://codesandbox.io/s/button-implementations-93x8z
+The following section documents links to different UI libraries implementations of Buttons, while also providing a codebox with a side by side implementation of them for comparison.
 
-- Ant Design Button [docs](https://ant.design/components/button/)
+- [Side-by-side implementations](https://codesandbox.io/s/button-implementations-93x8z)
 
-- Atlaskit Button [docs](https://atlaskit.atlassian.com/packages/core/button)
+- [Ant Design Button docs](https://ant.design/components/button/)
 
-- Base Web Button [docs](https://baseweb.design/components/button/)
+- [Atlaskit Button docs](https://atlaskit.atlassian.com/packages/core/button)
 
-- Carbon Design Button [docs](https://www.carbondesignsystem.com/components/button/code)
+- [Base Web Button docs](https://baseweb.design/components/button/)
 
-- Chakra UI Button [docs](https://chakra-ui.com/button)
+- [Carbon Design Button docs](https://www.carbondesignsystem.com/components/button/code)
 
-- Elemental UI Button [docs](http://elemental-ui.com/buttons)
+- [Chakra UI Button docs](https://chakra-ui.com/button)
 
-- Fabric Button [docs](https://developer.microsoft.com/en-us/fabric#/controls/web/button)
+- [Elemental UI Button docs](http://elemental-ui.com/buttons)
 
-- FastDNA Button [docs](https://github.com/microsoft/fast-dna/tree/master/packages/fast-components-react-base/src/button), [example](https://explore.fast.design/components/button)
+- [Fabric Button docs](https://developer.microsoft.com/en-us/fabric#/controls/web/button)
 
-- Gestalt Button [docs](https://pinterest.github.io/gestalt/?ref=designrevision.com#/Button)
+- FastDNA Button
+  - [Docs](https://github.com/microsoft/fast-dna/tree/master/packages/fast-components-react-base/src/button)
+  - [Example](https://explore.fast.design/components/button)
 
-- Grommet Button [docs](https://v2.grommet.io/button)
+- [Gestalt Button docs](https://pinterest.github.io/gestalt/?ref=designrevision.com#/Button)
 
-- Material-UI Button [docs](https://material-ui.com/components/buttons/)
+- [Grommet Button docs](https://v2.grommet.io/button)
 
-- Prime React Button [docs](https://www.primefaces.org/primereact/#/button)
+- [Material-UI Button docs](https://material-ui.com/components/buttons/)
 
-- React Bootstrap Button [docs](https://react-bootstrap.github.io/components/buttons/)
+- [Prime React Button docs](https://www.primefaces.org/primereact/#/button)
 
-- Semantic UI Button [docs](https://react.semantic-ui.com/elements/button/)
+- [React Bootstrap Button docs](https://react-bootstrap.github.io/components/buttons/)
 
-- Shards React Button [docs](https://designrevision.com/docs/shards-react/component/button)
+- [Semantic UI Button docs](https://react.semantic-ui.com/elements/button/)
 
-- Stardust Button [docs](https://microsoft.github.io/fluent-ui-react/components/button/definition)
+- [Shards React Button docs](https://designrevision.com/docs/shards-react/component/button)
+
+- [Stardust Button docs](https://microsoft.github.io/fluent-ui-react/components/button/definition)
 
 ## Props
+
+The following section documents the properties that will become part of the new component, as well as the process for mitigating all changes when moving from Fabric and Stardust to Fluent UI.
 
 > TODO: Consult the prop wizard to derive consistently defined props.
 
@@ -139,11 +147,13 @@ The `Button` component allows users to commit a change or trigger an action via 
 
 ### Props to be discussed
 
-| Name                 | Description                                                                           | Concern                                                      |
-| -------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
-| `allowDisabledFocus` | Defines whether disabled `Buttons` should be tabbable via keyboard navigation or not. | Should we really redefine standard behavior here?            |
-| `as`                 | Defines the type that determines how to render the root of the `Button`.              | Should we deprecate in favor of slot overrides?              | 
-| `checked`            | Defines whether the `Button` is in a checked state.                                   | Does this belong to the base or to a variant `ToggleButton`? |
+| Name                 | Description                                                                            | Concern                                                                                                       |
+| -------------------- | -------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| `allowDisabledFocus` | Defines whether disabled `Buttons` should be tabbable via keyboard navigation or not.  | Should we really redefine standard behavior here?                                                             |
+| `as`                 | Defines the type that determines how to render the root of the `Button`.               | Should we deprecate in favor of slot overrides?                                                               |
+| `checked`            | Defines whether the `Button` is in a checked state.                                    | Does this belong to the base or to a variant `ToggleButton`?                                                  |
+| `circular`           | Defines whether the `Button` should be rendered as a circle instead of as a rectangle. | Should we still have this prop or should we generate a `CircularButton` variant via recomposition of styles?  |
+| `primary`            | Defines whether the visual representation of the `Button` should be emphasized or not. | Should we still have this prop or should we generate a `PrimaryButton` variant via recomposition of styles?   |
 
 ### Fabric Button props
 
@@ -159,54 +169,54 @@ https://developer.microsoft.com/en-us/fabric#/controls/web/button
 
 #### IButtonProps interface
 
-| Name                               | Type                                                                                                      | Notes                                                                                                                                       |
-| ---------------------------------- | :-------------------------------------------------------------------------------------------------------: | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| `allowDisabledFocus`               | `boolean`                                                                                                 | Should we really redefine standard behavior here?                                                                                           |
-| `ariaDescription`                  | `string`                                                                                                  | What purpose does this serve? If anything, belongs to `CompoundButton` and not to base.                                                     |
-| `ariaHidden`                       | `boolean`                                                                                                 | Should use native `aria-hidden` instead.                                                                                                    |
-| `ariaLabel`                        | `string`                                                                                                  | Should use native `aria-label` instead.                                                                                                     |
-| `buttonType`                       | `ButtonType`                                                                                              | Already deprecated.                                                                                                                         |
-| `checked`                          | `boolean`                                                                                                 | Does this belong to the base or to a variant `ToggleButton`?                                                                                |
-| `className`                        | `string`                                                                                                  |                                                                                                                                             |
-| `componentRef`                     | `IRefObject<IButton>`                                                                                     |                                                                                                                                             |
-| `data`                             | `any`                                                                                                     | What purpose does this serve? Maybe remove?                                                                                                 |
-| `defaultRender`                    | `any`                                                                                                     | What purpose does this serve? Maybe remove?                                                                                                 |
-| `description`                      | `string`                                                                                                  | Already deprecated in favor of `secondaryText`.                                                                                             |
-| `disabled`                         | `boolean`                                                                                                 |                                                                                                                                             |
-| `getClassNames`                    | `(props) => IButtonClassNames`                                                                            | Should be deprecated in favor of new composition approach.                                                                                  |
-| `getSplitButtonClassNames`         | `(props) => IButtonClassNames`                                                                            | Should not be part of the base `Button`. Should be considered for `SplitButton`. Should be deprecated in favor of new composition approach. |
-| `href`                             | `string`                                                                                                  |                                                                                                                                             |
-| `iconProps`                        | `IIconProps`                                                                                              | Should be replaced by `slotProps`.                                                                                                          |
-| `keytipProps`                      | `IKeytipProps`                                                                                            | Should be removed until we add `Keytips` in Fluent UI.                                                                                      |
-| `menuAs`                           | `IComponentAs<IContextualMenuProps>`                                                                      | Should be deprecated in favor of slot overrides.                                                                                            |
-| `menuIconProps`                    | `IIconProps`                                                                                              | Should not be part of the base `Button` and should be replaced by `slotProps` in `MenuButton`.                                              |
-| `menuProps`                        | `IContextualMenuProps`                                                                                    | Should not be part of the base `Button` and should be replaced by `slotProps` in `MenuButton`.                                              |
-| `menuTriggerKeyCode`               | `KeyCodes | null`                                                                                         | Should not be part of the base `Button`. Should be considered for `MenuButton`.                                                             |
-| `onAfterMenuDismiss`               | `() => void`                                                                                              | Should not be part of the base `Button`. Should be considered for `MenuButton`. Maybe rename to `onDismiss`?                                |
-| `onMenuClick`                      | `(ev?: React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLElement>, button?: IButtonProps) => void;` | Should not be part of the base `Button`. Should be considered for `MenuButton`.                                                             |
-| `onRenderAriaDescription`          | `IRenderFunction<IButtonProps>`                                                                           | Only keep if we are keeping `ariaDescription`. If keeping it, deprecate in favor of slot overrides.                                         |
-| `onRenderChildren`                 | `IRenderFunction<IButtonProps>`                                                                           | Should be removed or deprecated in favor of slot overrides.                                                                                 |
-| `onRenderDescription`              | `IRenderFunction<IButtonProps>`                                                                           | Should not be part of base `Button`. Could be considered for `CompoundButton`. In that case, deprecate in favor of slot overrides.          |
-| `onRenderIcon`                     | `IRenderFunction<IButtonProps>`                                                                           | Should be deprecated in favor of slot overrides.                                                                                            |
-| `onRenderMenuIcon`                 | `IRenderFunction<IButtonProps>`                                                                           | Should not be part of the base `Button`. Should be considered for `MenuButton`. Should be deprecated in favor of slot overrides.            |
-| `onRenderMenu`                     | `IRenderFunction<IContextualMenuProps>`                                                                   | Should not be part of the base `Button`. Should be considered for `MenuButton`. Should be deprecated in favor of slot overrides.            |
-| `onRenderText`                     | `IRenderFunction<IButtonProps>`                                                                           | Should be deprecated in favor of slot overrides.                                                                                            |
-| `persistMenu`                      | `boolean`                                                                                                 | Should this be handled as part of the menu `slotProps` instead of being a separate prop altogether?                                         |
-| `primary`                          | `boolean`                                                                                                 |                                                                                                                                             |
-| `primaryActionButtonProps`         | `IButtonProps`                                                                                            | Should not be part of the base `Button`. Should be replaced by a slot in `SplitButton`.                                                     |
-| `primaryDisabled`                  | `boolean`                                                                                                 | Should not be part of the base `Button`. Should be considered for `SplitButton`.                                                            |
-| `renderPersistedMenuHiddenOnMount` | `boolean`                                                                                                 | Already deprecated.                                                                                                                         |
-| `rootProps`                        | `React.ButtonHTMLAttributes<HTMLButtonElement> | React.AnchorHTMLAttributes<HTMLAnchorElement>`           | Already deprecated. Should use `slotProps` instead.                                                                                         |
-| `secondaryText`                    | `string`                                                                                                  | Should not be part of the base `Button`. Should be replaced by a slot in `CompoundButton`.                                                  |
-| `split`                            | `boolean`                                                                                                 | Should be deprecated in favor of a `SplitButton` variant.                                                                                   |
-| `splitButtonAriaLabel`             | `string`                                                                                                  | Should not be part of the base `Button`. Should be considered for `SplitButton`. Maybe rename to `secondaryActionAriaLabel`?                |
-| `splitButtonMenuProps`             | `IButtonProps`                                                                                            | Should not be part of the base `Button`. Should be replaced by a slot in `SplitButton`.                                                     |
-| `styles`                           | `IButtonStyles`                                                                                           | Should be deprecated in favor of recomposition.                                                                                             |
-| `theme`                            | `ITheme`                                                                                                  | Should not show up in the public props contract.                                                                                            |
-| `text`                             | `string`                                                                                                  | Should be replaced by a slot.                                                                                                               |
-| `toggle`                           | `boolean`                                                                                                 | Does this belong to the base or to a variant `ToggleButton`?                                                                                |
-| `toggled`                          | `boolean`                                                                                                 | Already deprecated in favor of `checked`.                                                                                                   |
-| `uniqueId`                         | `string | number`                                                                                         | This is used for keytip support in Fabric. Maybe remove it until we add `Keytips` in Fluent UI?                                             |
+| Name                               | Type                                                                                                       | Notes                                                                                                                                       |
+| ---------------------------------- | :--------------------------------------------------------------------------------------------------------: | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| `allowDisabledFocus`               | `boolean`                                                                                                  | Should we really redefine standard behavior here?                                                                                           |
+| `ariaDescription`                  | `string`                                                                                                   | What purpose does this serve? If anything, belongs to `CompoundButton` and not to base.                                                     |
+| `ariaHidden`                       | `boolean`                                                                                                  | Should use native `aria-hidden` instead.                                                                                                    |
+| `ariaLabel`                        | `string`                                                                                                   | Should use native `aria-label` instead.                                                                                                     |
+| `buttonType`                       | `ButtonType`                                                                                               | Already deprecated.                                                                                                                         |
+| `checked`                          | `boolean`                                                                                                  | Does this belong to the base or to a variant `ToggleButton`?                                                                                |
+| `className`                        | `string`                                                                                                   |                                                                                                                                             |
+| `componentRef`                     | `IRefObject<IButton>`                                                                                      |                                                                                                                                             |
+| `data`                             | `any`                                                                                                      | What purpose does this serve? Maybe remove?                                                                                                 |
+| `defaultRender`                    | `any`                                                                                                      | What purpose does this serve? Maybe remove?                                                                                                 |
+| `description`                      | `string`                                                                                                   | Already deprecated in favor of `secondaryText`.                                                                                             |
+| `disabled`                         | `boolean`                                                                                                  |                                                                                                                                             |
+| `getClassNames`                    | `(props) => IButtonClassNames`                                                                             | Should be deprecated in favor of new composition approach.                                                                                  |
+| `getSplitButtonClassNames`         | `(props) => IButtonClassNames`                                                                             | Should not be part of the base `Button`. Should be considered for `SplitButton`. Should be deprecated in favor of new composition approach. |
+| `href`                             | `string`                                                                                                   |                                                                                                                                             |
+| `iconProps`                        | `IIconProps`                                                                                               | Should be replaced by `slotProps`.                                                                                                          |
+| `keytipProps`                      | `IKeytipProps`                                                                                             | Should be removed until we add `Keytips` in Fluent UI.                                                                                      |
+| `menuAs`                           | `IComponentAs<IContextualMenuProps>`                                                                       | Should be deprecated in favor of slot overrides.                                                                                            |
+| `menuIconProps`                    | `IIconProps`                                                                                               | Should not be part of the base `Button` and should be replaced by `slotProps` in `MenuButton`.                                              |
+| `menuProps`                        | `IContextualMenuProps`                                                                                     | Should not be part of the base `Button` and should be replaced by `slotProps` in `MenuButton`.                                              |
+| `menuTriggerKeyCode`               | `KeyCodes \| null`                                                                                         | Should not be part of the base `Button`. Should be considered for `MenuButton`.                                                             |
+| `onAfterMenuDismiss`               | `() => void`                                                                                               | Should not be part of the base `Button`. Should be considered for `MenuButton`. Maybe rename to `onDismiss`?                                |
+| `onMenuClick`                      | `(ev?: React.MouseEvent<HTMLElement> \| React.KeyboardEvent<HTMLElement>, button?: IButtonProps) => void;` | Should not be part of the base `Button`. Should be considered for `MenuButton`.                                                             |
+| `onRenderAriaDescription`          | `IRenderFunction<IButtonProps>`                                                                            | Only keep if we are keeping `ariaDescription`. If keeping it, deprecate in favor of slot overrides.                                         |
+| `onRenderChildren`                 | `IRenderFunction<IButtonProps>`                                                                            | Should be removed or deprecated in favor of slot overrides.                                                                                 |
+| `onRenderDescription`              | `IRenderFunction<IButtonProps>`                                                                            | Should not be part of base `Button`. Could be considered for `CompoundButton`. In that case, deprecate in favor of slot overrides.          |
+| `onRenderIcon`                     | `IRenderFunction<IButtonProps>`                                                                            | Should be deprecated in favor of slot overrides.                                                                                            |
+| `onRenderMenuIcon`                 | `IRenderFunction<IButtonProps>`                                                                            | Should not be part of the base `Button`. Should be considered for `MenuButton`. Should be deprecated in favor of slot overrides.            |
+| `onRenderMenu`                     | `IRenderFunction<IContextualMenuProps>`                                                                    | Should not be part of the base `Button`. Should be considered for `MenuButton`. Should be deprecated in favor of slot overrides.            |
+| `onRenderText`                     | `IRenderFunction<IButtonProps>`                                                                            | Should be deprecated in favor of slot overrides.                                                                                            |
+| `persistMenu`                      | `boolean`                                                                                                  | Should this be handled as part of the menu `slotProps` instead of being a separate prop altogether?                                         |
+| `primary`                          | `boolean`                                                                                                  |                                                                                                                                             |
+| `primaryActionButtonProps`         | `IButtonProps`                                                                                             | Should not be part of the base `Button`. Should be replaced by a slot in `SplitButton`.                                                     |
+| `primaryDisabled`                  | `boolean`                                                                                                  | Should not be part of the base `Button`. Should be considered for `SplitButton`.                                                            |
+| `renderPersistedMenuHiddenOnMount` | `boolean`                                                                                                  | Already deprecated.                                                                                                                         |
+| `rootProps`                        | `React.ButtonHTMLAttributes<HTMLButtonElement> | React.AnchorHTMLAttributes<HTMLAnchorElement>`            | Already deprecated. Should use `slotProps` instead.                                                                                         |
+| `secondaryText`                    | `string`                                                                                                   | Should not be part of the base `Button`. Should be replaced by a slot in `CompoundButton`.                                                  |
+| `split`                            | `boolean`                                                                                                  | Should be deprecated in favor of a `SplitButton` variant.                                                                                   |
+| `splitButtonAriaLabel`             | `string`                                                                                                   | Should not be part of the base `Button`. Should be considered for `SplitButton`. Maybe rename to `secondaryActionAriaLabel`?                |
+| `splitButtonMenuProps`             | `IButtonProps`                                                                                             | Should not be part of the base `Button`. Should be replaced by a slot in `SplitButton`.                                                     |
+| `styles`                           | `IButtonStyles`                                                                                            | Should be deprecated in favor of recomposition.                                                                                             |
+| `theme`                            | `ITheme`                                                                                                   | Should not show up in the public props contract.                                                                                            |
+| `text`                             | `string`                                                                                                   | Should be replaced by a slot.                                                                                                               |
+| `toggle`                           | `boolean`                                                                                                  | Does this belong to the base or to a variant `ToggleButton`?                                                                                |
+| `toggled`                          | `boolean`                                                                                                  | Already deprecated in favor of `checked`.                                                                                                   |
+| `uniqueId`                         | `string \| number`                                                                                         | This is used for keytip support in Fabric. Maybe remove it until we add `Keytips` in Fluent UI?                                             |
 
 ### Stardust Button props
 
@@ -220,7 +230,7 @@ https://developer.microsoft.com/en-us/fabric#/controls/web/button
 | `fluid`         | `boolean`                            | Should this be a prop or should the library have a separate `BlockButton` variant?                                                |
 | `icon`          | `ShorthandValue<IconProps>`          | Should be replaced by a slot.                                                                                                     |
 | `iconOnly`      | `boolean`                            | Should this be a prop or should the library have a separate `IconButton` variant?                                                 |
-| `iconPosition`  | `'before' | 'after'`                 | Should be deprecated in favor of view recomposition.                                                                              |
+| `iconPosition`  | `'before' \| 'after'`                | Should be deprecated in favor of view recomposition.                                                                              |
 | `loader`        | `ShorthandValue<LoaderProps>`        | What's the use case for this?                                                                                                     |
 | `loading`       | `boolean`                            | Should be deprecated in favor of recomposition.                                                                                   |
 | `onClick`       | `ComponentEventHandler<ButtonProps>` | Should be replaced by the native event signature from which we extend.                                                            |
@@ -312,3 +322,341 @@ https://developer.microsoft.com/en-us/fabric#/controls/web/button
 | `secondary`     | TBD                  | &#x274C;               | &#x274C;         | &#x274C;              |
 | `size`          | TBD                  | &#x274C;               | &#x274C;         | &#x274C;              |
 | `text`          | TBD                  | &#x274C;               | &#x274C;         | &#x274C;              |
+
+## DOM Structure
+
+The following section documents the DOM structure for the component from different component library examples and then suggests a recommended DOM taking into consideration common patterns between the libraries reviewed.
+
+### Ant Design Button
+
+#### Example DOM
+
+```html
+<button type="button" class="ant-btn">
+  <i aria-label="icon: download" class="anticon anticon-download">
+    <svg viewBox="64 64 896 896" focusable="false" class="" data-icon="download" width="1em" height="1em" fill="currentColor" aria-hidden="true">
+      <path d="M505.7 661a8 8 0 0 0 12.6 0l112-141.7c4.1-5.2.4-12.9-6.3-12.9h-74.1V168c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v338.3H400c-6.7 0-10.4 7.7-6.3 12.9l112 141.8zM878 626h-60c-4.4 0-8 3.6-8 8v154H214V634c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v198c0 17.7 14.3 32 32 32h684c17.7 0 32-14.3 32-32V634c0-4.4-3.6-8-8-8z">
+      </path>
+    </svg>
+  </i>
+  <span>Download</span>
+</button>
+```
+
+#### Considerations
+
+- `Children` of `Button` components are rendered inside a `span`.
+
+### Atlaskit Button
+
+#### Example DOM
+
+```html
+<button type="button" class="css-shc4i4">
+  <span class="css-j8fq0c">
+    <span class="css-8xpfx5">
+      <i>3d_rotation</i>
+    </span>
+    <span class="css-mu6jxl">
+      Default
+    </span>
+  </span>
+</button>
+```
+
+#### Considerations
+
+- Icons can go before and/or after the `children` via the `iconBefore` and `iconAfter` props.
+- Uneeded extra `span` wrapper inside of `button` tag.
+- Both `icons` and `children` are wrapped in styled `spans`.
+
+### Base Web Button
+
+#### Example DOM
+
+```html
+<button data-baseweb="button" class="b3 ay b4 b5 b6 b7 b8 b9 ba bb bc b1 bd mh mi bg bh bi bj ah jp bk ex bl bm bn bo fi fk d6 fj bt ae ms mt mu">
+  <div class="al j6">
+    <svg data-baseweb="icon" viewBox="0 0 24 24" class="by bz c0 d3 md">
+      <title>
+        Arrow Right
+      </title>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M6 12C6 12.5523 6.44772 13 7 13H14.5858L12.2929 15.2929C11.9024 15.6834 11.9024 16.3166 12.2929 16.7071C12.6834 17.0976 13.3166 17.0976 13.7071 16.7071L17.7071 12.7071C17.8946 12.5196 18 12.2652 18 12C18 11.7348 17.8946 11.4804 17.7071 11.2929L13.7071 7.29289C13.3166 6.90237 12.6834 6.90237 12.2929 7.29289C11.9024 7.68342 11.9024 8.31658 12.2929 8.70711L14.5858 11H7C6.44772 11 6 11.4477 6 12Z">
+      </path>
+    </svg>
+  </div>
+  Start Enhancer
+</button>
+```
+
+#### Considerations
+
+- The concept of icon does not exist here, instead you can add _enhancers_ which are effectively a `React.Node` that are placed behind or after the `children` under a styled `div`.
+
+### Carbon Design Button
+
+#### Example DOM
+
+```html
+<button class="bx--btn bx--btn--primary" type="button">
+  With icon
+  <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--btn__icon" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M9 7L9 3 7 3 7 7 3 7 3 9 7 9 7 13 9 13 9 9 13 9 13 7z"></path></svg>
+</button>
+```
+
+#### Considerations
+
+None.
+
+### Chakra UI Button
+
+#### Example DOM
+
+```html
+<button type="button" class="css-z57ty6">
+  <svg viewBox="0 0 24 24" focusable="false" role="presentation" class="css-yxiis9">
+    <g fill="currentColor">
+      <path d="M11.114,14.556a1.252,1.252,0,0,0,1.768,0L22.568,4.87a.5.5,0,0,0-.281-.849A1.966,1.966,0,0,0,22,4H2a1.966,1.966,0,0,0-.289.021.5.5,0,0,0-.281.849Z">
+      </path>
+      <path d="M23.888,5.832a.182.182,0,0,0-.2.039l-6.2,6.2a.251.251,0,0,0,0,.354l5.043,5.043a.75.75,0,1,1-1.06,1.061l-5.043-5.043a.25.25,0,0,0-.354,0l-2.129,2.129a2.75,2.75,0,0,1-3.888,0L7.926,13.488a.251.251,0,0,0-.354,0L2.529,18.531a.75.75,0,0,1-1.06-1.061l5.043-5.043a.251.251,0,0,0,0-.354l-6.2-6.2a.18.18,0,0,0-.2-.039A.182.182,0,0,0,0,6V18a2,2,0,0,0,2,2H22a2,2,0,0,0,2-2V6A.181.181,0,0,0,23.888,5.832Z">
+      </path>
+    </g>
+  </svg>
+  Email
+</button>
+```
+
+#### Considerations
+
+- Icons can go before and/or after the `children` via the `leftIcon` and `rightIcon` props.
+
+### Elemental UI Button
+
+#### Example DOM
+
+```html
+<button class="Button Button--default" type="button">
+  <!-- react-text: 161 -->
+  Default
+  <!-- /react-text --><!-- react-text: 162 -->
+   Button
+  <!-- /react-text -->
+</button>
+```
+
+#### Considerations
+
+- Has no built-in support for icons via props.
+
+### Fabric Button
+
+#### Example DOM
+
+```html
+<button type="button" class="ms-Button ms-Button--default root-172" data-is-focusable="true">
+  <span class="ms-Button-flexContainer flexContainer-99" data-automationid="splitbuttonprimary">
+    <i data-icon-name="Upload" role="presentation" aria-hidden="true" class="ms-Icon root-38 css-96 ms-Button-icon icon-84">
+      
+    </i>
+    <span class="ms-Button-textContainer textContainer-83">
+      <span class="ms-Button-label label-126 x-hidden-focus" id="id__361">
+        Standard
+      </span>
+    </span>
+  </span>
+</button>
+```
+
+#### Considerations
+
+- Icons via props are only supported on the left of the `children` inside the `Button`.
+- Text can be provided via a `text` prop and via `children`. If both are provided, only the one provided via the `text` prop is rendered.
+- If `children` is not a `string`, then both are rendered.
+- Text provided via the `text` prop is rendered inside two nested styled `spans`, one for the text container and one for the actual text.
+
+### FastDNA Button
+
+#### Example DOM
+
+```html
+<button class="c012">
+  <span class="c018">
+    Button
+  </span>
+</button>
+```
+
+#### Considerations
+
+- Has no built-in support for icons via props.
+- Extra styled `span` wraps `children` inside of the `Button`.
+
+### Gestalt Button
+
+#### Example DOM
+
+```html
+<button class="RCK Hsu mix Vxj aZc GmH adn a_A gpV hNT iyn BG7 gn8 L4E kVc" type="button">
+  <div class="tBJ dyH iFc SMy yTZ pBj tg7 mWe">
+    Medium Sized Button
+  </div>
+</button>
+```
+
+#### Considerations
+
+- Has no built-in support for icons via props.
+- Extends to container's width by default.
+- Text has to be provided via a `text` prop as `children` are not rendered.
+
+### Grommet Button
+
+#### Example DOM
+
+```html
+<button type="button" class="StyledButton-sc-323bzc-0 iQekQI">
+  <div class="StyledBox-sc-13pk1d4-0 jHQJnz">
+    <svg aria-label="Edit" viewBox="0 0 24 24" class="StyledIcon-ofa7kd-0 iOkQrb">
+      <path fill="none" stroke="#000" stroke-width="2" d="M14,4 L20,10 L14,4 Z M22.2942268,5.29422684 C22.6840146,5.68401459 22.6812861,6.3187139 22.2864907,6.71350932 L9,20 L2,22 L4,15 L17.2864907,1.71350932 C17.680551,1.319449 18.3127724,1.31277239 18.7057732,1.70577316 L22.2942268,5.29422684 Z M3,19 L5,21 M7,17 L15,9">
+      </path>
+    </svg>
+    <div class="StyledBox__StyledBoxGap-sc-13pk1d4-1 iChEkS">
+    </div>
+    Edit
+  </div>
+</button>
+```
+
+#### Considerations
+
+- Icons via props are only supported on the left of the `children` inside the `Button`.
+- Text has to be provided via the `label` prop as `children` are not rendered.
+- A styled `div` is added in-between the icon and the text to add a _gap_ between them.
+- Uneeded extra `div` wrapper inside of `button` tag.
+
+### Material-UI Button
+
+#### Example DOM
+
+```html
+<button class="MuiButtonBase-root MuiButton-root MuiButton-contained jss985 MuiButton-containedSecondary" tabindex="0" type="button">
+  <span class="MuiButton-label">
+    <span class="MuiButton-startIcon MuiButton-iconSizeMedium">
+      <svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="presentation">
+        <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z">
+        </path>
+      </svg>
+    </span>
+    Delete
+  </span>
+  <span class="MuiTouchRipple-root">
+  </span>
+</button>
+```
+
+#### Considerations
+
+- Icons can go before and/or after the `children` via the `startIcon` and `endIcon` props.
+- Both `children` and icons are wrapped inside of a `styled` span.
+- An extra `span` is added inside of the `Button` for styling the _ripple effect_ in Material-UI.
+
+### Prime React Button
+
+#### Example DOM
+
+```html
+<button class="p-button p-component p-button-text-icon-left">
+  <span class="pi pi-check p-c p-button-icon-left">
+    ::before
+  </span>
+  <span class="p-button-text p-c">
+    Click
+  </span>
+  </button>
+```
+
+#### Considerations
+
+- Icons can go before and/or after the `children` via the `iconPos` prop.
+- Icons are rendered via the `:before` and `content` css props.
+
+### React Bootstrap Button
+
+#### Example DOM
+
+```html
+<button type="button" class="btn btn-secondary">
+  Secondary
+</button>
+```
+
+#### Considerations
+
+- Has no built-in support for icons via props.
+
+### Semantic UI Button
+
+#### Example DOM
+
+```html
+<button class="ui facebook button">
+  <i aria-hidden="true" class="facebook icon">
+    ::before
+  </i>
+  Facebook
+</button>
+```
+
+#### Considerations
+
+- Icons via props are only supported if `children` are not being rendered.
+- Icons are rendered via the `:before` and `content` css props.
+
+### Shard React Button
+
+#### Example DOM
+
+```html
+<button class="btn btn-secondary">
+  Secondary
+</button>
+```
+
+#### Considerations
+
+- Has no built-in support for icons via props.
+
+### Stardust Button
+
+#### Example DOM
+
+```html
+<button class="ui-button jz lc oh mt je le lf lg lh cl cp cn dd bj rm bl rn cb gz as at au av ro rp rq rr rs ln ha hb hc hd he hf hg hh hi hj hk hl hm hn ho hp ot ou ov ow hu hv hw hx hy hz ia ib ic id ie if ig ih ii ij ik il im ox oy oz pa ir is it iu iv iw ix iy rt ru">
+  <span class="ui-icon ck cb gw rv ca" role="img" aria-hidden="true">
+    <svg class="cz ct cu da cw" viewBox="8 8 16 16" role="presentation" focusable="false">
+      <g class="ui-icon__outline cy">
+        <path d="M23.6968,12.0403c-0.1836-0.0786-0.3975-0.04-0.542,0.0981l-2.5317,2.4165C20.2212,14.9382,20,15.4514,20,16  c0,0.5483,0.2212,1.0615,0.623,1.4448l2.5317,2.4167C23.2495,19.9521,23.374,20,23.5,20c0.0664,0,0.1333-0.0132,0.1968-0.0403  C23.8809,19.8809,24,19.7002,24,19.5v-7C24,12.2998,23.8809,12.1191,23.6968,12.0403z M23,18.3315l-1.6865-1.6099v-0.0002  C21.1113,16.5286,21,16.2725,21,16s0.1113-0.5286,0.3135-0.7217L23,13.6685V18.3315z">
+        </path>
+        <path d="M17.5,11H9.8193c-0.7056,0-1.3232,0.5393-1.4692,1.2822C8.1177,13.4619,8,14.7129,8,16s0.1177,2.5381,0.3501,3.7173  C8.4961,20.4607,9.1138,21,9.8193,21H17.5c0.8271,0,1.5-0.6729,1.5-1.5v-7C19,11.6729,18.3271,11,17.5,11z M18,19.5  c0,0.2756-0.2241,0.5-0.5,0.5H9.8193c-0.2285,0-0.4341-0.2-0.4878-0.4756C9.1113,18.4082,9,17.2224,9,16  s0.1113-2.4082,0.3315-3.5249C9.3853,12.2,9.5908,12,9.8193,12H17.5c0.2759,0,0.5,0.2244,0.5,0.5V19.5z">
+        </path>
+      </g>
+      <g class="ui-icon__filled">
+        <path d="M23.6968,12.0403c-0.1841-0.0786-0.3975-0.04-0.542,0.0981l-2.5317,2.4165C20.2212,14.9382,20,15.4514,20,16  c0,0.5483,0.2212,1.0615,0.623,1.4448l2.5317,2.4167C23.2495,19.9521,23.374,20,23.5,20c0.0664,0,0.1333-0.0132,0.1968-0.0403  C23.8809,19.8809,24,19.7002,24,19.5v-7C24,12.2998,23.8809,12.1191,23.6968,12.0403z">
+        </path>
+        <path d="M17.5,11H9.8193c-0.7056,0-1.3232,0.5393-1.4692,1.2822C8.1177,13.4619,8,14.7129,8,16s0.1177,2.5381,0.3501,3.7173  C8.4961,20.4607,9.1138,21,9.8193,21H17.5c0.8271,0,1.5-0.6729,1.5-1.5v-7C19,11.6729,18.3271,11,17.5,11z">
+        </path>
+      </g>
+    </svg>
+  </span>
+  <span dir="auto" class="ui-box lp lq lr cg ls ch">
+    A text button with an icon
+  </span>
+</button>
+```
+
+#### Considerations
+
+- Icons via props are only supported if `children` are not being rendered.
+- The icon is rendered inside of a styled `span`.
+- Text can be provided via both the `content` prop and `children`.
+- Text provided via the `content` prop is rendered inside of a styled `span`.
