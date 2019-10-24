@@ -4,8 +4,7 @@ The `Checkbox` component allows a user to choose between two mutually exclusive 
 
 ## Related variant considerations
 
-Toggle
-Indeterminate/Tri State
+Toggle, Indeterminate/Tri State
 
 ## Reference implementations
 
