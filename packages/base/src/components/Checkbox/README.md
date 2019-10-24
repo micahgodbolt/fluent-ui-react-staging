@@ -143,7 +143,8 @@ defaultChecked: overloading with checked - can just set default value of checked
 | Name      | Considerations                             |
 | --------- | ------------------------------------------ |
 | root      |                                            |
-| label     |                                            |
+| input     | checkbox itself-what gets ticked/unticked  |
+| label     | label of the checkbox                      |
 
 ## DOM structure
 
@@ -221,6 +222,131 @@ Invalid state/error state?
 
 Aria spec: https://www.w3.org/TR/wai-aria-practices-1.1/#checkbox
 
-Fluent UI HIG: 
+Fluent UI HIG: https://microsoft.sharepoint-df.com/:w:/t/OPGUXLeads/EbBiGJ-gLPFGszdhSxb8X5IBFik0ax7wZLJc8FlDXOwDYA?e=Cy4Er3
+
+### Disabled state
+
+Use `aria-disabled`. Screenreaders should let users know of the existence of the checkbox but it should be read-only. Ignore all events & no change to `checked` value allowed. 
+
+### Checked state
+
+`aria-checked` indicates whether element is checked (`true`) or unchecked (`false`) but can also be `mixed` which represents a tri-state (indeterminate) input in a situation with a group of other elements that have a mixture of checked and unchecked values.
+
+### Focus indicators
+
+Focus indicators should not show in mouse or touch interaction; they should only appear when keyboard tabbing/directional keystrokes are pressed, and should disappear when mouse/touch interactions occur.
 
 ### Keyboarding
+| Key       | Description                                                          |
+| --------- | -------------------------------------------------------------------- |
+| Tab       | Moves keyboard focus to the checkbox.                                |
+| Space     | Toggles checkbox between checked and unchecked states.               |
+
+### Mouse input
+
+- `mouseenter` should change the styling of checkbox to hovered state (preview what it looks like to be toggled but not full styling - checkmark, but not background color for example as in current Fabric 7 checkbox).
+- `mousedown` toggle state
+- `mouseup` apply styling of new state
+
+### Touch
+
+Same behavior as above except no preview of toggled state through hover.
+
+### Screenreader accessibility:
+
+#### `root`:
+
+- should render the native element using the `as` prop, defaulting to `div`
+- should mix in native props expected for the element type defined in `as`.
+
+Input slot: role should be set to `checkbox`
+A visible label referenced by the value of `aria-labelledby` (id of element containing the label) set on the element with role `checkbox`. 
+If there's additional static text representing that is descriptive, `aria-describedby` should be set to id of element containing the description.
+`aria-label` set on the element with role `checkbox`.
+
+### Accessibility concerns for the user
+
+`aria-label`, `aria-labeledby`: Describe what is the purpose of the checkbox, latter points to id of element with former.
+
+### Themability and customization
+
+### Composition
+
+1 per slot
+1 per state, tagged on root
+
+### Component design tokens
+
+> Tokens represent the general look and feel of the various visual slots. Tokens feed into the styling at the right times in the right slot.
+>
+> Regarding naming conventions, use a camelCased name following this format:
+> `{slot}{property}{state (or none for default)}`. For example: `labelSizeHovered`.
+>
+> Common property names: `size`, `background`, `color`, `borderRadius`
+>
+> Common states: `hovered`, `pressed`, `focused`, `checked`, `checkedHovered`, `disabled`
+
+| Name                | Considerations |
+| ------------------  | -------------- |
+| inputBorderColor    |                |
+| inputBorderRadius   |                |
+| inputBorderWidth    |                |
+| inputColor          |                |
+| inputColorDisabled  |                |
+| inputColorFocused   |                |
+| inputColorHovered   |                |
+| inputColorPressed   |                |
+| inputSize           |                |
+| labelColor          |                |
+| labelColorDisabled  |                |
+| labelColorFocused   |                |
+| labelColorHovered   |                |
+| labelColorPressed   |                |
+| labelSize           |                |
+
+NOTE! Stardust does not follow this convention. Their Checkbox currently uses these tokens:
+
+```
+background: string
+disabledBackground: string
+disabledBackgroundChecked: string
+toggleBackground: string
+toggleBorderColor: string
+toggleIndicatorColor: string
+toggleIndicatorSize: string
+checkedBackground: string
+checkedBorderColor: string
+checkedBackgroundHover: string
+checkedIndicatorColor: string
+checkboxCheckedColor: string
+checkboxToggleCheckedBackground: string
+disabledToggleBackground: string
+gap: string
+borderColor: string
+borderColorHover: string
+checkboxColor: string
+checkboxToggleCheckedBorderColor: string
+checkedTextColor: string
+disabledColor: string
+disabledBorderColor: string
+disabledToggleBorderColor: string
+disabledCheckboxColor: string
+disabledToggleIndicatorColor: string
+disabledCheckedIndicatorColor: string
+textColor: string
+textColorHover: string
+indicatorColor: string
+```
+## Considerations
+
+No need for a separate `Toggle` variant - it's already represented with the binary state options of checkbox.
+
+## Use cases
+
+> TODO: Example use cases
+
+## Compatibility with other libraries
+
+> TODO: If this component represents a selected value, how will that be used in an HTML form? Is there a code example to illustrate?
+
+> TODO: Is it possible this component could be rendered in a focus zone? If so, should the focus model change in that case?
