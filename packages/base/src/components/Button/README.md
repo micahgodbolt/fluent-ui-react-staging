@@ -470,9 +470,10 @@ None.
 #### Considerations
 
 - Icons via props are only supported on the left of the `children` inside the `Button`.
-- Text can be provided via a `text` prop and via `children`. If both are provided, only the one provided via the `text` prop is rendered.
-- If `children` is not a `string`, then both are rendered.
-- Text provided via the `text` prop is rendered inside two nested styled `spans`, one for the text container and one for the actual text.
+- Text can be provided via a `text` prop and via `children`.
+  - If both are provided, only the one provided via the `text` prop is rendered.
+  - If `children` is not a `string`, then both are rendered.
+  - Text provided via the `text` prop is rendered inside two nested styled `spans`, one for the text container and one for the actual text.
 
 ### FastDNA Button
 
@@ -657,6 +658,269 @@ None.
 #### Considerations
 
 - Icons via props are only supported if `children` are not being rendered.
-- The icon is rendered inside of a styled `span`.
+  - The icon is rendered inside of a styled `span`.
 - Text can be provided via both the `content` prop and `children`.
-- Text provided via the `content` prop is rendered inside of a styled `span`.
+  - Text provided via the `content` prop is rendered inside of a styled `span`.
+
+### Recommended DOM
+
+After looking at all the component libraries above and taking into consideration common patterns the following DOM is recommended.
+
+#### Regular buttons
+
+```html
+<button class="root" role="button" type="button">
+  <i class="startIcon"></i>
+  {children}
+  <i class="endIcon"></i>
+</button>
+```
+
+#### Buttons rendered as links
+
+```html
+<a class="root" role="button" type="link">
+  <i class="startIcon"></i>
+  {children}
+  <i class="endIcon"></i>
+</a>
+```
+
+### Slots
+
+From the recommended DOM above we can indicate which slots are going to be required:
+
+| Name        | Considerations |
+| ----------- | -------------- |
+| `root`      |                |
+| `startIcon` |                |
+| `endIcon`   |                |
+
+### Considerations that need discussion
+
+- Do we provide both a `startIcon` and `endIcon` as recommended above?
+  - Alternatively we could provide just an `icon` slot that is always on the left and provide a _"button with icon on the right"_ variant via view recomposition.
+- Previously we had a `text` prop. Our recommended DOM above is taking that out in favor of just having `children`.
+  - Do we want to still have a `text` or `content` prop/slot?
+  - If we do, where do we place `children` in relation to it?
+
+## Behaviors
+
+Aria spec:
+https://www.w3.org/TR/wai-aria-1.1/#button
+
+Fluent UI HIG:
+https://microsoft.sharepoint-df.com/:w:/r/teams/OPGUXLeads/_layouts/15/Doc.aspx?sourcedoc=%7B150DD97E-0ECE-460D-B868-8BCB91FCB4BA%7D&file=Buttons.docx&action=default&mobileredirect=true
+
+### States
+
+The following section describes the different states in which a `Button` can be throughout the course of interaction with it.
+
+#### Enabled state
+
+An enabled `Button` communicates interaction by having styling that invite the user to click/tap on it to trigger an action.
+
+#### Disabled state
+
+A disabled `Button` is non-interactive, disallowing the user to click/tap on it to trigger an action.
+
+Typically disabled browser elements do now allow focus. This makes the control difficult for a blind user to know about it, or why it's disabled, without scanning the entire page. Therefore it is recommended to allow focus on disabled components and to make them readonly. This means we use `aria-disabled` attributes, and not `disabled` attributes, for defining a disabled state. This may sometimes require special attention to ignoring input events in the case a browser element might do something. In the past we've introduced an `allowDisabledFocus` prop for component users to control this behavior.
+
+#### Hovered state
+
+A hovered `Button` changes styling to communicate that the user has placed a cursor above it.
+
+#### Focused state
+
+A focused `Button` changes styling to communicate that the user has placed keyboard focus on it. This styling is usually the same to the one in the hovered state.
+
+#### Pressed state
+
+A pressed `Button` changes styling to communicate that the user has clicked/tapped on it.
+
+#### States that need discussion
+
+- Checked state in `Toggle buttons`, `Menu buttons` and `Split buttons`.
+
+### Keyboard interaction
+
+The following is a set of keys that interact with the `Button` component:
+
+| Key     | Description                   |
+| ------- | ----------------------------- |
+| `Space` | Triggers the `Button's` action. |
+| `Enter` | Triggers the `Button's` action. |
+
+### Cursor interaction
+
+Test: Possible to use this to capture mouse, though Safari does not have compatibility:
+https://developer.mozilla.org/en-US/docs/Web/API/Element/setPointerCapture
+
+- `mouseenter`: Should immediately change the styling of the `Button` so that it appears to be hovered.
+- `mouseleave`: Should immediately remove the hovered styling of the `Button`.
+- `mousedown`: Should immediately change  the styling of the `Button` so that it appears to be pressed.
+- `mouseup`:
+  - If triggered while cursor is still inside of the `Button's` boundaries, then it should trigger the `Button's` action and immediately remove the pressed styling of the `Button`.
+  - If triggered outside of the `Button's` boundaries, then it should immmediately remove the pressed styling of the `Button` without triggering the `Button's` action.
+
+### Touch interaction
+
+The same behavior as above translated for touch events. This means that there is no equivalent for `mouseenter` and `mouseleave`, which makes it so that the hovered state cannot be accessed.
+
+### Screen reader accessibility
+
+#### `root`:
+
+- Should render a native `button` element, or a native `a` element if the `href` prop has been set.
+- Should mix in the native props expected for the `button` or `a` native elements depending on if the `href` prop has been set.
+- Should be keyboard tabbable and focusable.
+
+#### Accessibility concerns for the user.
+
+The `aria-label`, `aria-labelledby` and `aria-describedby` properties are surfaced to the component interface but are required to be set by the component user to meet accessibility requirements.
+
+## Themability and customization
+
+### Composition
+
+The `Button` component uses `react-texture` to provide a recomposable implementation that has no runtime performance penalties. The `BaseButton` implementation can be used to provide new `slots` and default `props` without the application of additional styling:
+
+```tsx
+const FooButton = BaseButton.compose({
+  tokens: {},
+  styles: {},
+  slots: {}
+});
+
+const onClickAlert = () => {
+  alert('Clicked');
+};
+
+render() {
+  <FooButton onClick={onClickAlert}>
+    Click me!
+  </FooButton>
+}
+```
+
+## Class names
+
+1 per slot
+1 per state, tagged on root
+
+### Component design tokens
+
+> Tokens represent the general look and feel of the various visual slots. Tokens feed into the styling at the right times in the right slot.
+>
+> Regarding naming conventions, use a camelCased name following this format:
+> `{slot}{property}{state (or none for default)}`. For example: `thumbSizeHovered`.
+>
+> Common property names: `size`, `background`, `color`, `borderRadius`
+>
+> Common states: `hovered`, `pressed`, `focused`, `checked`, `checkedHovered`, `disabled`
+
+| Name                          | Considerations |
+| ----------------------------- | -------------- |
+| `endIconColor`                |                |
+| `endIconColorDisabled`        |                |
+| `endIconColorHovered`         |                |
+| `endIconColorPressed`         |                |
+| `endIconFontSize`             |                |
+| `endIconFontWeight`           |                |
+| `startIconColor`              |                |
+| `startIconColorDisabled`      |                |
+| `startIconColorHovered`       |                |
+| `startIconColorPressed`       |                |
+| `startIconFontSize`           |                |
+| `startIconFontWeight`         |                |
+| `rootBackgroundColor`         |                |
+| `rootBackgroundColorDisabled` |                |
+| `rootBackgroundColorHovered`  |                |
+| `rootBackgroundColorPressed`  |                |
+| `rootBorderColor`             |                |
+| `rootBorderColorDisabled`     |                |
+| `rootBorderColorHovered`      |                |
+| `rootBorderColorPressed`      |                |
+| `rootBorderRadius`            |                |
+| `rootBorderStyle`             |                |
+| `rootBorderWidth`             |                |
+| `rootColor`                   |                |
+| `rootColorDisabled`           |                |
+| `rootColorHovered`            |                |
+| `rootColorPressed`            |                |
+| `rootHeight`                  |                |
+| `rootFontFamily`              |                |
+| `rootFontSize`                |                |
+| `rootFontWeight`              |                |
+| `rootLineHeight`              |                |
+| `rootMinHeight`               |                |
+| `rootMinWidth`                |                |
+| `rootWidth`                   |                |
+
+NOTE! Stardust does not follow this convention. Slider currently uses these tokens:
+
+```
+backgroundColor: string
+backgroundColorActive: string
+backgroundColorDisabled: string
+backgroundColorFocus: string
+backgroundColorHover: string
+borderColor: string
+borderColorDisabled: string
+borderColorHover: string
+borderRadius: string
+boxShadow: string
+circularBackgroundColor: string
+circularBackgroundColorActive: string
+circularBackgroundColorFocus: string
+circularBackgroundColorHover: string
+circularBorderColor: string
+circularBorderColorFocus: string
+circularBorderColorHover: string
+circularBorderRadius: string
+circularColor: string
+circularColorActive: string
+color: string
+colorDisabled: string
+colorFocus: string
+colorHover: string
+contentFontSize: string
+contentFontWeight: FontWeightProperty
+contentLineHeight: string
+height: string
+loaderBorderSize: string
+loaderSize: string
+loaderSvgAnimationHeight: string
+loaderSvgHeight: string
+loadingMinWidth: string
+maxWidth: string
+minWidth: string
+padding: string
+sizeSmallContentFontSize: string
+sizeSmallContentLineHeight: string
+sizeSmallHeight: string
+sizeSmallLoaderBorderSize: string
+sizeSmallLoaderSvgAnimationHeight: string
+sizeSmallLoaderSvgHeight: string
+sizeSmallMinWidth: string
+sizeSmallPadding: string
+textColor: string
+textColorDisabled: string
+textColorHover: string
+textPrimaryColor: string
+textPrimaryColorHover: string
+```
+
+### To be discussed
+
+- What do we do about high contrast? Do we provide additional tokens?
+
+## Use cases
+
+> TODO: Example use cases
+
+## Compatibility with other libraries
+
+> TODO: If this component represents a selected value, how will that be used in an HTML form? Is there a code example to illustrate?
+
+> TODO: Is it possible this component could be rendered in a focus zone? If so, should the focus model change in that case?
