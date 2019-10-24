@@ -2,11 +2,10 @@
 
 The `Checkbox` component allows a user to choose between two mutually exclusive options. 
 
-> TODO: Uncontrolled vs. controlled 
-
 ## Related variant considerations
 
 Toggle
+Indeterminate/Tri State
 
 ## Reference implementations
 
@@ -151,6 +150,8 @@ defaultChecked: overloading with checked - can just set default value of checked
 General considerations:
 
 Only use as toggle between two mutually exclusive options (binary) or in a group with shared context to offer multiple options.
+
+Uncontrolled vs. controlled
 
 Indeterminate state? Subcheckboxes are not checked -> don't check parent checkbox
 Variant color & size?
