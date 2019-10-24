@@ -10,7 +10,7 @@ export function publishPrepareTask() {
   for (const info of Object.values(allInfo)) {
     if (info.packageJson.main && info.packageJson.main.startsWith('src/index')) {
       const newPackageJson = { ...info.packageJson, main: info.packageJson.main.replace('src/', 'lib/').replace(/\.tsx?/, '.js') };
-      fs.writeFileSync(path.join(root, info.packagePath, 'package.json'), JSON.stringify(newPackageJson, null, 2));
+      fs.writeFileSync(path.join(root, info.packagePath, 'package.json'), JSON.stringify(newPackageJson, null, 2) + '\n');
     }
   }
 }
