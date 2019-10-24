@@ -206,7 +206,7 @@ https://developer.microsoft.com/en-us/fabric#/controls/web/button
 | `primaryActionButtonProps`         | `IButtonProps`                                                                                             | Should not be part of the base `Button`. Should be replaced by a slot in `SplitButton`.                                                     |
 | `primaryDisabled`                  | `boolean`                                                                                                  | Should not be part of the base `Button`. Should be considered for `SplitButton`.                                                            |
 | `renderPersistedMenuHiddenOnMount` | `boolean`                                                                                                  | Already deprecated.                                                                                                                         |
-| `rootProps`                        | `React.ButtonHTMLAttributes<HTMLButtonElement> | React.AnchorHTMLAttributes<HTMLAnchorElement>`            | Already deprecated. Should use `slotProps` instead.                                                                                         |
+| `rootProps`                        | `React.ButtonHTMLAttributes<HTMLButtonElement> \| React.AnchorHTMLAttributes<HTMLAnchorElement>`            | Already deprecated. Should use `slotProps` instead.                                                                                         |
 | `secondaryText`                    | `string`                                                                                                   | Should not be part of the base `Button`. Should be replaced by a slot in `CompoundButton`.                                                  |
 | `split`                            | `boolean`                                                                                                  | Should be deprecated in favor of a `SplitButton` variant.                                                                                   |
 | `splitButtonAriaLabel`             | `string`                                                                                                   | Should not be part of the base `Button`. Should be considered for `SplitButton`. Maybe rename to `secondaryActionAriaLabel`?                |
@@ -252,54 +252,54 @@ https://developer.microsoft.com/en-us/fabric#/controls/web/button
 
 #### IButtonProps interface
 
-| Name                               | Action to take/taken                  | Property transitioned? | Breaking change? | Codemod/Shim created? |
-| ---------------------------------- | ------------------------------------- | :--------------------: | :--------------: | :-------------------: |
-| `allowDisabledFocus`               | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
-| `ariaDescription`                  | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
-| `ariaHidden`                       | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
-| `ariaLabel`                        | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
-| `buttonType`                       | Removing as it is already deprecated. | &#9745;                | &#9745;          | &#x274C;              |
-| `checked`                          | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
-| `className`                        | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
-| `componentRef`                     | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
-| `data`                             | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
-| `defaultRender`                    | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
-| `description`                      | Removing as it is already deprecated. | &#9745;                | &#9745;          | &#x274C;              |
-| `disabled`                         | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
-| `getClassNames`                    | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
-| `getSplitButtonClassNames`         | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
-| `href`                             | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
-| `iconProps`                        | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
-| `keytipProps`                      | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
-| `menuAs`                           | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
-| `menuIconProps`                    | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
-| `menuProps`                        | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
-| `menuTriggerKeyCode`               | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
-| `onAfterMenuDismiss`               | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
-| `onMenuClick`                      | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
-| `onRenderAriaDescription`          | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
-| `onRenderChildren`                 | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
-| `onRenderDescription`              | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
-| `onRenderIcon`                     | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
-| `onRenderMenuIcon`                 | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
-| `onRenderMenu`                     | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
-| `onRenderText`                     | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
-| `persistMenu`                      | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
-| `primary`                          | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
-| `primaryActionButtonProps`         | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
-| `primaryDisabled`                  | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
-| `renderPersistedMenuHiddenOnMount` | Removing as it is already deprecated. | &#9745;                | &#9745;          | &#x274C;              |
-| `rootProps`                        | Removing as it is already deprecated. | &#9745;                | &#9745;          | &#x274C;              |
-| `secondaryText`                    | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
-| `split`                            | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
-| `splitButtonAriaLabel`             | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
-| `splitButtonMenuProps`             | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
-| `styles`                           | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
-| `theme`                            | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
-| `text`                             | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
-| `toggle`                           | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
-| `toggled`                          | Removing as it is already deprecated. | &#9745;                | &#9745;          | &#x274C;              |
-| `uniqueId`                         | TBD                                   | &#x274C;               | &#x274C;         | &#x274C;              |
+| Name                               | Action to take/taken                  | Property transitioned? | Breaking change?                        | Codemod/Shim created? |
+| ---------------------------------- | ------------------------------------- | :--------------------: | :-------------------------------------: | :-------------------: |
+| `allowDisabledFocus`               | TBD                                   | &#x274C;               | &#x274C;                                | &#x274C;              |
+| `ariaDescription`                  | TBD                                   | &#x274C;               | &#x274C;                                | &#x274C;              |
+| `ariaHidden`                       | TBD                                   | &#x274C;               | &#x274C;                                | &#x274C;              |
+| `ariaLabel`                        | TBD                                   | &#x274C;               | &#x274C;                                | &#x274C;              |
+| `buttonType`                       | Removing as it is already deprecated. | &#9745;                | No, because prop is already deprecated. | &#x274C;              |
+| `checked`                          | TBD                                   | &#x274C;               | &#x274C;                                | &#x274C;              |
+| `className`                        | TBD                                   | &#x274C;               | &#x274C;                                | &#x274C;              |
+| `componentRef`                     | TBD                                   | &#x274C;               | &#x274C;                                | &#x274C;              |
+| `data`                             | TBD                                   | &#x274C;               | &#x274C;                                | &#x274C;              |
+| `defaultRender`                    | TBD                                   | &#x274C;               | &#x274C;                                | &#x274C;              |
+| `description`                      | Removing as it is already deprecated. | &#9745;                | No, because prop is already deprecated. | &#x274C;              |
+| `disabled`                         | TBD                                   | &#x274C;               | &#x274C;                                | &#x274C;              |
+| `getClassNames`                    | TBD                                   | &#x274C;               | &#x274C;                                | &#x274C;              |
+| `getSplitButtonClassNames`         | TBD                                   | &#x274C;               | &#x274C;                                | &#x274C;              |
+| `href`                             | TBD                                   | &#x274C;               | &#x274C;                                | &#x274C;              |
+| `iconProps`                        | TBD                                   | &#x274C;               | &#x274C;                                | &#x274C;              |
+| `keytipProps`                      | TBD                                   | &#x274C;               | &#x274C;                                | &#x274C;              |
+| `menuAs`                           | TBD                                   | &#x274C;               | &#x274C;                                | &#x274C;              |
+| `menuIconProps`                    | TBD                                   | &#x274C;               | &#x274C;                                | &#x274C;              |
+| `menuProps`                        | TBD                                   | &#x274C;               | &#x274C;                                | &#x274C;              |
+| `menuTriggerKeyCode`               | TBD                                   | &#x274C;               | &#x274C;                                | &#x274C;              |
+| `onAfterMenuDismiss`               | TBD                                   | &#x274C;               | &#x274C;                                | &#x274C;              |
+| `onMenuClick`                      | TBD                                   | &#x274C;               | &#x274C;                                | &#x274C;              |
+| `onRenderAriaDescription`          | TBD                                   | &#x274C;               | &#x274C;                                | &#x274C;              |
+| `onRenderChildren`                 | TBD                                   | &#x274C;               | &#x274C;                                | &#x274C;              |
+| `onRenderDescription`              | TBD                                   | &#x274C;               | &#x274C;                                | &#x274C;              |
+| `onRenderIcon`                     | TBD                                   | &#x274C;               | &#x274C;                                | &#x274C;              |
+| `onRenderMenuIcon`                 | TBD                                   | &#x274C;               | &#x274C;                                | &#x274C;              |
+| `onRenderMenu`                     | TBD                                   | &#x274C;               | &#x274C;                                | &#x274C;              |
+| `onRenderText`                     | TBD                                   | &#x274C;               | &#x274C;                                | &#x274C;              |
+| `persistMenu`                      | TBD                                   | &#x274C;               | &#x274C;                                | &#x274C;              |
+| `primary`                          | TBD                                   | &#x274C;               | &#x274C;                                | &#x274C;              |
+| `primaryActionButtonProps`         | TBD                                   | &#x274C;               | &#x274C;                                | &#x274C;              |
+| `primaryDisabled`                  | TBD                                   | &#x274C;               | &#x274C;                                | &#x274C;              |
+| `renderPersistedMenuHiddenOnMount` | Removing as it is already deprecated. | &#9745;                | No, because prop is already deprecated. | &#x274C;              |
+| `rootProps`                        | Removing as it is already deprecated. | &#9745;                | No, because prop is already deprecated. | &#x274C;              |
+| `secondaryText`                    | TBD                                   | &#x274C;               | &#x274C;                                | &#x274C;              |
+| `split`                            | TBD                                   | &#x274C;               | &#x274C;                                | &#x274C;              |
+| `splitButtonAriaLabel`             | TBD                                   | &#x274C;               | &#x274C;                                | &#x274C;              |
+| `splitButtonMenuProps`             | TBD                                   | &#x274C;               | &#x274C;                                | &#x274C;              |
+| `styles`                           | TBD                                   | &#x274C;               | &#x274C;                                | &#x274C;              |
+| `theme`                            | TBD                                   | &#x274C;               | &#x274C;                                | &#x274C;              |
+| `text`                             | TBD                                   | &#x274C;               | &#x274C;                                | &#x274C;              |
+| `toggle`                           | TBD                                   | &#x274C;               | &#x274C;                                | &#x274C;              |
+| `toggled`                          | Removing as it is already deprecated. | &#9745;                | No, because prop is already deprecated. | &#x274C;              |
+| `uniqueId`                         | TBD                                   | &#x274C;               | &#x274C;                                | &#x274C;              |
 
 ### Conversion process Stardust to Fluent UI Button
 
