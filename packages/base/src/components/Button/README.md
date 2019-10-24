@@ -17,25 +17,38 @@ The `Button` component allows users to commit a change or trigger an action via 
 
 The following section documents variants of the component that currently exist in Fabric and identifies variants that exist in other component libraries but don't currently exist in Fabric, documenting which component libraries have those variants.
 
-### Styling related
+### Variants existing in Fabric today
+
+#### Styling related
+
+The following are variants that don't affect the functionality of the `Button`, but that have a visually distinct representation. A discussion needs to happen about how we support each of these variants and the effect of our theming story in that decision (separate components, via props, etc).
+
 - `Action button`
 - `Circular button`
 - `Icon button`
 - `Primary button`
 - `Secondary button`
 
-### Functionality related
+#### Functionality related
+
+The following are variants that are functionally different from the base `Button` variant. A discussion needs to happen about how much of this functionality belongs to base versus a different variant and about the need of maybe having a different spec for these variants if they are significantly different from the base `Button`.
+
 - `Actionable`
 - `Compound button`
-  - > TODO - Need to check if this belongs here or in the `Styling related` section above
+  - > TODO - Need to check if this belongs here or in the `Styling related` section above.
 - `Menu button`
 - `Split button`
+- `Toogle button`
+  - > TODO - Need to discuss if functionality belongs to base button or separate variant.
 
-### Tied to other components
+#### Tied to other components
+
+The following are variants that exist because of the need of `Buttons` to reside inside other components and, while functionally the same, the styling of these `Buttons` is tightly coupled with the styling of these other components.
+
 - `Command bar button`
 - `Message bar button`
 
-### In other component libraries
+### Variants not in Fabric but that exist in other component libraries
 - `Animated button`
   - In Semantic UI
 - `Block/Fluid button`
