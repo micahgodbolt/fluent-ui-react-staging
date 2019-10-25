@@ -6,6 +6,10 @@
   "bin": {
     "just-scripts": "bin/scripts.js"
   },
+  "scripts": {
+    "projrefs": "just-scripts projrefs",
+    "verify-projrefs": "just-scripts projrefs:verify"
+  },
   "dependencies": {
     "@babel/core": "^7.6.4",
     "@storybook/addon-a11y": "^5.2.4",

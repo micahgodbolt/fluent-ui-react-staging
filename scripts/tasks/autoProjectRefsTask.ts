@@ -5,11 +5,31 @@ import { getAllPackageInfo } from '../monorepo/getAllPackageInfo';
 import { findGitRoot } from '../monorepo/findGitRoot';
 
 export function autoProjectRefsTask() {
+  const updatedTsconfigs = getUpdatedTsconfigs();
+  if (updatedTsconfigs.size > 0) {
+    for (const [file, blob] of Object.entries(updatedTsconfigs)) {
+      console.log(`Updating ${file} with project references`);
+      fs.writeFileSync(file, JSON.stringify(blob, null, 2));
+    }
+  }
+}
+
+export function autoProjectRefsVerifyTask() {
+  const updatedTsconfigs = getUpdatedTsconfigs();
+  if (updatedTsconfigs.size > 0) {
+    throw new Error(
+      `There are differences between package.json dependencies and these project tsconfig.json files: [${Object.keys(updatedTsconfigs)}]`
+    );
+  }
+}
+
+function getUpdatedTsconfigs() {
   const excluded = ['@fluentui/scripts', 'fluent-ui-monorepo'];
   const repoDeps = getAllPackageDeps();
   const allInfo = getAllPackageInfo();
   const root = findGitRoot();
   let isDirty = false;
+  const updatedTsconfigs = new Map<string, string>();
 
   for (const [name, info] of Object.entries(allInfo)) {
     if (excluded.includes(name)) {
@@ -41,7 +61,8 @@ export function autoProjectRefsTask() {
     }
 
     if (isDirty) {
-      fs.writeFileSync(tsconfigFile, JSON.stringify(tsconfigJson, null, 2));
+      updatedTsconfigs.set(tsconfigFile, tsconfigJson);
     }
   }
+  return updatedTsconfigs;
 }

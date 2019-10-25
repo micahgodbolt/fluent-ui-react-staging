@@ -24,3 +24,15 @@ steps:
   - script: |
       yarn test
     displayName: yarn test
+
+  - script: |
+      yarn lint
+    displayName: yarn lint
+
+  - script: |
+      yarn checkchange
+    displayName: yarn check for change files
+
+  - script: |
+      yarn workspace @fluentui/scripts projrefs:verify
+    displayName: yarn check for correct tsconfig.json project references
