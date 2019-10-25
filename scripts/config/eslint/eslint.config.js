@@ -4,7 +4,8 @@ module.exports = {
   plugins: ['@typescript-eslint', 'react-hooks'],
   rules: {
     'react-hooks/rules-of-hooks': 'error',
-    'react-hooks/exhaustive-deps': 'warn'
+    'react-hooks/exhaustive-deps': 'warn',
+    'no-unused-vars': 'off'
   },
   parserOptions: {
     ecmaVersion: 2017,
@@ -12,7 +13,8 @@ module.exports = {
   },
   env: {
     node: true,
-    es6: true
+    es6: true,
+    jasmine: true
   },
   overrides: [
     {

@@ -1,5 +1,3 @@
-const { getResolveAlias } = require('@fluentui/scripts/webpack/getResolveAlias');
-
 module.exports = ({ config }) => {
   config.module.rules.push({
     test: /\.(ts|tsx)$/,

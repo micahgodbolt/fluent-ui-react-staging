@@ -8,10 +8,15 @@
     ]
   },
   "scripts": {
+    "clean": "lerna run clean --stream",
     "build": "lerna run build --stream",
     "test": "lerna run test --stream",
     "lint": "lerna run lint --stream",
-    "start": "yarn workspace @fluentui/react start"
+    "update-snapshots": "lerna run update-snapshots --stream",
+    "start": "yarn workspace @fluentui/react start",
+    "change": "beachball",
+    "checkchange": "beachball check",
+    "pub": "beachball publish"
   },
   "devDependencies": {
     "lerna": "^3.18.1",

@@ -3,6 +3,12 @@
 lib/
 storybook-static/
 
+index.d.ts
+beta.d.ts
+tsdoc-metadata.json
+temp/
+dist/
+
 # Logs
 logs
 *.log

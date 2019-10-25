@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { _composeFactory } from "./compose";
 import { ITheme } from "./theme.types";
 
@@ -98,7 +98,7 @@ describe("compose", () => {
       composed({});
       expect(mock).toBeCalledWith({
         slots: {},
-        slotProps: {}
+        classes: {}
       });
     });
 
@@ -127,7 +127,7 @@ describe("compose", () => {
           bar: "bar2",
           baz: "baz2"
         },
-        slotProps: {}
+        classes: {}
       });
     });
 
@@ -141,7 +141,7 @@ describe("compose", () => {
       expect(mock).toBeCalledWith({
         slots: {},
         foo: "bar",
-        slotProps: {}
+        classes: {}
       });
     });
   });
