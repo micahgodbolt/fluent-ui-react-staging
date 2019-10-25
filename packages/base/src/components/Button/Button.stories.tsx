@@ -6,8 +6,14 @@ export default {
   title: "Base Button"
 };
 
-export const aTypicalButton = () => (
+export const baseButton = () => (
   <ButtonBase>
-    This is a button
+    This renders as a button
+  </ButtonBase>
+);
+
+export const baseButtonWithHref = () => (
+  <ButtonBase href="www.bing.com">
+    This renders as a link
   </ButtonBase>
 );

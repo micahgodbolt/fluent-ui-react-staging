@@ -9,10 +9,14 @@ const useButtonState = (userProps: IButtonProps): IButtonState => {
 
 export const useButton = (props: IButtonProps) => {
   const state = useButtonState(props);
+  const { href } = props;
+
   const slotProps = mergeSlotProps(props, {
     leftIcon: {},
     rightIcon: {},
-    root: {}
+    root: {
+      href
+    }
   });
   return {
     slotProps,
