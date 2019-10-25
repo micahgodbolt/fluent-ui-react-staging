@@ -1,8 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Gets rid of webpack resolve alias tools",
-  "packageName": "@fluentui/react",
-  "email": "kchau@microsoft.com",
-  "commit": "90ec1264e955cf2e1d70e9da79dc4481ca42e875",
-  "date": "2019-10-24T16:54:36.335Z"
-}
