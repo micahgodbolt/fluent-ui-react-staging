@@ -38,5 +38,5 @@ steps:
     displayName: Authenticate git for pushes
 
   - script: |
-      yarn workspace @fluentui/scripts beachball publish --no-publish
+      yarn pub --no-publish
     displayName: bump and publish

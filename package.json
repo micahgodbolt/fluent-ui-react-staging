@@ -14,8 +14,9 @@
     "lint": "lerna run lint --stream",
     "update-snapshots": "lerna run update-snapshots --stream",
     "start": "yarn workspace @fluentui/react start",
-    "change": "yarn workspace @fluentui/scripts beachball",
-    "checkchange": "yarn workspace @fluentui/scripts beachball check"
+    "change": "beachball",
+    "checkchange": "beachball check",
+    "pub": "beachball publish"
   },
   "devDependencies": {
     "lerna": "^3.18.1",
