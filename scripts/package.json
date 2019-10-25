@@ -7,8 +7,7 @@
     "just-scripts": "bin/scripts.js"
   },
   "scripts": {
-    "projrefs": "just-scripts projrefs",
-    "verify-projrefs": "just-scripts projrefs:verify"
+    "projrefs": "just-scripts projrefs"
   },
   "dependencies": {
     "@babel/core": "^7.6.4",

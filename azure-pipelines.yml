@@ -32,5 +32,5 @@ steps:
     displayName: yarn check for change files
 
   - script: |
-      yarn workspace @fluentui/scripts projrefs:verify
+      yarn workspace @fluentui/scripts just projrefs:verify
     displayName: yarn check for correct tsconfig.json project references
