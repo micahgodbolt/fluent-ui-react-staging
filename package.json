@@ -16,6 +16,7 @@
     "start": "yarn workspace @fluentui/react start",
     "change": "beachball",
     "checkchange": "beachball check",
+    "projrefs": "yarn workspace @fluentui/scripts projrefs",
     "pub": "beachball publish"
   },
   "devDependencies": {

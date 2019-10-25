@@ -1,8 +1,6 @@
-pr:
-  - master
+pr: [master]
 
-trigger:
-  - master
+trigger: [master]
 
 pool:
   vmImage: 'Ubuntu 16.04'
@@ -24,3 +22,15 @@ steps:
   - script: |
       yarn test
     displayName: yarn test
+
+  - script: |
+      yarn lint
+    displayName: yarn lint
+
+  - script: |
+      yarn checkchange
+    displayName: yarn check for change files
+
+  - script: |
+      yarn workspace @fluentui/scripts just projrefs:verify
+    displayName: yarn check for correct tsconfig.json project references
