@@ -3929,18 +3929,6 @@ beachball@^1.14.1:
     semver "^6.1.1"
     yargs-parser "^13.1.0"
 
-beachball@^1.14.2:
-  version "1.14.2"
-  resolved "https://registry.npmjs.org/beachball/-/beachball-1.14.2.tgz#aab2a947a8f607962b91f8ec0ed3c9a9891a3cf7"
-  integrity sha512-/NfY72bBBcykAuZ7o14OzPEhygJgfDpZqIdZWxH3nISnO1xSwnZlGosrUixsQjgcuibQ1q9sLDmP5VO/06XtSA==
-  dependencies:
-    fs-extra "^8.0.1"
-    git-url-parse "^11.1.2"
-    glob "^7.1.4"
-    prompts "~2.1.0"
-    semver "^6.1.1"
-    yargs-parser "^13.1.0"
-
 before-after-hook@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/before-after-hook/-/before-after-hook-2.1.0.tgz#b6c03487f44e24200dd30ca5e6a1979c5d2fb635"
