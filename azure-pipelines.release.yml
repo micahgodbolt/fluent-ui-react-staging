@@ -38,5 +38,5 @@ steps:
     displayName: Authenticate git for pushes
 
   - script: |
-      yarn pub --no-publish
+      yarn pub --no-publish -y
     displayName: bump and publish
