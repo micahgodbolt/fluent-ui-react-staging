@@ -1,3 +1,6 @@
+const { resolve } = require('@fluentui/scripts');
+const HardSourceWebpackPlugin = require(resolve('hard-source-webpack-plugin'));
+
 module.exports = ({ config }) => {
   config.module.rules.push({
     test: /\.(ts|tsx)$/,
@@ -17,5 +20,7 @@ module.exports = ({ config }) => {
     ]
   });
   config.resolve.extensions.push('.ts', '.tsx');
+  config.plugins.push(new HardSourceWebpackPlugin());
+
   return config;
 };
