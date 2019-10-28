@@ -588,4 +588,4 @@ Extends menu item tokens
 
 
 ### Composition
-The menu should consist of a list element which renders individual menu items. Each menu item consists of an `li` which renders with `role="menuitem"`
+The menu should consist of a list element, a `ul`, which renders individual menu items. Each menu item consists of an `li` which renders with `role="menuitem"`
