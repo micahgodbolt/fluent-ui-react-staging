@@ -524,7 +524,7 @@ _Note:_ Submenu is just a popout menu which gets it's is opened state from conte
 
 ### Slots
 #### Menu
-Since the Menu is only rendering it's children, the only slot necessary is the for the Root `div`. The rest can be passed in as children variants.
+Since the Menu is only rendering it's children, the only slot necessary is the for the Root `ul`. The rest can be passed in as children variants.
 
 #### MenuItem
 Since the MenuItem is only rendering it's children, the only slot necessary is the for the Root `li`. The rest can be passed in as children.
