@@ -553,7 +553,7 @@ Recommendation: There is not a need to have an `onClick` that is called whenever
 
 #### Menu Items
 ##### On Item Click
-The on item click should be supplied indidivdually by the parent
+The on item click should be supplied individually by the consuming component
 
 ##### Focus
 The menu item should change border and background color on focus.
