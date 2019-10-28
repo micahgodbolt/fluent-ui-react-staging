@@ -16,7 +16,7 @@ The w3 specifications for a menu suggest that it is only for user actions, not u
 
 Menus are often combined with a popover or similar floating component so the menu appears over other items and is subsequently dismissed. 
 
-### Menuitem
+### MenuItem
 
 Most menus have a concept of a specific menuitem. It is an integral part of the menu and will have some of its own sections throughout.
 
