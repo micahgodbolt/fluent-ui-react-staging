@@ -194,7 +194,7 @@ Should extend `ul` props
 
 #### MenuItem component
 Should extend `li` props
-Most of the other props exist as HTMLAttributes, such as, but not limited to, `selected`, `checked`, `onClick`.
+Most of the other props exist as HTMLAttributes like `selected`, `checked`, `onClick`.
 | Prop Name | Prop Type | Notes |
 | -------- | -------- | -------- |
 | children | [Flow content](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Content_categories#Flow_content) | No content should have on clicks  |
