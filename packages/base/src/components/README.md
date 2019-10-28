@@ -186,26 +186,28 @@ Most props should be removed in favor of a composition model where the parent co
 
 #### Menu component
 Should extend `ul` props
+
 | Prop Name | Prop Type | Notes |
 | -------- | -------- | -------- |
 | children | `li | MenuItem | Divider ` | Text |
 | orientation | enum: `vertical | horizontal` | Specifies how the menu is oriented. |
-| onClick | `onClickHandler` | This is from the root UL props but it's worth noting that there shouldn't be a specific onMenuClick/onMenuItemClick handler. See [Behaviors](#On-Menu-Click) for more
+| onClick | `onClickHandler` | This is from the root UL props but it's worth noting that there shouldn't be a specific onMenuClick/onMenuItemClick handler. See [Behaviors](#On-Menu-Click) for more |
 
 #### MenuItem component
 Should extend `li` props
 Most of the other props exist as HTMLAttributes like `selected`, `checked`, `onClick`.
+
 | Prop Name | Prop Type | Notes |
-| -------- | -------- | -------- |
+| --------- | --------- | ----- |
 | children | [Flow content](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Content_categories#Flow_content) | No content should have on clicks  |
 
 #### MenuGroup component
 Should extend MenuItems props
 
 | Prop Name | Prop Type | Notes |
-| -------- | -------- | -------- |
+| --------- | -------- | -------- |
 | children | [Flow content](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Content_categories#Flow_content) | No content should have on clicks  | 
-| open | boolean | whether or not this particular menu group is open.
+| open | boolean | whether or not this particular menu group is open. |
 
 
 
@@ -565,26 +567,26 @@ An extra consideration needs to be made for forcing focus into the menu item on 
 The menu should have as few opinions on theming as possible, allowing the items to determine customizations as much as possible. There should also be a way to easily remove the theme entirely from the menu so the items can determine the look and feel.
 
 #### Menu Tokens
-| Token Name |
-| ---------- |
-| Menu background |
+
+None needed
 
 #### Menu Item Tokens
 | Token Name |
 | ---------- |
-| backgroundColor |
-| borderColor |
-| hoverBackgroundColor |
-| focusedBackgroundColor |
-| hoverBorderColor |
-| focusedBorderColor |
+| rootBackgroundColor |
+| rootBorderColor |
+| rootHoverBackgroundColor |
+| rootFocusedBackgroundColor |
+| rootHoverBorderColor |
+| rootFocusedBorderColor |
 
 #### Menu Group Tokens
 Extends menu item tokens
+
 | Token Name |
 | ---------- |
-| openBackgroundColor |
-| openBorderColor |
+| rootOpenBackgroundColor |
+| rootOpenBorderColor |
 
 
 ### Composition
