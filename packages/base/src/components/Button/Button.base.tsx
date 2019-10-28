@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import PropTypes from "prop-types";
 import { IButtonProps, IButtonSlots } from "./Button.types";
 import { useButton } from "./useButton";
@@ -7,18 +7,18 @@ export const ButtonBase: React.FunctionComponent<IButtonProps> = (props: IButton
     const { children, href, slots } = props;
     const { tag, type } = _deriveRootType(href);
     const {
-        leftIcon: LeftIcon = "i",
-        rightIcon: RightIcon = "i",
-        root: Root = tag
+        endIcon: EndIcon = "i",
+        root: Root = tag,
+        startIcon: StartIcon = "i"
     } = (slots || {}) as IButtonSlots;
 
     const { slotProps = {} } = useButton(props);
 
     return (
         <Root {...slotProps.root}>
-            <LeftIcon {...slotProps.leftIcon} />
+            <StartIcon {...slotProps.startIcon} />
             {children}
-            <RightIcon {...slotProps.rightIcon} />
+            <EndIcon {...slotProps.endIcon} />
         </Root>
     );
 };
@@ -31,4 +31,27 @@ interface IButtonRootType {
 function _deriveRootType(href?: string): IButtonRootType {
     return !!href ? { tag: 'a', type: "link" } : { tag: 'button', type: 'button'};
 }
-  
+
+/**
+ * Button component proptypes.
+ */
+ButtonBase.propTypes = {
+    children: PropTypes.node,
+    disabled: PropTypes.bool,
+    href: PropTypes.string,
+    onClick: PropTypes.func,
+    
+    /** slots */
+    slots: PropTypes.shape({
+        endIcon: PropTypes.elementType.isRequired,
+        root: PropTypes.elementType.isRequired,
+        startIcon: PropTypes.elementType.isRequired
+    }),
+
+    /** slot props */
+    slotProps: PropTypes.shape({
+        endIcon: PropTypes.object,
+        root: PropTypes.object,
+        startIcon: PropTypes.object
+    })
+};

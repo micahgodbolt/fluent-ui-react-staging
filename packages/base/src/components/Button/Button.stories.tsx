@@ -6,14 +6,18 @@ export default {
   title: "Base Button"
 };
 
+const _onClick = () => {
+  alert("Button was clicked");
+};
+
 export const baseButton = () => (
-  <ButtonBase>
+  <ButtonBase onClick={_onClick}>
     This renders as a button
   </ButtonBase>
 );
 
 export const baseButtonWithHref = () => (
-  <ButtonBase href="www.bing.com">
+  <ButtonBase href="https://www.bing.com">
     This renders as a link
   </ButtonBase>
 );

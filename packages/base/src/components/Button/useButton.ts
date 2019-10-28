@@ -1,22 +1,50 @@
+import * as React from "react";
 import { IButtonProps } from "./Button.types";
 import { mergeSlotProps } from "@fluentui/react-theming";
 
-export interface IButtonState {}
+export interface IButtonState {
+  onClick: (ev: MouseEvent) => void;
+  rootRef: React.Ref<Element>;
+}
 
 const useButtonState = (userProps: IButtonProps): IButtonState => {
-  return {};
+  const { disabled, onClick } = userProps;
+
+  const rootRef = React.useRef<HTMLElement>(null);
+
+  const onButtonClick = (ev: MouseEvent) => {
+    if (!disabled && onClick) {
+      onClick(ev);
+
+      if (ev.defaultPrevented) {
+        return;
+      }
+    }
+  }
+
+  return { 
+    onClick: onButtonClick,
+    rootRef
+  };
 }
 
 export const useButton = (props: IButtonProps) => {
+  const { disabled, href } = props;
+
   const state = useButtonState(props);
-  const { href } = props;
+  const { onClick, rootRef } = state;
 
   const slotProps = mergeSlotProps(props, {
-    leftIcon: {},
-    rightIcon: {},
+    endIcon: {},
     root: {
-      href
-    }
+      "aria-disabled": disabled, 
+      href,
+      onClick,
+      ref: rootRef,
+      role: "button",
+      type: href ? 'link' : 'button'
+    },
+    startIcon: {},
   });
   return {
     slotProps,

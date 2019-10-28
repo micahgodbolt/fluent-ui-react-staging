@@ -1,23 +1,30 @@
+import { IClasses, ISlotProps, ISlottableProps } from "../../utilities/ISlots";
+
 export interface IButtonSlots {
-    leftIcon: React.ReactType;
-    rightIcon: React.ReactType;
+    /** Intended to contain the icon that appears after the specified children. */
+    endIcon: React.ReactType;
+
+    /** Intended to contain the button. */
     root: React.ReactType;
+
+    /** Intended to contain the icon that appears before the specified children. */
+    startIcon: React.ReactType;
 }
 
-export interface IButtonSlotProps {
-    leftIcon: {};
-    rightIcon: {};
-    root: {};
-}
+export type IButtonSlotProps = ISlotProps<IButtonSlots>;
 
-export interface IButtonClasses {}
+export interface IButtonClasses extends IClasses<IButtonSlots> {}
 
-export interface IButtonProps {
+export interface IButtonProps extends ISlottableProps<IButtonSlotProps, IButtonClasses> {
+    /** Defines the children of the Button component. */
     children?: React.ReactNode;
-    classes?: Partial<IButtonClasses>;
+
+    /** Defines whether the Button is in an enabled or disabled state. */
     disabled?: boolean;
+
+    /** Defines an href that, if provided, will make the Button render as an anchor. */
     href?: string;
+
+    /** Defines a callback that is triggered when the Button is clicked. */
     onClick?: (ev: MouseEvent) => void;
-    slotProps?: Partial<IButtonSlotProps>;
-    slots?: IButtonSlotProps;
 }
