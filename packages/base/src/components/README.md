@@ -60,10 +60,10 @@ _Note:_ I've skipped some of the boilerplate props like className.
 | useTargetAsMinWidth | boolean | see above |
 | bounds | IRectangle \| (target?: targetWindow?: Window)=>< IRectangle \| undefined | The space that the menu can appear in|
 | directionalHintForRTL | DirectionalHint |
-| gapSpace | number | The space between the menu and it's target |
+| gapSpace | number | The space between the menu and its target |
 | beakWidth?| number| The size of the beak that points |
 | isBeakVisible?| boolean| |
-| coverTarget?| boolean| If the menu should cover it's target |
+| coverTarget?| boolean| If the menu should cover its target |
 | alignTargetEdge?| boolean| If the menu should be aligned. |
 | items| IContextualMenuItem[]| The list of items to be rendered |
 | labelElementId?| string| The id of a label element for the menu |
@@ -132,7 +132,7 @@ _Note:_ I've skipped some of the boilerplate props like className.
 | accessibility| Accessibility| Determines how the keyboard interacts with the menu |
 | activeIndex| number \| string| Index of currently active item |
 | defaultActiveIndex| number \| string| Default index of currently active item |
-| fluid| boolean| whether or not the menu should fill it's container |
+| fluid| boolean| whether or not the menu should fill its container |
 | iconOnly| boolean| whether or not the menu only has icons | Not needed |
 | items| ShorthandCollection\<MenuItemProps, MenuShorthandKinds\>| The items that are to be rendered in the menu |
 | onItemClick| ComponentEventHandler\<MenuItemProps\>| Callback for what should happen when an item is clicked |
@@ -513,7 +513,7 @@ _Note:_ Some long class names removed
     </MenuGroup>
 </Menu> 
 ```
-_Note:_ Submenu is just a popout menu which gets it's is opened state from context if not provided directly.
+_Note:_ Submenu is just a popout menu which gets its opened state from context if not provided directly.
 
 ### Recommended Menu Render Function
 ```HTML
@@ -524,18 +524,18 @@ _Note:_ Submenu is just a popout menu which gets it's is opened state from conte
 
 ### Slots
 #### Menu
-Since the Menu is only rendering it's children, the only slot necessary is the for the Root `ul`. The rest can be passed in as children variants.
+Since the Menu is only rendering its children, the only slot necessary is the for the Root `ul`. The rest can be passed in as children variants.
 
 #### MenuItem
-Since the MenuItem is only rendering it's children, the only slot necessary is the for the Root `li`. The rest can be passed in as children.
+Since the MenuItem is only rendering its children, the only slot necessary is the for the Root `li`. The rest can be passed in as children.
 
 ### Behaviors
 
 #### Menu
-The menu itself should be a list that renders menu items, it will provide context about it's over all state but should not pass that directly into it's items as props.
+The menu itself should be a list that renders menu items, it will provide context about its over all state but should not pass that directly into its items as props.
 
 ##### Orientation
-The menu should provide some help for orienting it's contents either vertically, like a left nav, or horizontally, like a nav bar. Ideally this will just be a prop that gets put into context so each item can decide how it should appear. It's possible that the menu should enforce direction itself.
+The menu should provide some help for orienting its contents either vertically, like a left nav, or horizontally, like a nav bar. Ideally this will just be a prop that gets put into context so each item can decide how it should appear. It's possible that the menu should enforce direction itself.
 
 ##### Focus
 By default Focus should go to the tab stops and it's up to each menuItem to decide if it has tabindex=0. An example of a menuItem that shouldn't be focusable would be a Divider. 
