@@ -14,11 +14,11 @@ A menu is a way of displaying items that a user may be able to interact with. Me
 
 The w3 specifications for a menu suggest that it is only for user actions, not user input. Most varieties of menus interpret this as being for navigation.
 
-Menus are often combined with a popover or similar floating component so the menu appears over other items and is susequently dismissed. 
+Menus are often combined with a popover or similar floating component so the menu appears over other items and is subsequently dismissed. 
 
 ### Menuitem
 
-Most menus have a concept of a specific menuitem. It is an integral part of the menu and will have some its own sections throughout.
+Most menus have a concept of a specific menuitem. It is an integral part of the menu and will have some of its own sections throughout.
 
 ## References
 
@@ -527,12 +527,12 @@ _Note:_ Submenu is just a popout menu which gets its opened state from context i
 Since the Menu is only rendering its children, the only slot necessary is the one for the Root `ul`. The rest can be passed in as children variants.
 
 #### MenuItem
-Since the MenuItem is only rendering its children, the only slot necessary is the for the Root `li`. The rest can be passed in as children.
+Since the MenuItem is only rendering its children, the only slot necessary is the one for the Root `li`. The rest can be passed in as children.
 
 ### Behaviors
 
 #### Menu
-The menu itself should be a list that renders menu items, it will provide context about its over all state but should not pass that directly into its items as props.
+The menu itself should be a list that renders menu items, it will provide context about its overall state but should not pass that directly into its items as props.
 
 ##### Orientation
 The menu should provide some help for orienting its contents either vertically, like a left nav, or horizontally, like a nav bar. Ideally this will just be a prop that gets put into context so each item can decide how it should appear. It's possible that the menu should enforce direction itself.
