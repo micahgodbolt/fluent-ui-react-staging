@@ -213,7 +213,9 @@ Should extend MenuItems props
 To help provide additional information to menu items and their context, the menu should implement react context. This allows for synchronization between menu items. This also allows menu groups to pass their open status down to their children to determine how the sub items are rendered.
 
 #### Discussion:
-More discussion is needed to see if this relaxed approach to props is appropriate. Additionally it could make SplitButton menu items difficult to implement.
+This is a large departure from the way that both Stardust and Fabric implement menus but it is more in line with the way a lot of other frameworks menus work. Additionally I believe it gives a lot more flexibility through composition which removes some of the pressure to add many props.
+
+There should be a lot more discussion to see if this relaxed approach to props is appropriate. Additionally it could make SplitButton menu items difficult to implement. 
 
 ### Conversion Plan: 
 #### Fabric to Fluent:
