@@ -1,4 +1,4 @@
-import { treeTitleAsListItemTitleBehavior } from './';
+import { treeTitleAsListItemTitleBehavior } from '@stardust-ui/accessibility';
 
 describe('TreeTitleBehavior', () => {
   describe('role', () => {

@@ -1,4 +1,4 @@
-import { listBehavior } from './';
+import { listBehavior } from '@stardust-ui/accessibility';
 
 describe('ListBehavior.ts', () => {
   test('use SelectableListBehavior if selectable prop is defined', () => {

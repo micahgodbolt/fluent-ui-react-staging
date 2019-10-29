@@ -66,7 +66,7 @@ import {
   treeAsListBehavior,
   treeItemAsListItemBehavior,
   treeTitleAsListItemTitleBehavior
-} from './';
+} from '@stardust-ui/accessibility';
 import { TestHelper } from './testHelper';
 import definitions from './testDefinitions';
 

@@ -1,4 +1,4 @@
-import { FocusZoneMode, FocusZoneDirection, FocusZoneTabbableElements } from '../';
+import { FocusZoneMode, FocusZoneDirection, FocusZoneTabbableElements } from '@stardust-ui/accessibility';
 import * as keyboardKey from 'keyboard-key';
 
 import { TestDefinition, TestMethod, TestHelper } from './testHelper';

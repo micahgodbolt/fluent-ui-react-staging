@@ -1,4 +1,4 @@
-import { popupBehavior } from './';
+import { popupBehavior } from '@stardust-ui/accessibility';
 // TODO: (ken) remove this circular dependency of react -> acc -> react
 // import { Button } from '@stardust-ui/react';
 import * as React from 'react';

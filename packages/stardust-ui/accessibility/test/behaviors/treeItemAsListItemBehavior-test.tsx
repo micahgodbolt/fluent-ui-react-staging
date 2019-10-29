@@ -1,4 +1,4 @@
-import { treeItemAsListItemBehavior } from './';
+import { treeItemAsListItemBehavior } from '@stardust-ui/accessibility';
 
 describe('TreeItemAsListItemBehavior', () => {
   describe('role', () => {
