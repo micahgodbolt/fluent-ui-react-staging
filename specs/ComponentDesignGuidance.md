@@ -80,7 +80,7 @@ interface IButton {
 
 ## Naming guidance
 
-### Flags(Booleans)
+### Flags (Booleans)
 
 Property flags should be as consistent as possible with given html guidelines.
 
@@ -96,15 +96,15 @@ should be easy to understand; avoid unclear generalizations.
 Avoid prefixed subjects if it pertains to the primary subject of the component. (for TextField, “disabled” is good enough for a flag
 controlling the disabled state of the input element.)
 
-| BAD            | GOOD              | Notes                                                                            |
-| -------------- | ----------------- | -------------------------------------------------------------------------------- |
-| isChecked      | checked           | There is an HTML precedence for checked.                                         |
-| isVisible      | visible           |
+| BAD            | GOOD              | Notes                                                                              |
+| -------------- | ----------------- | ---------------------------------------------------------------------------------- |
+| isChecked      | checked           | There is an HTML precedence for checked.                                           |
+| isVisible      | visible           | Consider `hidden` unless default behavior is hidden (which you should reconsider!) |
 | isSelected     | selected          |
-| isEnabled      | disabled          | If the state is enabled by default, it should be named for the exceptional case. |
-| isOpen         | hidden            | If the exceptional case should be that we hide something, call it hidden.        |
-| isFooDisabled  | fooButtonDisabled | If the `foo` subject is unclear, make is specific to the type.                   |
-| buttonDisabled | disabled          | If the subject IS the component, don't give it a subject name.                   |
+| isEnabled      | disabled          | If the state is enabled by default, it should be named for the exceptional case.   |
+| isOpen         | hidden            | If the exceptional case should be that we hide something, call it hidden.          |
+| isFooDisabled  | fooButtonDisabled | If the `foo` subject is unclear, make is specific to the type.                     |
+| buttonDisabled | disabled          | If the subject IS the component, don't give it a subject name.                     |
 
 ### Event callbacks
 
@@ -117,8 +117,9 @@ name. Always use present tense verbs instead of past tense.
 | onClicked                | onClick      |
 | inputClick, onClickInput | onInputClick |
 
-It should also be noted that for event callbacks, the ORDER of parameters should be consistent with the precisdence if one exists. For
-example:
+It should also be noted that for event callbacks, the ORDER of parameters should be consistent with the precedence if one exists.
+
+Example:
 
 | BAD                                                  | GOOD                                                       |
 | ---------------------------------------------------- | ---------------------------------------------------------- |
@@ -193,147 +194,20 @@ public render() {
 
 Good:
 
-The `createRef` function in `lib/Utilities` is a polyfill for [React.createRef](https://reactjs.org/docs/refs-and-the-dom.html#creating-refs). (When Fabric switches over to React 16, we'll use React.createRef instead)
-
-`createRef` creates a reference object that has the following type `{ current: T | null }`, where T is the element to reference (either a dom node or a react component). You set the reference by passing the reference object as the `ref` prop. You can then subsequently access the reference through the `.current` property on the reference object elsewhere in your code.
+Use [React.createRef](https://reactjs.org/docs/refs-and-the-dom.html#creating-refs) for ref objects, or for functional components, use the [React.useRef](https://reactjs.org/docs/hooks-reference.html#useref) hook.
 
 ```typescript
-import { createRef } from 'office-ui-fabric-react/lib/Utilities';
+import { useRef, useEffect } from "react";
 
-class Foo extends BaseComponent<...> {
-  // Create the reference object that will be used for setting and accessing the reference
-  private _root = createRef<HTMLButtonElement>();
+const App = () => {
+  const buttonRef = useRef(undefined);
 
-  public render(): JSX.Element {
-    // Set the reference by passing the reference object as the ref prop
-    return <button ref={ _root } onClick={this._onClick} />;
-  }
+  // Focus the button on mount.
+  useEffect(() => buttonRef.current.focus(), []);
 
-  private _onClick(): void {
-    // Access the reference through the .current property on the reference object
-    this._root.current.focus();
-  }
-}
+  return <Button componentRef={buttonRef} />;
+};
 ```
-
-Note that it's very critical you do NOT inline the functions in render! This causes weird side effects, because the function
-is recreated. If you do this, react will call your function with null to clear it, and then render, and then once complete, will
-call it again with the element. This creates timing issues where your ref may be null when you didn't expect.
-
-## Use unique keys for items in a mapped array, avoid indexes for keys
-
-```typescript
-public render() {
-  return (
-    <div>
-      { this.props.items.map((item, index)=> (
-        <div key={ item.key }>
-          <input type="text" />
-        </div>
-      )) }
-    </div>
-  );
-}
-```
-
-When you need to map data, require that your data have unique ids available. When you map the data to content, use the id as
-the item's key. This helps React's dom diffing to understand which elements represent which items.
-
-When your code uses index as the key, this can cause unexpected side effects. For example, say that each component you map items to
-maintains some internal state, like the value in an uncontrolled input box. Removing an item in the array will not reset that state
-and react will think the first text box still represents key "0", which is actually now a different item, and thus will not re-render
-the component, leaving the old state intact.
-
-So lesson is, use actual unique ids for items that come from the data, rather than generated by the ux component, and thus require
-that your data has ids so that you can use that as a unique identifier for rendering.
-
-## Avoid nesting content in an array, wrap mapped content in component instead.
-
-When we do inline mapped entries, we want to inline the content in the map:
-
-Bad:
-
-```typescript
-class Foo extends React.Component {
-  public render() {
-    return (
-      <div>
-        {items.map(item => (
-          <div key={item.key} onClick={this._onItemClick.bind(this, item)}>
-            {item.name}
-          </div>
-        ))}
-      </div>
-    );
-  }
-}
-```
-
-Better:
-
-```typescript
-class Foo extends React.Component {
-  public render() {
-    return (
-      <div>
-        { items.map(item => (
-        <ItemComponent key={ item.key } item={ item } />
-        )) }
-      </div>
-    );
-  }
-}
-
-class ItemComponent extends React.Component<...> {
-  let { item } = this.props;
-
-  render() {
-    return (
-      <div onClick={ this._onClick }>{ item.name }</div>
-    );
-  }
-
-  _onClick = (ev: MouseEvent) => {
-
-  }
-}
-```
-
-## Adding the option to override the root DOM element
-
-Some components allow users to override the root DOM element that is rendered by the component. Our `<Link />` component is one of these. The user can provide an `as` prop to specify the root element.
-
-When designing your components you can chose to allow the user to do the same.
-
-Your component should render a _default_ element but render the component passed through the `as` prop instead when it is provided. An example of such a component could be.
-
-```tsx
-function MyLink({ as = "a", text = "Hello" }) {
-  return <props.a></props.a>;
-}
-```
-
-## Extend from BaseComponent instead of React.Component in most cases.
-
-In the common folder, there exists a BaseComponent class. For simple components, it may be unnecessary to use.
-
-If you extend this, you get a few useful utilities:
-
-\_events: An instance of the EventGroup, scoped to the component. It will auto dispose on component unmounting so that you don't forget.
-
-\_async: A collection of utilities for performing async operations, scoped to the component. This includes setTimeout/setInterval helpers as
-well as utilities for generating throttled/debounced wrappers. Again, anything you use here will be automatically cleaned up on unmounting.
-
-\_disposables: An array of IDisposable instances. If you have things you want disposed, you can push them into this.
-
-Another interesting thing is that when exceptions occur within React's methods, things tend to silently fail. With the BaseComponent, we
-make all methods "safe" meaning that if an exception occurs, we send the exception to a global callback which can be hooked up to a
-telemetry post. By default however, we forward the exception to `console.error` with the exact class/method that threw the exception so
-that there is an obvious hint what went wrong.
-
-There are some cases where it may be overkill to subclass from this; a simple Button wrapper for example really doesn't need to be more
-than a simple stateless component and doesn't need extra imports, which would result in making Button's dependency graph heavier. Use your
-best judgement.
 
 ## Use React eventing, unless you need to use native.
 
@@ -362,8 +236,7 @@ A component's SCSS file should ONLY include files applicable to the component, a
 
 ## Things to flat out avoid
 
-Singletons and globals. Do not share state of a component via a singleton instance object. This is a pure anti-pattern for the following
-reasons:
+Singletons and globals. Do not share state of a component via a singleton instance object. This is a pure anti-pattern for the following reasons:
 
 - Singletons have no lifetime and therefore can't initialize/clean up when they aren't used.
 - Singletons often paint you into a corner when you want more than one of the same thing on the page.
@@ -373,8 +246,7 @@ reasons:
 Data and state should always follow the lifetime of the component that owns it. When that component is no longer needed, the state should
 be garbage collected, event handlers should be removed, and xhr requires spawned in that context should be cancelled.
 
-There are cases where everything should share a common instance of a store; Persona presence is a great example. We have solutions that
-enable the code within a component scope to access shared stores. See store usage section below.
+There are exceptional cases where everything should share a common instance of a store; Persona presence is a great example.
 
 ## Use const values global to a file, rather than as static members
 
@@ -398,215 +270,3 @@ class Foo {}
 
 Note: using file scopes minimizes the name down to 1 character, whereas this.REALLY_LONG_NAME doesn't minify the name. Caveat being
 that if you export it, minify won't touch exports.
-
-## Use private members only for managing state local to a component that should not affect rendering when mutating
-
-Bad:
-
-```typescript
-class Foo extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isMounted: false
-    };
-  }
-
-  componentDidMount() {
-    this.setState({
-      isMounted: true
-    });
-  }
-
-  render() {
-    return <div>Hello!</div>;
-  }
-}
-```
-
-Good:
-
-```typescript
-class Foo extends React.Component {
-  private _isMounted: boolean;
-
-  constructor(props) {
-    super(props);
-    this._isMounted = false;
-  }
-
-  componentDidMount() {
-    this._isMounted = true;
-  }
-
-  render() {
-    return <div>Hello!</div>;
-  }
-}
-```
-
-Basically privates should only be use for tracking this that in no way affect the frequency of render. In some cases, you many
-have an object which fires change events yet doesn't mutate, and you want to re-render on change events. In these cases, privates
-may be used to store the object reference.
-
-## Use component state only for managing local state that is private to a component that should trigger re-render on mutation
-
-Bad:
-
-```typescript
-class Foo extends React.Component {
-  private _fooRocks: boolean;
-
-  render() {
-    return <div onClick={ this._onClick }>{ `Foo ${ this._fooRocks ? 'rocks' : 'rolls' }</div>;
-  }
-
-  private _onClick(): void {
-    this._fooRocks = !this._fooRocks;
-    this.forceUpdate();
-  }
-```
-
-Good:
-
-```typescript
-class Foo extends React.Component {
-  constructor() {
-    super(props);
-
-    this.state = {
-      fooRocks: false
-    };
-  }
-
-  render() {
-    return <div onClick={ this._onClick }>{ `Foo ${ this.state.fooRocks ? 'rocks' : 'rolls' }</div>;
-  }
-
-  private _onClick(): void {
-    this.setState({
-      fooRocks: !this.state.fooRocks
-    });
-  }
-```
-
-## Experimental: Use a store for storing shared state within a component hierarchy which must be shared across objects
-
-While React state management is very useful for simple, private state, it becomes unwieldy when many things share that state
-and you start ending up with many owners of the same state value. In these cases it may drive you towards a flux solution, but
-before we jump there, lets call out a few things.
-
-- Global singletons are code smell, do not use globals or singletons except for very rare cases
-- Do not store complex shared state directly in the components, this is also code smell
-
-Instead, make a store and wire dumb components together the store.
-
-What is a store?
-
-Think of a store as a self aware observable; it maintains state, and provides read/write access to that state. When its state
-changes, it can emit change events causing components to re-evaluate.
-
-Here's an example store which tracks selection:
-
-```typescript
-class SimpleSelectionStore extends BaseStore {
-  private _selectedKey: string;
-
-  public isSelected(key: string) {
-    return key === this._selectedKey;
-  }
-
-  public setSelected(key: string) {
-    if (this._selectedKey !== key) {
-      this._selectedKey = key;
-      this.emitChange();
-    }
-  }
-}
-```
-
-While we do not want globals, we do want simplified access to the stores available in a given component scope.
-
-You can use the StoreHost component to host stores within any given scope:
-
-```typescript
-const stores = {
-  selection: new SimpleSelectionStore()
-};
-
-public render() {
-  return (
-    <StoreHost stores={ stores }>
-      <UIContent />
-    </StoreHost>
-  );
-}
-```
-
-You can write dumb components:
-
-```typescript
-const Item = (props) => (
-  <div onClick={ props.onClick }>{ `I am item ${ props.name } and I'm ${ props.isSelected ? 'selected' : 'unselected' }</div>
-);
-```
-
-And you can use the `connect` function to create a ConnectedItem which wraps the dumb component and translates the props
-and stores in its context into props for the dumb component:
-
-```typescript
-export ConnectedItem = connect(Item, (stores, props) => ({
-  name: props.item.name,
-  isSelected: stores.selection.isSelected(props.item.key),
-  onClick: () => stores.selection.setSelected(props.item.key)
-}));
-```
-
-Now in this setup, your state is in one place, it is composable and can have lifetime, and your dumb ui has no understanding
-of the contextual stores provided.
-
-# CSS class name guidelines
-
-TODO: include our class name guidelines.
-
-Example:
-
-ms-Component-area--flags
-
-# Style guidelines
-
-## Every component must be RTL friendly.
-
-Be conscious of RTL support. In scss, do not hardcode left/right alignemnts and instead use the RTL macros:
-
-```scss
-.ms-Foo {
-  @include float(left);
-}
-```
-
-This will output the following rules in the output:
-
-```css
-html[dir="ltr"] .ms-Foo {
-  float: left;
-}
-
-html[dir="rtl"] .ms-Foo {
-  float: right;
-}
-```
-
-Additionally try to have symmetrical paddings rather than using padding-right or left specifics.
-
-## Do not use core fabric classnames, but instead use core fabric scss mixins.
-
-E.g. using ms-font-s classname in a component is forbidden. It makes overriding CSS rules really painful. Instead, use @include ms-font-m;
-
-# Example page guidelines
-
-Examples should follow a naming convention: Component.Desc.Example.ts
-
-The root of the test component should use ms-ComponentDescExample as the root class.
-
-Examples should not re-define component styles.
