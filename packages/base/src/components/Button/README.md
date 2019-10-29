@@ -94,7 +94,7 @@ The following are variants that exist because of the need of `Buttons` to reside
 
 ## Reference implementations
 
-The following section documents links to different UI libraries implementations of Buttons, while also providing a codebox with a side by side implementation of them for comparison.
+The following section documents links to different UI libraries implementations of Buttons, while also providing a code sandbox with a side by side implementation of them for comparison.
 
 - [Side-by-side implementations](https://codesandbox.io/s/button-implementations-93x8z)
 
