@@ -313,7 +313,7 @@ https://developer.microsoft.com/en-us/fabric#/controls/web/button
 | `toggled`                          | Removing as it is already deprecated. | &#9745;                | No, because prop is already deprecated. | &#x274C;              |
 | `uniqueId`                         | TBD                                   | &#x274C;               | &#x274C;                                | &#x274C;              |
 
-### Conversion process Stardust to Fluent UI Button
+### Conversion process from Stardust to Fluent UI Button
 
 #### ButtonProps interface
 
