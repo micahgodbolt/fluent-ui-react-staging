@@ -27,7 +27,7 @@ Cabon Checkbox [docs](https://www.carbondesignsystem.com/components/Checkbox/cod
 
 AntD Checkbox [docs](https://ant.design/components/Checkbox/)
 
-FastDNA Checkbox [docs](https://github.com/microsoft/fast-dna/tree/master/packages/fast-components-@fluentui/base/src/Checkbox), [example](https://explore.fast.design/components/Checkbox
+FastDNA Checkbox [docs](https://github.com/microsoft/fast-dna/tree/master/packages/fast-components-@fluentui/base/src/Checkbox), [example](https://explore.fast.design/components/Checkbox)
 
 
 ## Props
