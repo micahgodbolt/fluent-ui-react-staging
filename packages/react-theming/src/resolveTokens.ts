@@ -1,3 +1,5 @@
+import { ITheme } from "./theme.types";
+
 type TokenDict = { [name: string]: Token };
 
 interface Token {
@@ -77,11 +79,16 @@ class TokenFactory {
 /**
  * resolveTokens
  * takes a set of tokens and resolves all references
+ * @param componentName name of component, used to look up overrides in token
  * @param theme theme to resolve
  * @param sourceTokensSet
  * @internal
  */
-export const resolveTokens = (theme: any, sourceTokensSet: any[]) => {
+export const resolveTokens = (
+  componentName: string,
+  theme: ITheme,
+  sourceTokensSet: any[]
+) => {
   const tokens: TokenDict = {};
 
   sourceTokensSet.forEach(sourceTokens => {
@@ -93,6 +100,17 @@ export const resolveTokens = (theme: any, sourceTokensSet: any[]) => {
       );
     }
   });
+
+  const sourceTokens = theme.components[componentName];
+  if (sourceTokens) {
+    for (let tokenName in sourceTokens) {
+      tokens[tokenName] = TokenFactory.from(
+        tokens,
+        sourceTokens[tokenName],
+        tokenName
+      );
+    }
+  }
 
   while (true) {
     let allResolved = true;
