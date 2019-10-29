@@ -4,7 +4,9 @@ The `Checkbox` component allows a user to choose between two mutually exclusive 
 
 ## Related variant considerations
 
-Toggle, Indeterminate/Tri State
+- Toggle
+
+- Indeterminate/Tri State
 
 ## Reference implementations
 
@@ -245,6 +247,7 @@ Focus indicators should not show in mouse or touch interaction; they should only
 ### Mouse input
 
 - `mouseenter` should change the styling of checkbox to hovered state (preview what it looks like to be toggled but not full styling - checkmark, but not background color for example as in current Fabric 7 checkbox).
+- `mouseleave` should change the styling of checkbox back to non-hovered state (so remove the preview of checked state)
 - `mousedown` toggle state
 - `mouseup` apply styling of new state
 
@@ -266,7 +269,7 @@ If there's additional static text representing that is descriptive, `aria-descri
 
 ### Accessibility concerns for the user
 
-`aria-label`, `aria-labeledby`: Describe what is the purpose of the checkbox, latter points to id of element with former.
+`aria-label`, `aria-labelledby`: Describe what is the purpose of the checkbox, latter points to id of element with former.
 
 ### Themability and customization
 
