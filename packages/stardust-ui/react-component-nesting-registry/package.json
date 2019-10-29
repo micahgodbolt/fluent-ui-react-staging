@@ -27,8 +27,7 @@
   },
   "repository": "stardust-ui/react.git",
   "scripts": {
-    "build": "gulp bundle:package:no-umd --package react-component-nesting-registry"
+    "build": "just-scripts build"
   },
-  "sideEffects": false,
-  "types": "dist/es/index.d.ts"
+  "sideEffects": false
 }

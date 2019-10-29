@@ -6,7 +6,6 @@
     "types": ["node", "jest"],
     "jsx": "react",
     "importHelpers": true,
-    "isolatedModules": true,
     "moduleResolution": "node",
     "sourceMap": true,
     "allowJs": false,
@@ -14,6 +13,7 @@
     "noImplicitThis": false,
     "noImplicitAny": false,
     "strictNullChecks": false,
-    "noUnusedLocals": true
+    "noUnusedLocals": true,
+    "esModuleInterop": true
   }
 }

@@ -24,8 +24,7 @@
   },
   "repository": "stardust-ui/react.git",
   "scripts": {
-    "build": "gulp bundle:package:no-umd --package react-proptypes"
+    "build": "just-scripts build"
   },
-  "sideEffects": false,
-  "types": "dist/es/index.d.ts"
+  "sideEffects": false
 }

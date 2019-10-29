@@ -28,8 +28,7 @@
   },
   "repository": "stardust-ui/react.git",
   "scripts": {
-    "build": "cross-env TS_NODE_PROJECT=../../tsconfig.json gulp bundle:package:no-umd --package react-bindings"
+    "build": "just-scripts build"
   },
-  "sideEffects": false,
-  "types": "dist/es/index.d.ts"
+  "sideEffects": false
 }
