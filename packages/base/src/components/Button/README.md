@@ -783,7 +783,7 @@ The same behavior as above translated for touch events. This means that there is
 
 #### `root`:
 
-- Should render a native `button` element, or a native `a` element if the `href` prop has been set.
+- Should render the native element using the `as` prop, defaulting to a native `button` element, or a native `a` element if the `href` prop has been set.
 - Should mix in the native props expected for the `button` or `a` native elements depending on if the `href` prop has been set.
 - Should be keyboard tabbable and focusable.
 
