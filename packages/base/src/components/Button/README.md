@@ -146,7 +146,7 @@ The following section documents the properties that will become part of the new 
 
 | Name        | Type              | Default value | Description                                                                            |
 | ----------- | :--------------:  | :-----------: | -------------------------------------------------------------------------------------- |
-| `as`        | `string`          |               | Defines a component that should be used as the root element of th `Button`.            |
+| `as`        | `string`          |               | Defines a component that should be used as the root element of the `Button`.           |
 | `className` | `string`          |               | Defines an additional classname to provide on the root of the `Button`.                |
 | `disabled`  | `boolean`         | `false`       | Defines whether the `Button` is in an enabled or disabled state.                       |
 | `href`      | `string`          |               | Defines an href that, if provided, will make the `Button` render as an anchor.         |
