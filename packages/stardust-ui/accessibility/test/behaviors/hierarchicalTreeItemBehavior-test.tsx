@@ -1,4 +1,4 @@
-import { hierarchicalTreeItemBehavior } from './';
+import { hierarchicalTreeItemBehavior } from '@stardust-ui/accessibility';
 
 describe('HierarchicalTreeItemBehavior', () => {
   describe('tabIndex', () => {

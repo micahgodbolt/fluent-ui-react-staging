@@ -6,8 +6,9 @@ import { findGitRoot } from '../monorepo/findGitRoot';
 
 export function autoProjectRefsTask() {
   const updatedTsconfigs = getUpdatedTsconfigs();
+
   if (updatedTsconfigs.size > 0) {
-    for (const [file, blob] of Object.entries(updatedTsconfigs)) {
+    for (const [file, blob] of updatedTsconfigs.entries()) {
       console.log(`Updating ${file} with project references`);
       fs.writeFileSync(file, JSON.stringify(blob, null, 2));
     }
@@ -55,7 +56,6 @@ function getUpdatedTsconfigs() {
         isDirty = true;
       }
     } else if (JSON.stringify(tsconfigJson.references) !== JSON.stringify(newRefs)) {
-      console.log('OVERWRITTEN: ', tsconfigJson.references, newRefs);
       tsconfigJson.references = newRefs;
       isDirty = true;
     }

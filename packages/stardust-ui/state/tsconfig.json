@@ -2,8 +2,8 @@
   "extends": "@fluentui/scripts/config/typescript/tsconfig.stardust-ui.json",
   "compilerOptions": {
     "composite": true,
-    "rootDirs": ["src", "test"],
+    "rootDirs": ["src"],
     "outDir": "lib"
   },
-  "include": ["src", "test"]
+  "include": ["src"]
 }

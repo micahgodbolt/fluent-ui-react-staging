@@ -1,4 +1,4 @@
-import { treeTitleBehavior } from './';
+import { treeTitleBehavior } from '@stardust-ui/accessibility';
 
 describe('TreeTitleBehavior', () => {
   describe('tabIndex', () => {

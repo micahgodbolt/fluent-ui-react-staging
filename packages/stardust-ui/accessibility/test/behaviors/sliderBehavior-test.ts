@@ -1,4 +1,4 @@
-import { sliderBehavior } from './';
+import { sliderBehavior } from '@stardust-ui/accessibility';
 
 type SliderBehaviorTestOptions = {
   propName: string;
