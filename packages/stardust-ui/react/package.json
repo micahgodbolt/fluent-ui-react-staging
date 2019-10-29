@@ -36,10 +36,8 @@
     "dist"
   ],
   "homepage": "https://github.com/stardust-ui/react#readme",
-  "jsnext:main": "dist/es/index.js",
   "license": "MIT",
-  "main": "dist/commonjs/index.js",
-  "module": "dist/es/index.js",
+  "main": "src/index.ts",
   "peerDependencies": {
     "react": "^16.8.0",
     "react-dom": "^16.8.0"

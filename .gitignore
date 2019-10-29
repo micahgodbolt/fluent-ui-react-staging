@@ -1,6 +1,7 @@
 # typescript
 *.tsbuildinfo
 lib/
+!packages/stardust-ui/*/src/lib/
 storybook-static/
 
 index.d.ts
