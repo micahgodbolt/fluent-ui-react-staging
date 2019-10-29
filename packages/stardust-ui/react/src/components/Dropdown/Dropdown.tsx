@@ -818,6 +818,9 @@ class Dropdown extends AutoControlledComponent<WithAsProp<DropdownProps>, Dropdo
         if (state.isOpen && activeElement === this.listRef.current) {
           return {} // won't change state in this case.
         }
+
+        return changes
+
       default:
         return changes
     }
@@ -1088,7 +1091,8 @@ class Dropdown extends AutoControlledComponent<WithAsProp<DropdownProps>, Dropdo
         accessibilityInputPropsKeyDown(e)
         this.tryFocusTriggerButton()
         e.stopPropagation()
-        return
+        break
+
       default:
         const keyString = String.fromCharCode(keyCode)
         if (/[a-zA-Z0-9]/.test(keyString)) {

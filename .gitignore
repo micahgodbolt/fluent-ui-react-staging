@@ -2,6 +2,7 @@
 *.tsbuildinfo
 lib/
 !packages/stardust-ui/*/src/lib/
+!packages/stardust-ui/react/src/components/Tree/lib/
 storybook-static/
 
 index.d.ts
