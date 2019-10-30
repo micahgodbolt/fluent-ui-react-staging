@@ -50,7 +50,8 @@ describe("resolveTokens", () => {
         }),
         [
           {
-            value: (t: ITheme) => t.colors.brand.values[t.colors.brand.index]
+            value: (_: any, t: ITheme) =>
+              t.colors.brand.values[t.colors.brand.index]
           }
         ]
       )
@@ -64,7 +65,7 @@ describe("resolveTokens", () => {
           value: "abc",
           value2: {
             dependsOn: ["value"],
-            resolve: (theme: any, [value]: any) => value.value + "def"
+            resolve: ([value]: any, theme: any) => value.value + "def"
           }
         }
       ])
@@ -87,9 +88,9 @@ describe("resolveTokens", () => {
           {
             value2: {
               dependsOn: ["value"],
-              resolve: (theme: ITheme, [value]: any) => value.value + "def"
+              resolve: ([value]: any, theme: ITheme) => value.value + "def"
             },
-            value: (t: ITheme) => t.colors.brand.values[0]
+            value: (_: any, t: ITheme) => t.colors.brand.values[0]
           }
         ]
       )
@@ -119,7 +120,7 @@ describe("resolveTokens", () => {
             tokens: {
               value2: {
                 dependsOn: ["value"],
-                resolve: (theme: ITheme, [value]: any) => value.value + "bar"
+                resolve: ([value]: any, theme: ITheme) => value.value + "bar"
               }
             }
           }
@@ -129,7 +130,7 @@ describe("resolveTokens", () => {
         value: "foo",
         value2: {
           dependsOn: ["value"],
-          resolve: (theme: ITheme, [value]: any) => value.value + "foo"
+          resolve: ([value]: any, theme: ITheme) => value.value + "foo"
         }
       };
       const result = resolveTokens("MyComponent", theme, [baseTokens]);

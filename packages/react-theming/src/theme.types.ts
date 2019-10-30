@@ -18,7 +18,7 @@ export type ITokenLiteral = string | number | ICastableToString;
 /** @public */
 export interface ITokenResolver {
   dependsOn: string[];
-  resolve: (theme: ITheme, arg: ITokenLiteral[]) => ITokenLiteral;
+  resolve: (arg: ITokenLiteral[], theme: ITheme) => ITokenLiteral;
 }
 
 /** @public */

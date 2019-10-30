@@ -40,14 +40,14 @@ class FunctionToken implements Token {
   constructor(
     private tokens: TokenDict,
     public name: string,
-    public valueFn: (theme: any, tokenVals?: any[]) => any,
+    public valueFn: (tokenVals: any[], theme: any) => any,
     public deps: string[]
   ) {}
 
   public value: any;
 
   resolve(theme: any): void {
-    this.value = this.valueFn(theme, this.deps.map(d => this.tokens[d]));
+    this.value = this.valueFn(this.deps.map(d => this.tokens[d]), theme);
     this._isResolved = true;
   }
 
