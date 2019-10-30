@@ -106,6 +106,11 @@ const styles = (t: IResolvedTokens<ISliderTokens>) => ({
       borderColor: t.thumbBorderColor
     },
 
+    "$root:active &:after": {
+      width: t.thumbSizePressed,
+      height: t.thumbSizePressed
+    },
+
     "$rootDisabled &:after": {
       borderColor: t.thumbBorderColorDisabled
     }

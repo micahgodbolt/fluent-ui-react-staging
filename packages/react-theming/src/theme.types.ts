@@ -17,8 +17,8 @@ export type ITokenLiteral = string | number | ICastableToString;
 
 /** @public */
 export interface ITokenResolver {
-  dependsOn: string[];
-  resolve: (arg: ITokenLiteral[], theme: ITheme) => ITokenLiteral;
+  dependsOn: string | string[];
+  resolve?: (arg: ITokenLiteral[], theme: ITheme) => ITokenLiteral;
 }
 
 /** @public */
@@ -33,9 +33,10 @@ export type IResolvedTokens<TTokens> = {
 };
 
 type IComponentOverrides = {
-  tokens?: { [token: string]: IToken };
+  tokens?: any;
   slots?: any;
 };
+
 type IComponentOverrideGroup = { [componentName: string]: IComponentOverrides };
 
 export type IThemeColorDefinition = {
@@ -92,4 +93,8 @@ export interface ITheme {
   icons: {};
 
   components: IComponentOverrideGroup;
+
+  schemes: {
+    [key: string]: ITheme;
+  };
 }
