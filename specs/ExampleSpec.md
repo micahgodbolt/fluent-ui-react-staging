@@ -2,7 +2,7 @@
 >
 > Its primary audience is a developer authoring a given component.
 >
-> Specs are important to write down, as the author implementing a component may not always be the author maintaining it in the long term. Decisions should be recorded so that maintainers know what was originally inferred, but also so that consumers of the code know what is to be expected.
+> Specs are important to write down, as the author implementing a component may not always be the long-term maintainer. Decisions should be recorded so that maintainers know what was originally intended, but also so that consumers understand the expected behavior.
 
 # {ComponentName} component specification
 
