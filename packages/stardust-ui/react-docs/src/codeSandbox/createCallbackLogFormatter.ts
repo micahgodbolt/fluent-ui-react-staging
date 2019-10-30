@@ -1,1 +1,1 @@
-export const createCallbackLogFormatter = () => {}
+export const createCallbackLogFormatter = (..._args: any[]) => {}
