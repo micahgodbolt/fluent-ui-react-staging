@@ -7,7 +7,7 @@
     "build": "just-scripts build"
   },
   "dependencies": {
-    "@stardust-ui/react": "*",
+    "@stardust-ui/react-docs": "*",
     "@fluentui/react": "*"
   },
   "devDependencies": {
