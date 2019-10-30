@@ -192,7 +192,7 @@
 
 ## Use cases
 
-> If applicable, call out specific use cases, or specific cases to consider that take context into consideration.
+> If applicable, call out specific use cases for the component that are exceptional.
 >
 > Example:
 >
