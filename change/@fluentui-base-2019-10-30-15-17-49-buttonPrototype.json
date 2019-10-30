@@ -1,0 +1,9 @@
+{
+  "type": "minor",
+  "comment": "Button: Adding base prototype without theming.",
+  "packageName": "@fluentui/base",
+  "email": "Humberto.Morimoto@microsoft.com",
+  "commit": "3c0b4b82f9dba967cc926df88a54571c6fda98e6",
+  "date": "2019-10-30T22:17:49.103Z",
+  "file": "D:\\fluent-ui\\change\\@fluentui-base-2019-10-30-15-17-49-buttonPrototype.json"
+}
