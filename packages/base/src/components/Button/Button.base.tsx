@@ -5,7 +5,7 @@ import { useButton } from "./useButton";
 
 export const ButtonBase: React.FunctionComponent<IButtonProps> = (props: IButtonProps) => {
     const { children, href, slots } = props;
-    const { tag, type } = _deriveRootType(href);
+    const tag = _deriveRootType(href);
     const {
         endIcon: EndIcon = "i",
         root: Root = tag,
@@ -23,13 +23,9 @@ export const ButtonBase: React.FunctionComponent<IButtonProps> = (props: IButton
     );
 };
 
-interface IButtonRootType {
-    tag: 'button' | 'a';
-    type: 'button' | 'link';
-}
 
-function _deriveRootType(href?: string): IButtonRootType {
-    return !!href ? { tag: 'a', type: "link" } : { tag: 'button', type: 'button'};
+function _deriveRootType(href?: string): 'button' | 'a' {
+    return href ? 'a' : 'button';
 }
 
 /**

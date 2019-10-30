@@ -7,7 +7,7 @@ export default {
 };
 
 const _onClick = () => {
-  alert("Button was clicked");
+  console.log("Button was clicked");
 };
 
 export const baseButton = () => (
