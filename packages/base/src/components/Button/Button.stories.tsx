@@ -7,6 +7,7 @@ export default {
 };
 
 const _onClick = () => {
+  // eslint-disable-next-line no-console
   console.log("Button was clicked");
 };
 

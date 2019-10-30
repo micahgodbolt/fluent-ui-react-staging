@@ -1,6 +1,6 @@
 import * as React from "react";
-import { IButtonProps } from "./Button.types";
 import { mergeSlotProps } from "@fluentui/react-theming";
+import { IButtonProps } from "./Button.types";
 
 export interface IButtonState {
   onClick: (ev: MouseEvent) => void;
