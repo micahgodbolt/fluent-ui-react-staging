@@ -1,0 +1,16 @@
+{
+  "name": "pr-deploy-site",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "just-scripts build"
+  },
+  "dependencies": {
+    "@stardust-ui/react": "*",
+    "@fluentui/react": "*"
+  },
+  "devDependencies": {
+    "@fluentui/scripts": "*"
+  }
+}
