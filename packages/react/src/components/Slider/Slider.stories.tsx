@@ -57,9 +57,11 @@ const redTheme: ITheme = {
   ...theme,
   components: {
     Slider: {
-      thumbColor: "#900",
-      thumbColorHovered: "#b00",
-      thumbColorPressed: "#f00"
+      tokens: {
+        thumbColor: "#900",
+        thumbColorHovered: "#b00",
+        thumbColorPressed: "#f00"
+      }
     }
   }
 };

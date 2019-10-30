@@ -101,8 +101,11 @@ export const resolveTokens = (
     }
   });
 
-  const sourceTokens = theme.components[componentName];
-  if (sourceTokens) {
+  if (
+    theme.components[componentName] &&
+    theme.components[componentName].tokens
+  ) {
+    const sourceTokens = theme.components[componentName].tokens;
     for (let tokenName in sourceTokens) {
       tokens[tokenName] = TokenFactory.from(
         tokens,

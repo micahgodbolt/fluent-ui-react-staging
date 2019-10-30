@@ -101,7 +101,9 @@ describe("resolveTokens", () => {
       const theme = reifyTheme({
         components: {
           MyComponent: {
-            value: "bar"
+            tokens: {
+              value: "bar"
+            }
           }
         }
       });
@@ -114,9 +116,11 @@ describe("resolveTokens", () => {
       const theme: ITheme = reifyTheme({
         components: {
           MyComponent: {
-            value2: {
-              dependsOn: ["value"],
-              resolve: (theme: ITheme, [value]: any) => value.value + "bar"
+            tokens: {
+              value2: {
+                dependsOn: ["value"],
+                resolve: (theme: ITheme, [value]: any) => value.value + "bar"
+              }
             }
           }
         }

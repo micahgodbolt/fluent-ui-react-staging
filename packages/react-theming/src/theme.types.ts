@@ -32,7 +32,10 @@ export type IResolvedTokens<TTokens> = {
   [key in keyof TTokens]: ITokenLiteral;
 };
 
-type IComponentOverrides = { [token: string]: IToken };
+type IComponentOverrides = {
+  tokens?: { [token: string]: IToken };
+  slots?: any;
+};
 type IComponentOverrideGroup = { [componentName: string]: IComponentOverrides };
 
 export type IThemeColorDefinition = {

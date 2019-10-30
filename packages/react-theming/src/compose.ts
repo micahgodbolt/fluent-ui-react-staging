@@ -80,10 +80,11 @@ export const _composeFactory = (useThemeHook: any = useTheme) => {
       theme &&
       theme.components &&
       theme.components[name] &&
-      typeof theme.components[name] === "object"
+      theme.components[name].slots &&
+      typeof theme.components[name].slots === "object"
     ) {
-      Object.keys(theme.components[name]).forEach(k => {
-        (result as any)[k] = theme.components[name][k];
+      Object.keys(theme.components[name].slots).forEach(k => {
+        (result as any)[k] = theme.components[name].slots[k];
       });
     }
     return result;
