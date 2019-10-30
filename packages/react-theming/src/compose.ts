@@ -1,6 +1,7 @@
 import { useTheme } from "./themeContext";
 import { resolveTokens } from "./resolveTokens";
 import jss from "jss";
+import { ITheme } from "./theme.types";
 
 type Options = any;
 type SlotsAssignment = any;
@@ -10,7 +11,7 @@ type SlotsAssignment = any;
  *
  * @internal
  */
-export const _composeFactory = <TTheme>(useThemeHook: any = useTheme) => {
+export const _composeFactory = (useThemeHook: any = useTheme) => {
   const composeInstance = <TProps = {}>(
     baseComponent: React.SFC<TProps>,
     options?: any
@@ -30,11 +31,13 @@ export const _composeFactory = <TTheme>(useThemeHook: any = useTheme) => {
     });
 
     const Component = (props: TProps) => {
-      const theme: TTheme = useThemeHook();
+      const theme: ITheme = useThemeHook();
       const slots = resolveSlots(name, optionsSet, theme);
 
       if (!theme) {
-        console.warn("No theme specified, behavior undefined."); // eslint-disable-line no-console
+        throw new Error(
+          "No theme specified. Plese provide a ThemeProvider. See aka.url/fluent-theming TODO for more detauls"
+        );
       }
 
       return renderFn({
@@ -58,7 +61,7 @@ export const _composeFactory = <TTheme>(useThemeHook: any = useTheme) => {
     return Component;
   };
 
-  const resolveSlots = <TTheme>(
+  const resolveSlots = (
     name: string,
     optionsSet: Options[],
     theme: any
@@ -77,10 +80,11 @@ export const _composeFactory = <TTheme>(useThemeHook: any = useTheme) => {
       theme &&
       theme.components &&
       theme.components[name] &&
-      typeof theme.components[name] === "object"
+      theme.components[name].slots &&
+      typeof theme.components[name].slots === "object"
     ) {
-      Object.keys(theme.components[name]).forEach(k => {
-        (result as any)[k] = theme.components[name][k];
+      Object.keys(theme.components[name].slots).forEach(k => {
+        (result as any)[k] = theme.components[name].slots[k];
       });
     }
     return result;
@@ -99,16 +103,20 @@ export const _composeFactory = <TTheme>(useThemeHook: any = useTheme) => {
  */
 export const compose = _composeFactory();
 
-const _getClasses = <TTheme>(
+const _getClasses = (
   name: string,
-  theme: TTheme,
+  theme: ITheme,
   classNamesCache: WeakMap<any, any>,
   optionsSet: any[]
 ) => {
   let classes = classNamesCache.get(theme);
 
   if (!classes) {
-    const tokens = resolveTokens(theme, optionsSet.map(o => o.tokens || {}));
+    const tokens = resolveTokens(
+      name,
+      theme,
+      optionsSet.map(o => o.tokens || {})
+    );
     let styles: any = {};
 
     optionsSet.forEach((options: any) => {

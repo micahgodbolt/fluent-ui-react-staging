@@ -1,3 +1,5 @@
+import { ITheme } from "./theme.types";
+
 type TokenDict = { [name: string]: Token };
 
 interface Token {
@@ -38,14 +40,14 @@ class FunctionToken implements Token {
   constructor(
     private tokens: TokenDict,
     public name: string,
-    public valueFn: (theme: any, tokenVals?: any[]) => any,
+    public valueFn: (tokenVals: any[], theme: any) => any,
     public deps: string[]
   ) {}
 
   public value: any;
 
   resolve(theme: any): void {
-    this.value = this.valueFn(theme, this.deps.map(d => this.tokens[d]));
+    this.value = this.valueFn(this.deps.map(d => this.tokens[d]), theme);
     this._isResolved = true;
   }
 
@@ -77,11 +79,16 @@ class TokenFactory {
 /**
  * resolveTokens
  * takes a set of tokens and resolves all references
+ * @param componentName name of component, used to look up overrides in token
  * @param theme theme to resolve
  * @param sourceTokensSet
  * @internal
  */
-export const resolveTokens = (theme: any, sourceTokensSet: any[]) => {
+export const resolveTokens = (
+  componentName: string,
+  theme: ITheme,
+  sourceTokensSet: any[]
+) => {
   const tokens: TokenDict = {};
 
   sourceTokensSet.forEach(sourceTokens => {
@@ -93,6 +100,20 @@ export const resolveTokens = (theme: any, sourceTokensSet: any[]) => {
       );
     }
   });
+
+  if (
+    theme.components[componentName] &&
+    theme.components[componentName].tokens
+  ) {
+    const sourceTokens = theme.components[componentName].tokens;
+    for (let tokenName in sourceTokens) {
+      tokens[tokenName] = TokenFactory.from(
+        tokens,
+        sourceTokens[tokenName],
+        tokenName
+      );
+    }
+  }
 
   while (true) {
     let allResolved = true;
