@@ -7,9 +7,8 @@ export const LinkBase: React.FunctionComponent<ILinkProps> = (
   props: ILinkProps
 ) => {
   const { children, href, slots } = props;
-    const tag = _deriveRootType(href);
     const {
-        root: Root = tag
+        root: Root = href ? 'a' : 'button'
     } = (slots || {}) as ILinkSlots;
 
     const { slotProps = {} } = useLink(props);
@@ -20,27 +19,3 @@ export const LinkBase: React.FunctionComponent<ILinkProps> = (
         </Root>
     );
 };
-
-
-function _deriveRootType(href?: string): 'a' | 'button' {
-    return href ? 'a' : 'button';
-}
-
-/**
- * Button component proptypes.
- */
-LinkBase.propTypes = {
-    children: PropTypes.node,
-    disabled: PropTypes.bool,
-    href: PropTypes.string,
-
-    /** slots */
-    slots: PropTypes.shape({
-        root: PropTypes.elementType.isRequired
-    }),
-
-    /** slot props */
-    slotProps: PropTypes.shape({
-        root: PropTypes.object
-    })
-}; 
