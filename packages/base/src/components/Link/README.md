@@ -258,7 +258,7 @@ After looking at all the component libraries above and taking into consideration
 #### Regular links
 
 ```html
-<a class="root" role="link" type="link">
+<a class="root" role="link" type="link" href={href}>
   {children}
 </a>
 ```
@@ -270,6 +270,8 @@ After looking at all the component libraries above and taking into consideration
   {children}
 </button>
 ```
+
+> TODO: Discuss if we really need to render links as buttons, in which scenarios and why.
 
 ### Slots
 
