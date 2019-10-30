@@ -1,5 +1,3 @@
-// const webpackConfig = require('@fluentui/scripts/config/storybook/webpack.config');
-// module.exports = webpackConfig;
 const path = require('path')
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin')
 
@@ -22,7 +20,7 @@ module.exports = ({ config }) => {
     ],
   })
   config.resolve.extensions.push('.ts', '.tsx')
-  //config.plugins.push(new HardSourceWebpackPlugin());
+  config.plugins.push(new HardSourceWebpackPlugin())
   config.resolve.alias = {
     '@stardust-ui/docs-components': path.join(__dirname, '../src/components'),
     '@stardust-ui/code-sandbox': path.join(__dirname, '../src/codeSandbox'),
