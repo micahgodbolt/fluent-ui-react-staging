@@ -201,18 +201,28 @@ Most of the other props exist as HTMLAttributes like `selected`, `checked`, `onC
 | --------- | --------- | ----- |
 | children | [Flow content](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Content_categories#Flow_content) | No content should have on clicks  |
 
-#### MenuGroup component
-Should extend MenuItems props
+#### SubmenuItem component
+Should extend MenuItems props but omit onClick
+
+| Prop Name | Prop Type | Notes |
+| --------- | -------- | -------- |
+| children | [Flow content](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Content_categories#Flow_content) | No content should have on clicks  | 
+
+#### Submenu component
 
 | Prop Name | Prop Type | Notes |
 | --------- | -------- | -------- |
 | children | [Flow content](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Content_categories#Flow_content) | No content should have on clicks  | 
 | open | boolean | whether or not this particular menu group is open. |
 
+#### Submenu component
+Should take in MenuProps
 
 
 #### Communication between Menu and MenuItems
 To help provide additional information to menu items and their context, the menu should implement react context. This allows for synchronization between menu items. This also allows menu groups to pass their open status down to their children to determine how the sub items are rendered.
+
+Similarly Submenus should control their open state through context.
 
 #### Discussion:
 This is a large departure from the way that both Stardust and Fabric implement menus but it is more in line with the way a lot of other frameworks menus work. Additionally I believe it gives a lot more flexibility through composition which removes some of the pressure to add many props.
@@ -482,54 +492,116 @@ _Note:_ Some long class names removed
 
 ### Recommended DOM Structure
 ```HTML
-<ul role="menu">
-    <li role="menuitem">{"Item one"}</li>
-    <hr role="separator" />
-    <li role="menuitem">{"Item two"}</li>
-    <li role="menuitem"> 
+<div role="menu">
+    <div role="menuitem">{"Item one"}</div>
+    <div role="presentation" />
+    <div role="menuitem">{"Item two"}</div>
+    <a role="menuitem" href="www.isALink.com"> link1 </a>
+    <div role="menuitem"> 
         {"Item Three"}
+    </div>
+        <!-->
+            I'm not sure if this is the right role or if it is actually a menu item. It should
+            probably be related to it's parent item in some way
+        <-->
+    <div role="presentation">
         <!-->
             Note: Does not necessarily need to be part of the same dom 
             tree, could be floating.
         <-->
-        <ul role="menu">
-            <li role="menuitem">{"SubItem one"}</li>
-            <li role="menuitem">{"SubItem two"}</li>
-        </ul>
-    </li>
+        <div role="menu">
+            <div role="menuitem">{"SubItem one"}</div>
+            <div role="menuitem">{"SubItem two"}</div>
+        </div>
+    </div>
 </ul> 
 ```
 
 ### Recommended React Structure
-```HTML
-<Menu>
-    <MenuItem>{"Item one"}</MenuItem>
-    <Divider />
+#### Shape when used
+```TSX
+return <Menu>
+    <MenuItem onClick={callback}>{"Item one"}</MenuItem>
+    <Divider/>
     <MenuItem>{"Item two"}</MenuItem>
-    <MenuGroup> 
-        {"Item Three"}
-        <Submenu>
+    <Submenu>
+    <SubmenuItem>{"Item two"}</SubmenuItem>
+        <SubmenuList>
             <MenuItem>{"SubItem one"}</MenuItem>
             <MenuItem>{"SubItem two"}</MenuItem>
-        </Submenu>
-    </MenuGroup>
-</Menu> 
+        </SubmenuList>
+    </SubMenu>
+</Menu>;
 ```
-_Note:_ Submenu is just a popout menu which gets its opened state from context if not provided directly.
+#### Menu
+```TSX
+function() {
+    return (
+    <MenuContext.Provider value={menuState}>
+        <Slots.Root {...props} role={"menu"}>
+            {props.children}
+        </Slots.Root>
+    <MenuContext.Provider>);
+}
+```
 
-### Recommended Menu Render Function
-```HTML
-<List>
-    {props.children}
-</List> 
+#### MenuItem
+```TSX
+function() {
+    return (
+    <Slots.Root {...props} role={"menuitem"}>
+        {props.children}
+    </Slots.Root>);
+}
 ```
+
+#### Submenu
+Maybe should be named SubmenuContext?
+Should submenu have it's own context?
+```TSX
+function() {
+return (
+    <OpenableContext.Provider value={submenuState}>
+        {props.children}
+    </OpenableContext.Provider>);
+}
+```
+
+#### SubmenuList
+```TSX
+function() {
+    const openableContext = React.useContext(OpenableContext);
+    return (openableContext.open && 
+    <Slots.Root {...menuProps}>
+        {props.children}
+    </Slots.Root>);
+}
+```
+
+#### SubmenuItem
+```TSX
+function() {
+    const openableContext = React.useContext(OpenableContext);
+    return (
+    <Slots.Root {...menuItemProps} onClick={openableContext.toggleOpen}>
+        {props.children}
+    </Slots.Root>);
+}
+```
+
 
 ### Slots
 #### Menu
-Since the Menu is only rendering its children, the only slot necessary is the one for the Root `ul`. The rest can be passed in as children variants.
+Since the Menu is only rendering its children, the only slot necessary is the one for the Root `div`. The rest can be passed in as children variants.
 
 #### MenuItem
-Since the MenuItem is only rendering its children, the only slot necessary is the one for the Root `li`. The rest can be passed in as children.
+Since the MenuItem is only rendering its children, the only slot necessary is the one for the Root `div`. The rest can be passed in as children.
+
+#### SubmenuList
+Since the SubmenuList is effectively the same as the Menu, it should have only one slot for the Root `div` and for all intents and purposes should behave exactly the same as the Menu slot does.
+
+#### SubmenuItem
+Since the SubmenuItem is effectively the same as the MenuItem, it should have only one slot for the Root `div` and for all intents and purposes should behave exactly the same as the MenuItem slot does.
 
 ### Behaviors
 
@@ -563,6 +635,14 @@ The menu item should change border and background color on hover.
 
 An extra consideration needs to be made for forcing focus into the menu item on hover. Menus on most Microsoft desktop applications work this way. We should ensure there is a way to achieve this behavior through composition or props.
 
+#### Submenu Items
+Should have all of the same states and behaviors except for it shouldn't get an onClick.
+
+Needs to provide a way for menus to open on hover as many submenus have that behavior.
+
+##### Open
+The menu item should have different state depending on if it is open or not
+
 ### Theming && customization
 The menu should have as few opinions on theming as possible, allowing the items to determine customizations as much as possible. There should also be a way to easily remove the theme entirely from the menu so the items can determine the look and feel.
 
@@ -579,8 +659,11 @@ None needed
 | rootFocusedBackgroundColor |
 | rootHoverBorderColor |
 | rootFocusedBorderColor |
+| rootOutlineColor |
+| rootHoverOutlineColor |
+| rootFocusedOutlineColor |
 
-#### Menu Group Tokens
+#### Submenu Item Tokens
 Extends menu item tokens
 
 | Token Name |
@@ -590,4 +673,4 @@ Extends menu item tokens
 
 
 ### Composition
-The menu should consist of a list element, a `ul`, which renders individual menu items. Each menu item consists of an `li` which renders with `role="menuitem"`
+The menu should consist of a list element, a `div`, which renders individual menu items. Each menu item consists of an element which renders with `role="menuitem"`
