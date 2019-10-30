@@ -16,7 +16,7 @@
 
 ## Component anatomy
 
-> Outline the parts of a component; what their name is purpose are. Ideally order them in DOM order. Also consider if the component should be broken into subcomponents. Example:
+> Outline the parts of a component; what their names and purposes are. Ideally order them in DOM order. Also consider if the component should be broken into subcomponents. Example:
 
 | Name      | Considerations                                                       |
 | --------- | -------------------------------------------------------------------- |
@@ -39,9 +39,9 @@
 | defaultValue | number \| number[]                           | Provides the uncontrolled default value of the component, mutually exclusive with `value`. |
 | disabled     | boolean                                      | Specifies whether a component should be disabled.                                          |  |
 
-## DOM heirarchy/structure
+## DOM hierarchy/structure
 
-> Define the recommended DOM shape to represent the component, and how important attributes (aria attributes especially) are applied to the various parts. In cases where a component nests other components, ideally, you expand the full dom structure to undertand the expectation and if there are design gaps in the child components. Example:
+> Define the recommended DOM shape to represent the component, and how important attributes (aria attributes especially) are applied to the various parts. In cases where a component nests other components, ideally, you expand the full dom structure to understand both the expectation and if there are design gaps in the child components. Example:
 >
 > ```html
 > <div class="root">
@@ -65,7 +65,7 @@
 
 ## Behaviors
 
-> Define the behaviors of the component, including user interactions, general input, and expected screen reader behaviors. If there are also considerations for different screen sizes or form factors, include those as well. Link the relevant [w3 aria specification](https://www.w3.org/TR/WCAG21) (and read it.)
+> Define the behaviors of the component, including user interactions, general input, and expected screen reader behaviors. If there are also considerations for different screen sizes or form factors, include those as well. Link the relevant [W3 ARIA specification](https://www.w3.org/TR/WCAG21) (and read it).
 >
 > - How should disabled behavior work (are things focusable)?
 > - How and when should focus indicators show up?
@@ -92,7 +92,7 @@
 > Define the mouse behaviors of the component.
 >
 > - What specific mouse events (down, up, move) are being listened to and how does that affect the component?
-> - For things which are accessible through mouse input, can you also do the same thing using a keyboard?
+> - For behaviors which are accessible through mouse input, can you also do the same thing using a keyboard?
 >
 > Example:
 >
@@ -106,7 +106,7 @@
 > Define the touch behaviors of the component.
 >
 > - Are there different behaviors than in mouse scenarios?
-> - Are touch targets large enough for fat fingers? (44x44px recommended as a minimum guidance.) For example, the `thumb` of a slider might appear to be small, but the touchable area should reflect a larger area around it.
+> - Are touch targets large enough for fat fingers? (44x44px is the recommended minimum size.) For example, the `thumb` of a slider might appear to be small, but the touchable area should be larger.
 
 ### Screen reader accessibility
 
@@ -130,13 +130,13 @@
 
 ### Accessibility concerns for the user
 
-> Consider which props, mapped to attribute values, must be provided for the user to make the component accessible. Often props which require to calculate a value, or be localized, need to be provided by the user.
+> Consider which props, mapped to attribute values, must be provided for the user to make the component accessible. Often props which require localization or calculating a value must be provided by the user.
 >
-> For React props, consider using `ariaLabel` and `ariaLabeledBy`, rather than the natural kebab-cased variants (`aria-label`) so that they can be provided without destroying type safety.
+> For React props, consider using `ariaLabel` and `ariaLabelledBy`, rather than the natural kebab-cased variants (`aria-label`) so that they can be provided without destroying type safety.
 
 ## Themability and customization
 
-> Components should be built to withstand multiple aesthetic looks. This ensiures for customizability and reuse in the long term.
+> Components should be built to withstand multiple aesthetic looks. This ensures customizability and reuse in the long term.
 >
 > At minimum, each component should consider the following theming requirements: light mode, dark mode, high contrast light and high contrast dark.
 >
@@ -161,7 +161,7 @@
 
 ### Component design tokens
 
-> Assuming the Fluent UI styling system, a component styling may reference design tokens.
+> Assuming the Fluent UI styling system, a component's styling may reference design tokens.
 >
 > Tokens represent the general look and feel of the various visual slots. Tokens feed values into the styling during applicable conditions.
 >
