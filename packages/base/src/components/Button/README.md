@@ -94,7 +94,7 @@ The following are variants that exist because of the need of `Buttons` to reside
 
 ## Reference implementations
 
-The following section documents links to different UI libraries implementations of Buttons, while also providing a codebox with a side by side implementation of them for comparison.
+The following section documents links to different UI libraries implementations of Buttons, while also providing a code sandbox with a side by side implementation of them for comparison.
 
 - [Side-by-side implementations](https://codesandbox.io/s/button-implementations-93x8z)
 
@@ -146,7 +146,7 @@ The following section documents the properties that will become part of the new 
 
 | Name        | Type              | Default value | Description                                                                            |
 | ----------- | :--------------:  | :-----------: | -------------------------------------------------------------------------------------- |
-| `as`        | `string`          |               | Defines a component that should be used as the root element of th `Button`.            |
+| `as`        | `string`          |               | Defines a component that should be used as the root element of the `Button`.           |
 | `className` | `string`          |               | Defines an additional classname to provide on the root of the `Button`.                |
 | `disabled`  | `boolean`         | `false`       | Defines whether the `Button` is in an enabled or disabled state.                       |
 | `href`      | `string`          |               | Defines an href that, if provided, will make the `Button` render as an anchor.         |
@@ -163,7 +163,6 @@ The following section documents the properties that will become part of the new 
 | Name                 | Description                                                                            | Concern                                                                                                       |
 | -------------------- | -------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
 | `allowDisabledFocus` | Defines whether disabled `Buttons` should be tabbable via keyboard navigation or not.  | Should we really redefine standard behavior here?                                                             |
-| `as`                 | Defines the type that determines how to render the root of the `Button`.               | Should we deprecate in favor of slot overrides?                                                               |
 | `checked`            | Defines whether the `Button` is in a checked state.                                    | Does this belong to the base or to a variant `ToggleButton`?                                                  |
 | `circular`           | Defines whether the `Button` should be rendered as a circle instead of as a rectangle. | Should we still have this prop or should we generate a `CircularButton` variant via recomposition of styles?  |
 | `primary`            | Defines whether the visual representation of the `Button` should be emphasized or not. | Should we still have this prop or should we generate a `PrimaryButton` variant via recomposition of styles?   |
@@ -314,7 +313,7 @@ https://developer.microsoft.com/en-us/fabric#/controls/web/button
 | `toggled`                          | Removing as it is already deprecated. | &#9745;                | No, because prop is already deprecated. | &#x274C;              |
 | `uniqueId`                         | TBD                                   | &#x274C;               | &#x274C;                                | &#x274C;              |
 
-### Conversion process Stardust to Fluent UI Button
+### Conversion process from Stardust to Fluent UI Button
 
 #### ButtonProps interface
 
@@ -771,7 +770,7 @@ https://developer.mozilla.org/en-US/docs/Web/API/Element/setPointerCapture
 
 - `mouseenter`: Should immediately change the styling of the `Button` so that it appears to be hovered.
 - `mouseleave`: Should immediately remove the hovered styling of the `Button`.
-- `mousedown`: Should immediately change  the styling of the `Button` so that it appears to be pressed.
+- `mousedown`: Should immediately change the styling of the `Button` so that it appears to be pressed.
 - `mouseup`:
   - If triggered while cursor is still inside of the `Button's` boundaries, then it should trigger the `Button's` action and immediately remove the pressed styling of the `Button`.
   - If triggered outside of the `Button's` boundaries, then it should immmediately remove the pressed styling of the `Button` without triggering the `Button's` action.
@@ -784,7 +783,7 @@ The same behavior as above translated for touch events. This means that there is
 
 #### `root`:
 
-- Should render a native `button` element, or a native `a` element if the `href` prop has been set.
+- Should render the native element using the `as` prop, defaulting to a native `button` element, or a native `a` element if the `href` prop has been set.
 - Should mix in the native props expected for the `button` or `a` native elements depending on if the `href` prop has been set.
 - Should be keyboard tabbable and focusable.
 
