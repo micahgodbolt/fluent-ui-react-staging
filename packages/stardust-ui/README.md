@@ -31,6 +31,7 @@
 - require.context magic in .storybook/config.js
 - references to code-editor and docs-components need to be replaced (removed?)
 - replace docs-components useXYZKnobs and code-sandbox with storybook knobs
+- remove index.ts/index.tsx files
 
 ### TODO
 

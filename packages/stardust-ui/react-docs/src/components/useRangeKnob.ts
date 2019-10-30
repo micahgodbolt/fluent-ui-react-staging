@@ -14,7 +14,7 @@ import { action } from '@storybook/addon-actions'
 
 const useRangeKnob = <T extends number | string>(
   options: UseRangeKnobOptions<T>,
-): [string, (value: T) => void] => {
+): [T, (value: T) => void] => {
   const { initialValue = 3 as T, min = 0, max = parseValue(initialValue), step = 1 } = options
 
   const unit = `${initialValue}`.replace(`${parseValue(initialValue)}`, '')
@@ -26,7 +26,7 @@ const useRangeKnob = <T extends number | string>(
     step: parseValue(step),
   })
   const knobAction = action(options.name)
-  return [`${knob}${unit}`, knobAction]
+  return [`${knob}${unit}` as T, knobAction]
 }
 
 export { useRangeKnob }
