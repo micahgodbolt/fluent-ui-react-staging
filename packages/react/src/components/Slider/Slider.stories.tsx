@@ -19,9 +19,7 @@ const theme: ITheme = {
     background: "",
     brand: defaultColorRamp,
     accent: defaultColorRamp,
-
     neutral: defaultColorRamp,
-
     success: defaultColorRamp,
     warning: defaultColorRamp,
     danger: defaultColorRamp
@@ -55,6 +53,17 @@ const theme: ITheme = {
   }
 };
 
+const redTheme: ITheme = {
+  ...theme,
+  components: {
+    Slider: {
+      thumbColor: "#900",
+      thumbColorHovered: "#b00",
+      thumbColorPressed: "#f00"
+    }
+  }
+};
+
 const Wrapper = (p: React.HTMLAttributes<any>) => (
   <ThemeContext.Provider value={theme}>
     <div style={{ padding: 20, ...p.style }}>{p.children}</div>
@@ -84,19 +93,11 @@ export const fluentVerticalSlider = () => (
   </Wrapper>
 );
 
-// export const styledFluentSlider = () => (
-//   <ThemeProvider
-//     theme={{
-//       components: {
-//         Slider: {
-//           tokens: {
-//             trackColor: "green",
-//             railColor: "red"
-//           } as ISliderTokens
-//         }
-//       }
-//     }}
-//   >
-//     <Slider />
-//   </ThemeProvider>
-// );
+export const styledRedFluentSlider = (p: React.HTMLAttributes<any>) => (
+  <ThemeContext.Provider value={redTheme}>
+    <div style={{ padding: 20, ...p.style }}>
+      {" "}
+      <Slider defaultValue={50} />
+    </div>
+  </ThemeContext.Provider>
+);
