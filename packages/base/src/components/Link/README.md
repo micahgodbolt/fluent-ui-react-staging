@@ -272,6 +272,7 @@ After looking at all the component libraries above and taking into consideration
 ```
 
 > TODO: Discuss if we really need to render links as buttons, in which scenarios and why.
+> TODO: Discuss what to do about `role="link"` given that it is not needed for the `a` or `button` tags but the inclusion of slots us might force us to add it.
 
 ### Slots
 
@@ -390,18 +391,18 @@ render () {
 >
 > Common states: `hovered`, `pressed`, `focused`, `checked`, `checkedHovered`, `disabled`
 
-| Name                          | Considerations |
-| ----------------------------- | -------------- |
-| `rootBackgroundColor`         |                |
-| `rootBackgroundColorDisabled` |                |
-| `rootBackgroundColorHovered`  |                |
-| `rootColor`                   |                |
-| `rootColorDisabled`           |                |
-| `rootColorHovered`            |                |
-| `rootFontFamily`              |                |
-| `rootFontSize`                |                |
-| `rootFontWeight`              |                |
-| `rootTextDecoration`          |                |
+| Name                      | Considerations |
+| ------------------------- | -------------- |
+| `backgroundColor`         |                |
+| `backgroundColorDisabled` |                |
+| `backgroundColorHovered`  |                |
+| `color`                   |                |
+| `colorDisabled`           |                |
+| `colorHovered`            |                |
+| `fontFamily`              |                |
+| `fontSize`                |                |
+| `fontWeight`              |                |
+| `textDecoration`          |                |
 
 ### To be discussed
 
