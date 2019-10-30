@@ -6,14 +6,23 @@
     "outDir": "lib",
     "baseUrl": ".",
     "paths": {
-      "@stardust-ui/docs-components": ["./src/components"],
-      "@stardust-ui/code-sandbox": ["./src/codeSandbox"]
+      "@stardust-ui/docs-components": [
+        "./src/components"
+      ],
+      "@stardust-ui/code-sandbox": [
+        "./src/codeSandbox"
+      ]
     }
   },
-  "include": ["src"],
+  "include": [
+    "src"
+  ],
   "references": [
     {
       "path": "../accessibility/tsconfig.json"
+    },
+    {
+      "path": "../react/tsconfig.json"
     },
     {
       "path": "../react-bindings/tsconfig.json"
@@ -26,9 +35,6 @@
     },
     {
       "path": "../react-component-ref/tsconfig.json"
-    },
-    {
-      "path": "../react/tsconfig.json"
     },
     {
       "path": "../react-proptypes/tsconfig.json"
