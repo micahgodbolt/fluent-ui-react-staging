@@ -1,0 +1,9 @@
+{
+  "type": "patch",
+  "comment": "Link: Adding README spec to base components.",
+  "packageName": "@fluentui/base",
+  "email": "Humberto.Morimoto@microsoft.com",
+  "commit": "6aa55ce467f180db496c1f01eeb81c0a6d922c0f",
+  "date": "2019-10-30T22:41:00.544Z",
+  "file": "D:\\fluent-ui\\change\\@fluentui-base-2019-10-30-15-41-00-linkSpec.json"
+}
