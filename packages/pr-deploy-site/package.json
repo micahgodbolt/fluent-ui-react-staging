@@ -8,10 +8,10 @@
     "build": "just-scripts build"
   },
   "dependencies": {
-    "@stardust-ui/react-docs": "*",
-    "@fluentui/react": "*"
+    "@stardust-ui/react-docs": "0.40.1",
+    "@fluentui/react": "0.1.0"
   },
   "devDependencies": {
-    "@fluentui/scripts": "*"
+    "@fluentui/scripts": "1.0.1"
   }
 }

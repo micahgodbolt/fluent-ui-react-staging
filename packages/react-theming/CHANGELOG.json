@@ -1,0 +1,19 @@
+{
+  "name": "@fluentui/react-theming",
+  "entries": [
+    {
+      "date": "Wed, 30 Oct 2019 17:20:18 GMT",
+      "tag": "@fluentui/react-theming_v0.1.0",
+      "version": "0.1.0",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Tokens from theme",
+            "author": "jdh@microsoft.com",
+            "commit": "b7d68b1fd4d2baf4b9ddee520e3de678baedfe4e"
+          }
+        ]
+      }
+    }
+  ]
+}
