@@ -832,43 +832,43 @@ render() {
 >
 > Common states: `hovered`, `pressed`, `focused`, `checked`, `checkedHovered`, `disabled`
 
-| Name                          | Considerations |
-| ----------------------------- | -------------- |
-| `endIconColor`                |                |
-| `endIconColorDisabled`        |                |
-| `endIconColorHovered`         |                |
-| `endIconColorPressed`         |                |
-| `endIconFontSize`             |                |
-| `endIconFontWeight`           |                |
-| `startIconColor`              |                |
-| `startIconColorDisabled`      |                |
-| `startIconColorHovered`       |                |
-| `startIconColorPressed`       |                |
-| `startIconFontSize`           |                |
-| `startIconFontWeight`         |                |
-| `rootBackgroundColor`         |                |
-| `rootBackgroundColorDisabled` |                |
-| `rootBackgroundColorHovered`  |                |
-| `rootBackgroundColorPressed`  |                |
-| `rootBorderColor`             |                |
-| `rootBorderColorDisabled`     |                |
-| `rootBorderColorHovered`      |                |
-| `rootBorderColorPressed`      |                |
-| `rootBorderRadius`            |                |
-| `rootBorderStyle`             |                |
-| `rootBorderWidth`             |                |
-| `rootColor`                   |                |
-| `rootColorDisabled`           |                |
-| `rootColorHovered`            |                |
-| `rootColorPressed`            |                |
-| `rootHeight`                  |                |
-| `rootFontFamily`              |                |
-| `rootFontSize`                |                |
-| `rootFontWeight`              |                |
-| `rootLineHeight`              |                |
-| `rootMinHeight`               |                |
-| `rootMinWidth`                |                |
-| `rootWidth`                   |                |
+| Name                      | Considerations |
+| ------------------------- | -------------- |
+| `backgroundColor`         |                |
+| `backgroundColorDisabled` |                |
+| `backgroundColorHovered`  |                |
+| `backgroundColorPressed`  |                |
+| `borderColor`             |                |
+| `borderColorDisabled`     |                |
+| `borderColorHovered`      |                |
+| `borderColorPressed`      |                |
+| `borderRadius`            |                |
+| `borderStyle`             |                |
+| `borderWidth`             |                |
+| `color`                   |                |
+| `colorDisabled`           |                |
+| `colorHovered`            |                |
+| `colorPressed`            |                |
+| `fontFamily`              |                |
+| `fontSize`                |                |
+| `fontWeight`              |                |
+| `height`                  |                |
+| `lineHeight`              |                |
+| `minHeight`               |                |
+| `minWidth`                |                |
+| `width`                   |                |
+| `startIconColor`          |                |
+| `startIconColorDisabled`  |                |
+| `startIconColorHovered`   |                |
+| `startIconColorPressed`   |                |
+| `startIconFontSize`       |                |
+| `startIconFontWeight`     |                |
+| `endIconColor`            |                |
+| `endIconColorDisabled`    |                |
+| `endIconColorHovered`     |                |
+| `endIconColorPressed`     |                |
+| `endIconFontSize`         |                |
+| `endIconFontWeight`       |                |
 
 NOTE! Stardust does not follow this convention. Their `Button` currently uses these tokens:
 
