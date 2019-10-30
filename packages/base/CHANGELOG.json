@@ -2,6 +2,20 @@
   "name": "@fluentui/base",
   "entries": [
     {
+      "date": "Wed, 30 Oct 2019 23:35:42 GMT",
+      "tag": "@fluentui/base_v0.2.0",
+      "version": "0.2.0",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Link: Adding base prototype without theming.",
+            "author": "Humberto.Morimoto@microsoft.com",
+            "commit": "a79c62f9f9cbfd238b5a96aec40dc673d9e9ee92"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 30 Oct 2019 22:32:43 GMT",
       "tag": "@fluentui/base_v0.1.0",
       "version": "0.1.0",
