@@ -98,7 +98,6 @@ export const fluentVerticalSlider = () => (
 export const styledRedFluentSlider = (p: React.HTMLAttributes<any>) => (
   <ThemeContext.Provider value={redTheme}>
     <div style={{ padding: 20, ...p.style }}>
-      {" "}
       <Slider defaultValue={50} />
     </div>
   </ThemeContext.Provider>
