@@ -1,7 +1,7 @@
 {
   "name": "@stardust-ui/react-docs",
   "description": "Docs for the stardust-ui/react components.",
-  "version": "0.40.1",
+  "version": "0.40.2",
   "author": "Levi Thomason <me@levithomason.com>",
   "bugs": "https://github.com/stardust-ui/react/issues",
   "dependencies": {

@@ -1,9 +1,0 @@
-{
-  "type": "patch",
-  "comment": "added config bits to handle examples that are class based",
-  "packageName": "@stardust-ui/react-docs",
-  "email": "kchau@microsoft.com",
-  "commit": "88f5ffb9ada8f00fb528ace37e6597089a0dab7e",
-  "date": "2019-10-30T17:39:06.862Z",
-  "file": "/Users/ken/workspace/fluent/change/@stardust-ui-react-docs-2019-10-30-10-39-06-class-example.json"
-}
