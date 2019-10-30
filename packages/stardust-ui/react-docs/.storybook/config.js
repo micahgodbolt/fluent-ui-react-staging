@@ -37,6 +37,10 @@ export const req = require.context(
   /(\w+Example(\w|\.)*|\w+.perf)\.tsx$/,
 )
 
+function isFunctionalComponent(Component) {
+  return !Component.prototype.render
+}
+
 function loadStories() {
   const stories = new Map()
   const nameMatcher = /\.\/([^/]+)\//
@@ -56,7 +60,16 @@ function loadStories() {
 
       const storyName = key.substr(key.lastIndexOf('/') + 1).replace('.tsx', '')
       const story = stories.get(componentName)
-      story[storyName] = req(key).default
+
+      const Component = req(key).default
+
+      if (Component) {
+        if (isFunctionalComponent(Component)) {
+          story[storyName] = Component
+        } else {
+          story[storyName] = () => <Component />
+        }
+      }
     }
   })
 
