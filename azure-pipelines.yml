@@ -41,7 +41,7 @@ steps:
       azureSubscription: 'UI Fabric'
       storage: 'fluentui'
       ContainerName: '$web'
-      BlobPrefix: 'pr-deploy-site/$(Build.SourceBranch)/perf-test'
+      BlobPrefix: 'pr-deploy-site/$(Build.SourceBranch)'
 
   - task: GithubPRStatus@0
     displayName: 'Update Github Pull Request Status'
@@ -50,7 +50,7 @@ steps:
       githubRepo: 'fluent-ui-react-staging'
       githubContext: 'Pull Request Deployed Site'
       githubDescription: 'Click "Details" to go to the Deployed Site'
-      githubTargetLink: 'http://fluentui.z5.web.core.windows.net/pr-deploy-site/$(Build.SourceBranch)/'
+      githubTargetLink: 'https://fluentui.z5.web.core.windows.net/pr-deploy-site/$(Build.SourceBranch)/'
 
   - script: |
       yarn workspace @fluentui/scripts just projrefs:verify
