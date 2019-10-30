@@ -4,10 +4,9 @@ import { useButton } from "./useButton";
 
 export const ButtonBase: React.FunctionComponent<IButtonProps> = (props: IButtonProps) => {
     const { children, href, slots } = props;
-    const tag = href ? 'a' : 'button';
     const {
         endIcon: EndIcon = "i",
-        root: Root = tag,
+        root: Root = href ? 'a' : 'button',
         startIcon: StartIcon = "i"
     } = (slots || {}) as IButtonSlots;
 
