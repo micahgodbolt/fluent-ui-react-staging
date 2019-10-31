@@ -21,7 +21,6 @@ const useCheckboxState = (userProps: ICheckboxProps): ICheckboxState => {
       onChange(ev, !checked);
       
       setChecked(!isChecked);
-      console.log(isChecked);
     
       if (ev.defaultPrevented) {
         return;
