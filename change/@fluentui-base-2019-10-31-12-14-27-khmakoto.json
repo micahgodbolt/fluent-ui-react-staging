@@ -1,0 +1,9 @@
+{
+  "type": "patch",
+  "comment": "Button: Adding README spec to base components.",
+  "packageName": "@fluentui/base",
+  "email": "Humberto.Morimoto@microsoft.com",
+  "commit": "a522ac12749a6f455f7e54001d18587afbddb1bc",
+  "date": "2019-10-31T19:14:27.750Z",
+  "file": "C:\\Users\\humorimo\\Desktop\\fluent-ui-react-staging\\change\\@fluentui-base-2019-10-31-12-14-27-khmakoto.json"
+}
