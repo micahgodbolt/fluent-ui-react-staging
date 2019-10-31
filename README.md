@@ -6,7 +6,6 @@ An experimental approach to styling and theming react components.
 
 ### Innerloop
 
-yarn
 yarn start
 
 ### Full Build
