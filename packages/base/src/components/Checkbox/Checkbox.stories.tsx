@@ -6,14 +6,12 @@ export default {
   title: "Base Checkbox"
 };
 
+const _onChange = () => {
+    console.log("Checkbox was clicked.");
+}
+
 export const baseCheckbox = () => (
-  <CheckboxBase checked={true}>
+  <CheckboxBase defaultChecked={true} onChange={_onChange}>
     This renders as a checkbox
   </CheckboxBase>
 );
-
-// export const indeterminateCheckbox = () => (
-//   <CheckboxBase>
-//     This renders as an indeterminate checkbox
-//   </CheckboxBase>
-// ); 

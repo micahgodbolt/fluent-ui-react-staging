@@ -4,9 +4,6 @@ export interface ICheckboxSlots {
   /** Intended to contain the Checkbox. */
   root: React.ReactType;
 
-  /** Label to display next to the checkbox. */
-  label: React.ReactType;
-
   /** Custom icon that defines the checkmark rendered by the checkbox. */
   icon: React.ReactType;
 
@@ -25,8 +22,11 @@ export interface ICheckboxProps extends ISlottableProps<ICheckboxSlotProps, IChe
   /** Defines whether the Checkbox is in an enabled or disabled state. */
   disabled?: boolean;
   
-  /** Defines whether default value of the checkbox is checked or unchecked. */
-  checked: boolean;
+  /** Defines whether default value of the checkbox is checked or unchecked. (Controlled) */
+  checked?: boolean;
+
+  /** default value (uncontrolled) */
+  defaultChecked?: boolean;
   
   /** Defines a callback that is triggered when the Checkbox is toggled. */
   onChange?: (ev: MouseEvent, checked: boolean) => void;
